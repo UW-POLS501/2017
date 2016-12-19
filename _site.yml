@@ -1,0 +1,21 @@
+name: "pols-501-wi17"
+output_dir: "docs"
+output:
+  html_document:
+    theme: cosmo
+    highlight: textmate
+    css: styles.css
+    self_contained: false
+    toc: true
+    toc_depth: 2
+    toc_float:
+      collapsed: true
+    html5: true
+    includes:
+      in_header: include/in_header.html
+      after_body: include/after_body.html
+      before_body: include/before_body.html
+
+exclude:
+  - README.md
+  - "_notes"
