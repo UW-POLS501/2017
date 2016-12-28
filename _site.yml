@@ -11,6 +11,10 @@ output:
     toc_float:
       collapsed: true
     html5: true
+    md_extensions: "+raw_html"
+    pandoc_args: [
+      "--smart"
+    ]
     includes:
       in_header: include/in_header.html
       after_body: include/after_body.html
@@ -18,4 +22,4 @@ output:
 
 exclude:
   - README.md
-  - "_notes"
+  - "_*"
