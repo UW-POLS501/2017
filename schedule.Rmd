@@ -5,38 +5,43 @@ date: "12/25/2016"
 output: html_document
 ---
 
-# Research Project
+Final paper due: March 17, 5 pm. EST
 
-1. 
-2. 
+Checkmarks
 
+- Proposal - 1 page
+- Data loaded. Merge any data.
+- Visualize the data.
+- Bivariate relationship
+- Control and facet data
+- draft
+
+This is rough plan. Each 
 
 # Week 1
 
 1. Complete Data Camp Introduction to R Chapters 1 (Intro to Basics), 2 (Vectors), 4 (Factors), and 5 (Data Frames).
 2. Complete TryR if you want more practice with R.
 
-- *QSS* Ch 1: Introduction
 - *r4ds* Ch 1: Introduction
 - *r4ds* Ch 2: Explore -- Introduction
 - *r4ds* Ch 3: Data visualization
+- *r4ds* Ch 4: Workflow basics
 
 # Week 2
 
 - *QSS* Ch 2: Causality
-- *r4ds* Ch 4: Workflow basics
-
-# Week 3
-
-- *QSS* Ch 3: Measurement
 - *r4ds* Ch 5: Data transformation
 - *r4ds* Ch 6: Workflow scripts
 - *r4ds* Ch 7: EDA
 - *r4ds* Ch 8: Workflow projects
+- *r4ds* Ch 27: R Markdown
+- *r4ds* Ch 29: R Markdown formats
+- *r4ds* Ch 20: R Markdown workflow
 
-# Week 4
+# Week 3
 
-- *QSS* Ch 4: Prediction
+- *QSS* Ch 3: Measurement
 - *r4ds* Ch 9: Wrangle: Introduction
 - *r4ds* Ch 10: Tibbles
 - *r4ds* Ch 11: Data import
@@ -45,26 +50,23 @@ output: html_document
 - *r4ds* CH 14: Strings
 - *r4ds* Ch 15: Factors
 - *r4ds* Ch 16: Dates and times
+- Data analysis due
+
+# Week 4
+
+- *QSS* Ch 4: Prediction
+- *OpenIntro* Ch 7: Introduction to linear regression
+- *RS* Ch 3.1 "Bivariate Regression Model"
 - *r4ds* Ch 17: Program: Introduction
 - *r4ds* Ch 18: Pipes
 - *r4ds* Ch 19: Functions
 - *r4ds* Ch 20: Vectors
 - *r4ds* Ch 21: Iteration
-- *r4ds* Ch 22: Model: introduction
-- *r4ds* Ch 23: Model basics
-- *r4ds* Ch 24: Model Building
-- *r4ds* Ch 25: Many Models
-- *r4ds* Ch 26: Communicate: Introduction
-- *r4ds* Ch 27: R Markdown
-- *r4ds* Ch 28: Graphics for communication
-- *r4ds* Ch 29: R Markdown formats
-- *r4ds* Ch 20: R Markdown workflow
-
 
 # Week 5
 
 - *QSS* Ch 5: Discovery
-
+- Data Analysis Due
 
 # Week 6
 
@@ -75,20 +77,32 @@ output: html_document
 
 # Week 7
 
+- *r4ds* Ch 22: Model: introduction
+- *r4ds* Ch 23: Model basics
+- *r4ds* Ch 24: Model Building
+- *r4ds* Ch 25: Many Models
+
+
+# Week 7
+
+
+
+
+# Week 8
+
 - *QSS* Ch 7: Uncertainty
 - *OpenIntro* Ch 4: Foundations for interence
 - *OpenIntro* Ch 5: Inference for numerical data
 - *OpenIntro* Ch 6: Inference for categorical data
-- *OpenIntro* Ch 7: Introduction to linear regression
-
-
-# Week 8
 
 
 # Week 9
 
 
 # Week 10
+
+- *r4ds* Ch 26: Communicate: Introduction
+- *r4ds* Ch 28: Graphics for communication
 
 
 # Finals Period
