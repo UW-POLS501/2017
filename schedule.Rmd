@@ -107,33 +107,3 @@ This is rough plan. Each
 
 # Finals Period
 
-
-# Reading
-
-## Reproducible Research
-
--  Gentzkow, Matthew, and Jesse M. Shapiro. 2014. "Code and Data for the Social Sciences: A Practitioner's Guide." [link]
-- Jenny Bryan, Karen Cranston, Justin Kitzes, Lex Nederbragt, Tracy Teal, and Greg Wilson. 2015. Good Enough Practices in Scientific Computing
-
-## Addenda
-
-- Statistics Done Wrong: The Woefully Complete Guide
-
-## Regression
-
-1. Brambor, Thomas, William Roberts Clark, and Matt Golder. 2005. "Understanding Interaction Models: Improving Empirical Analysis." Political Analysis. DOI
-2. Matt Golder. "Interactions". URL
-3. Gelman, Andrew, and Hal Stern. 2006. ‘The Difference Between ‘Significant’ and ‘Not Significance’ is not Itself Statistically Significant’The American Statistician. DOI
-4. Moore, McCabe, and Craig. Introduction to the Practice of Statistics.7th ed. Chapter 16. "Bootstrap Methods and Permutation Tests"URL.
-5. Cowles, Michael, and Caroline David. 1982. "On the Origins of the .05 Level of Statistical Significance"American Psychologist. DOI
-
-## Visualization
-
-- Gelman, Andrew. 2002. "Let's Practice What We Preach: Turning Tables into Graphs." The American Statistician. [URL]
-- Kastellec, Jonathan P., and Eduardo L. Leoni. "Using Graphs Instead of Tables in Political Science." Perspectives on Politics. DOI
-- Stephen Few perceptualedge.com and his books: Show Me the Numbers: Designing Tables and Graphs to Enlighten and Now You See It: Simple Visualization Techniques for Quantitative Analysis. As well as many of his articles.
-- William S. Cleveland's books are classics: The Elements of Graphing Data and Visualizing Data
--  Edward Tufte's books are also classics: The Visual Display of Quantitative Information, Visual Explanations, Envisioning Information, and Beautiful Evidence.
-- Christopher Adolph's course CSSS 569: Visualizing Data.
-- Heer, Jeffrey, and Michael Bostock. 2010. "Crowdsourcing Graphical Perception: Using Mechanical Turk to Assess Visualization Design". This is a gateway to experiments which assess how effectiveness of different visual encodings of data. [URL].
-- Schwabish, Jonathan A. 2014. "An Economist's Guide to Visualizing Data." Journal of Economic Perspectives [DOI]
