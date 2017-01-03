@@ -79,3 +79,37 @@ Not used:
 
 - Fox: students don't like
 - Wooldridge: I don't know if anyone read it. Expensive.
+
+
+# Readings
+
+## Political Science
+
+- Gary King: On Political Methodology 1990
+- PS Roundtable on Big Data and Causal Inference Dec 2014
+- Sigelman. Coevolution of American Political Science and the APSR 2006 https://doi.org/10.1017/S0003055406062307
+
+## Theory of Data Analysis
+
+- @GrolemundWickham2014 "Cognitive Interpretation of Data Analysis"
+
+## Teaching Data Science
+- Wickham "Teaching Safe-Stats, Not Statistical Abstinence"
+- Cobb, G. W. (2015), “Mere Renovation is Too Little Too Late: We Need to Rethink Our Undergraduate Curriculum from the Ground Up,” The American Statistician, 69(4), doi:10.1080/00031305.2015.1093029.
+- Horton, N. J., Baumer, B. S., and Wickham, H. (2015), “Setting the Stage for Data Science: Integration of Data Management Skills in Introductory and Second Courses in Statistics,” ArXiv E-Prints, February, http://chance. amstat.org/2015/04/setting-the-stage/.
+- Baumer, B., Cetinkaya-Rundel, M., Bray, A., Loi, L., and Horton, N. J. (2014), “R Markdown: Integrating a Reproducible Analysis Tool into Introductory Statistics,” Technology Innovations in Statistics Education, https://escholarship.org/uc/item/90b2f5xh.
+- Data Science in R: A Case Studies Approach to Computational Reasoning and ..
+
+## Visualization
+
+- Wickham et al "Visualizing statistical models: Removing the blindfold" @WickhamCookHofmann2015a,
+  and commentary [@WickhamCookHofmann2015, @Villa-VialaneixRuiz-Gazen2015, @AllenCampbellHu2015, @Hurley2015, @PatilLeek2015, @Lewis2001]
+- http://www.juiceanalytics.com/writing/better-know-visualization-small-multiples/
+- Better Know a Visualization: Small Multiples. http://www.juiceanalytics.com/writing/better-know-visualization-small-multiples/
+- Wickham "Graphical Criticism: Some Historical Notes"
+- @EmersonGreenSchloerkeEtAl2013
+- Wickham "Visualizing Complex Data With Embedded Plots" http://amstat.tandfonline.com/doi/abs/10.1080/10618600.2014.896808 @GrolemundWickham2015
+- CondVis https://arxiv.org/pdf/1610.00290v1.pdf Conditional Visualization of Models
+- "Data Visualization and Statistical Graphics in Big Data Analysis" http://www.annualreviews.org/doi/abs/10.1146/annurev-statistics-041715-033420
+- Gelman "Exploratory Data Analysis for Complex Models" 2005
+- Wickham "Graphical Inference for infovis" 2010
