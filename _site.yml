@@ -1,4 +1,12 @@
 name: "pols-501-wi17"
+navbar:
+  title: "POLS/CS&SS 501"
+  left:
+    - text: "Syllabus"
+      href: "index.html"
+    - text: "Schedule"
+      href: "schedule.html"
+
 output_dir: "docs"
 output:
   html_document:
@@ -13,7 +21,6 @@ output:
     html5: true
     md_extensions: "+raw_html"
     pandoc_args: [
-      "--smart"
     ]
     includes:
       in_header: include/in_header.html

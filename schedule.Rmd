@@ -1,58 +1,114 @@
 ---
-title: "Schedule"
-author: "Jeffrey Arnold"
-date: "12/25/2016"
-output: html_document
+title: Schedule
 ---
 
-Final paper due: March 17, 5 pm. EST
+```{r include=FALSE, results='hide'}
+library("lubridate")
+library("stringr")
+dtfmt <- function(x) format(ymd(x), "%a, %b %d")
+```
 
-Checkmarks
 
-- Proposal - 1 page
-- Data loaded. Merge any data.
-- Visualize the data.
-- Bivariate relationship
-- Control and facet data
-- draft
+> "No plan survives contact with the enemy"
+> --- paraphrased quote of [Helmuch von Moltke the Elder](https://en.wikiquote.org/wiki/Helmuth_von_Moltke_the_Elder)
 
-This is rough plan. Each 
 
-# Week 1
+This schedule is an approximation, subject to change due needs of the students in the course.
+Students will be informed of changes to the schedule.
 
-1. Complete Data Camp Introduction to R Chapters 1 (Intro to Basics), 2 (Vectors), 4 (Factors), and 5 (Data Frames).
-2. Complete TryR if you want more practice with R.
 
+# Research Project 
+
+The final version of the paper for the research project is due **Thurs, March 16, 17:00 PDT**.
+
+Prior to the final paper being due there will be approximately weekly assignments in order to provide feedback, and allow you to immediately implement concepts and methods learned in the course. 
+
+See [research project](research_project.html) page for instructions.
+
+-------------------  ---------------------------
+**Draft Proposal**   `r dtfmt("2017-01-10")`
+**Proposal**         `r dtfmt("2017-01-17")`
+**Data Analysis 1**  `r dtfmt("2017-01-24")`
+**Data Analysis 2**  `r dtfmt("2017-02-07")`
+**Data Analysis 3**  `r dtfmt("2017-02-21")`
+**Data Analysis 4**  `r dtfmt("2017-02-28")`
+**Paper Draft**      `r dtfmt("2017-03-07")`
+-------------------  ---------------------------
+
+
+
+# Readings, Assignments, Lectures
+
+Abbreviations:
+
+------------- ----------------------------------------------------------------------------------------------------------------------------------------
+*r4ds*        Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
+*QSS*          Imai, *A First Course in Quantitative Social Science*
+*OpenIntro*    [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
+*RealStats*    Bailey, *Real Stats*
+------------- ----------------------------------------------------------------------------------------------------------------------------------------
+
+## Week 1
+
+class
+:   Jan 3
+
+lab
+:   Jan 7
+
+- [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
 - *r4ds* Ch 1: Introduction
 - *r4ds* Ch 2: Explore -- Introduction
 - *r4ds* Ch 3: Data visualization
 - *r4ds* Ch 4: Workflow basics
+- Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
 
-# Week 2
 
-- *QSS* Ch 2: Causality
+## Week 2
+
+class
+:   Jan 10
+
+lab
+:   Jan 13
+
 - *r4ds* Ch 5: Data transformation
 - *r4ds* Ch 6: Workflow scripts
 - *r4ds* Ch 7: EDA
 - *r4ds* Ch 8: Workflow projects
-- *r4ds* Ch 27: R Markdown
-- *r4ds* Ch 29: R Markdown formats
-- *r4ds* Ch 20: R Markdown workflow
-
-# Week 3
-
-- *QSS* Ch 3: Measurement
 - *r4ds* Ch 9: Wrangle: Introduction
 - *r4ds* Ch 10: Tibbles
 - *r4ds* Ch 11: Data import
+
+
+## Week 3
+
+class
+:   Jan 17
+
+lab
+:   Jan 20
+
+- *QSS* Ch 2: Causality
+- *QSS* Ch 3: Measurement
 - *r4ds* Ch 12: Tidy Data
 - *r4ds* Ch 13: Relational data
 - *r4ds* CH 14: Strings
 - *r4ds* Ch 15: Factors
 - *r4ds* Ch 16: Dates and times
-- Data analysis due
+- *r4ds* Ch 27: R Markdown
+- *r4ds* Ch 29: R Markdown formats
+- *r4ds* Ch 20: R Markdown workflow
+- Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
 
-# Week 4
+
+## Week 4
+
+class
+:   Jan 24
+
+lab
+:   Jan 27
 
 - *QSS* Ch 4: Prediction
 - *OpenIntro* Ch 7: Introduction to linear regression
@@ -63,19 +119,37 @@ This is rough plan. Each
 - *r4ds* Ch 20: Vectors
 - *r4ds* Ch 21: Iteration
 
-# Week 5
+
+## Week 5
+
+class
+:   Jan 31
+
+lab
+:   Feb 3
 
 - *QSS* Ch 5: Discovery
-- Data Analysis Due
 
-# Week 6
+
+## Week 6
+
+class
+:   Feb 7
+lab
+:   Feb 10
 
 - *QSS* Ch 6: Probability
 - *OpenIntro* Ch 2: Probability
 - *OpenIntro* Ch 3: Distributions of Random Variables
 
 
-# Week 7
+## Week 7
+
+class
+:   Feb 14
+
+lab
+:   Feb 17
 
 - *r4ds* Ch 22: Model: introduction
 - *r4ds* Ch 23: Model basics
@@ -83,28 +157,36 @@ This is rough plan. Each
 - *r4ds* Ch 25: Many Models
 
 
-# Week 7
+## Week 8
 
+class
+:   Feb 21
 
-
-
-# Week 8
+lab
+:   Feb 24
 
 - *QSS* Ch 7: Uncertainty
 - *OpenIntro* Ch 4: Foundations for interence
 - *OpenIntro* Ch 5: Inference for numerical data
 - *OpenIntro* Ch 6: Inference for categorical data
 
+## Week 9
 
-# Week 9
+class
+:   Feb 28
+
+lab
+:   Mar 3
 
 
-# Week 10
+## Week 10
+
+class
+:   Mar 7
+
+lab
+:   Mar 10
 
 - *r4ds* Ch 26: Communicate: Introduction
 - *r4ds* Ch 28: Graphics for communication
 
-
-# Finals Period
-
-twi

@@ -11,3 +11,10 @@ build: $(INDEX)
 
 $(INDEX): $(INPUTS)
 	$(RSCRIPT) build.R
+
+watch:
+	watchman watch .
+	watchman -- trigger . build '*.Rmd' '*.yml' 'include/*' -- $(RSCRIPT) build.R
+
+unwatch:
+	watchman watch-del .
