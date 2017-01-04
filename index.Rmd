@@ -7,7 +7,7 @@ output:
 
 <div class="container">
 <div class="jumbotron">
-<h1 class="title">POLS/CS&amp;SS 503</h1>
+<h1 class="title">POLS/CS&amp;SS 501</h1>
 <h2 class="subtitle">Advanced Political Research Design and Analysis</h2>
 <p>University of Washington, Winter 2017</p>
 </div>
@@ -118,17 +118,17 @@ While those will not be criteria for the evaluation of this paper, you are encou
 The paper will be evaluated on the appropriateness of the statistical methods applied to the data and question, and not the novelty or contribution of the question itself.
 
 If you developed a research design for POLS 500, you may be able to use it in 501.
-However you need to confirm that you will be able to assemble a dataset to test a specific research hypothesis within the time constraints of this course, because you will be using it throughout the course. 
+However you need to confirm that you will be able to assemble a dataset to test a specific research hypothesis within the time constraints of this course, because you will be using it throughout the course.
 If that seems unlikely, you will need to choose a different project.
 
 
 ### Assignments
 
-There will be *approximately* weekly assignments. 
+There will be *approximately* weekly assignments.
 Except when otherwise indicated, assignments will be announced by the start of class on Tuesday, and will be due prior to the start of class the next week.
 Assignments can consist of data analysis, substantive questions.
 
-No late homework will accepted except in the case of a documented emergency. 
+No late homework will accepted except in the case of a documented emergency.
 
 ## Scale
 
@@ -161,7 +161,7 @@ For this course, grades on the 4.0 scale have the following interpretation:
 
 ## Software and Computing
 
-This course will use [R](https://www.r-project.org/), which is a free and open-source programming language primarily used for statistics and data analysis. We will also use [RStudio](https://www.rstudio.com/), which is an easy-to-use interface to R. 
+This course will use [R](https://www.r-project.org/), which is a free and open-source programming language primarily used for statistics and data analysis. We will also use [RStudio](https://www.rstudio.com/), which is an easy-to-use interface to R.
 Instructions to install or upgrade R are [here](install.html).
 
 Students should have a laptop that they can bring to both class and lab as we will integrate computing with learning data analysis and statistics throughout the course.
