@@ -8,13 +8,14 @@ Course website is at https://UW-POLS501.github.io/pols_501_wi17/
 
 This website is built with [Rmarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview)n
 
-## Build
+## Usage
 
-On the command line run,
-```console
-$ ./build.R
-```
-or inside an R session run,
+To build the site,
 ```rconsole
 > source("build.R")
+```
+
+To serve the site locally and rebuild it dynamically with changes, run:
+```rconsole
+> source("serve.R")
 ```
