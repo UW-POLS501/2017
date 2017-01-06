@@ -150,7 +150,7 @@ For this course, grades on the 4.0 scale have the following interpretation:
 
 ## Textbooks
 
-- Wickham, Hadley, and Garrett Grolemund. 2016. [R for Dta Science](http://r4ds.had.co.nz/). O'Reilly Media.
+- Wickham, Hadley, and Garrett Grolemund. 2016. [R for Data Science](http://r4ds.had.co.nz/). O'Reilly Media.
 - Imai, Kosuke. 2017. *A First Course in Quantitative Social Science.* Princeton University Press. Forthcoming. Draft available on Canvas.
 - Bailey, Michael A. 2015. *Real Stats: Using Econometrics for Political Science and Public Policy*. Oxford University Press.
 - Diez, David M., Christopher D. Barr, and Mine Çetinkaya-Rundel. 2015. [OpenIntro Statistics](https://www.openintro.org/stat/textbook.php). 3rd ed.
