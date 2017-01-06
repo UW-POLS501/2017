@@ -67,7 +67,7 @@ output:
 <td>Nora</td>
 <td>Wednesday</td>
 <td>10:00&ndash;12:00 pm</td>
-<td>?</td>
+<td><a href="https://www.washington.edu/maps/?smi">SMI 37</a></td>
 </tr>
 <tr>
 <td>Jeff</td>
@@ -79,9 +79,9 @@ output:
 
 Instructions for Jeff's office hours:
 
-Sign up for a slot on Canvas using the Scheduler tab in the Calendar.
+1. Sign up for a 30-minute slot using the Google Calendar appointments link which I emailed.
 
-Email me 24 hours prior to your appointment with what you would like to discuss.
+2. Email me 24 hours prior to your appointment with what you would like to discuss.
 
 These instructions will ensure that our time is efficiently spent and I can be of the most help to you.
 
@@ -155,8 +155,18 @@ For this course, grades on the 4.0 scale have the following interpretation:
 - Bailey, Michael A. 2015. *Real Stats: Using Econometrics for Political Science and Public Policy*. Oxford University Press.
 - Diez, David M., Christopher D. Barr, and Mine Çetinkaya-Rundel. 2015. [OpenIntro Statistics](https://www.openintro.org/stat/textbook.php). 3rd ed.
 
-
 *R for Data Science* will be relied upon for teaching R, while *QSS* will be relied upon for concepts in data analysis and statistics, and political science examples. *OpenIntro Statistics* provides supplementary statistical information. *Real Stats* will be provide supplementary information on regression and causal inference towards the end of the course, but it will be primarily used in the following course, POLS 503.
+
+The primary text for R, *R for Data Science*, uses [tidyverse](https://github.com/tidyverse/tidyverse), a set of R packages not included in R by default. 
+However, the primary statistical text, *QSS*, relies upon the base R functionality, and uses different functions than those in *R4DS*. 
+So, I have written (am writing) equivalent tidyverse R code to replace the code examples 
+
+- [QSS Tidyverse Code](https://jrnold.github.io/qss-tidy/)
+
+Additionally, readings may be supplemented by my course notes and lecture slides.
+
+- [Introductory Methods Notes](https://github.com/jrnold/intro-methods-notes)
+
 
 
 ## Software and Computing
