@@ -8,6 +8,8 @@ navbar:
       href: "index.html"
     - text: "Schedule"
       href: "schedule.html"
+    - text: "Project"
+      href: "research_project.html"
 output:
   html_document:
     theme: cosmo

@@ -50,65 +50,56 @@ Abbreviations:
 
 ## Week 1
 
-class
-:   Jan 3
+### Class (January 3rd)
 
-lab
-:   Jan 7
-
-- [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
 - *r4ds* Ch 1: Introduction
 - *r4ds* Ch 2: Explore -- Introduction
+- *QSS* Ch 1
+
+### Lab (January 7th)
+
+- [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
 - *r4ds* Ch 3: Data visualization
 - *r4ds* Ch 4: Workflow basics
 - Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
-
+- *r4ds* Ch 6: Workflow scripts
 
 ## Week 2
 
-class
-:   Jan 10
-
-lab
-:   Jan 13
+### Class (January 10)
 
 - *r4ds* Ch 5: Data transformation
-- *r4ds* Ch 6: Workflow scripts
-- *r4ds* Ch 7: EDA
-- *r4ds* Ch 8: Workflow projects
 - *r4ds* Ch 9: Wrangle: Introduction
 - *r4ds* Ch 10: Tibbles
 - *r4ds* Ch 11: Data import
 
+### Lag (January 13)
+
+- *r4ds* Ch 8: Workflow projects
+- *r4ds* Ch 7: EDA
 
 ## Week 3
 
-class
-:   Jan 17
-
-lab
-:   Jan 20
+### Class (January 17th)
 
 - *QSS* Ch 2: Causality
 - *QSS* Ch 3: Measurement
 - *r4ds* Ch 12: Tidy Data
+- Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
+
+
+### Lab (January 20th)
+
 - *r4ds* Ch 13: Relational data
-- *r4ds* CH 14: Strings
+- *r4ds* Ch 14: Strings
 - *r4ds* Ch 15: Factors
 - *r4ds* Ch 16: Dates and times
-- *r4ds* Ch 27: R Markdown
-- *r4ds* Ch 29: R Markdown formats
 - *r4ds* Ch 20: R Markdown workflow
-- Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
 
 
 ## Week 4
 
-class
-:   Jan 24
-
-lab
-:   Jan 27
+### Class (January 24th)
 
 - *QSS* Ch 4: Prediction
 - *OpenIntro* Ch 7: Introduction to linear regression
@@ -116,9 +107,17 @@ lab
 - *r4ds* Ch 17: Program: Introduction
 - *r4ds* Ch 18: Pipes
 - *r4ds* Ch 19: Functions
+
+
+### Lab (January 27th)
+
+- *r4ds* Ch 27: R Markdown
+- *r4ds* Ch 29: R Markdown formats
 - *r4ds* Ch 20: Vectors
 - *r4ds* Ch 21: Iteration
-
+- *r4ds* Ch 22: Model: introduction
+- *r4ds* Ch 23: Model basics
+- *r4ds* Ch 24: Model Building
 
 ## Week 5
 
@@ -130,62 +129,53 @@ lab
 
 - *QSS* Ch 5: Discovery
 
+*This may get moved earlier*
 
 ## Week 6
 
-class
-:   Feb 7
-lab
-:   Feb 10
+### Class (February 7th)
 
 - *QSS* Ch 6: Probability
 - *OpenIntro* Ch 2: Probability
 - *OpenIntro* Ch 3: Distributions of Random Variables
 
+### Lab (February 10th)
+
 
 ## Week 7
 
-class
-:   Feb 14
+### Class (Feb 14th)
 
-lab
-:   Feb 17
 
-- *r4ds* Ch 22: Model: introduction
-- *r4ds* Ch 23: Model basics
-- *r4ds* Ch 24: Model Building
 - *r4ds* Ch 25: Many Models
 
+### Lab (Feb 17th)
 
 ## Week 8
 
-class
-:   Feb 21
-
-lab
-:   Feb 24
+### Class (Feb 21st)
 
 - *QSS* Ch 7: Uncertainty
 - *OpenIntro* Ch 4: Foundations for interence
 - *OpenIntro* Ch 5: Inference for numerical data
 - *OpenIntro* Ch 6: Inference for categorical data
 
+### Lab (Feb 24th)
+
 ## Week 9
 
-class
-:   Feb 28
+### Class (February 28th)
 
-lab
-:   Mar 3
+
+### Lab (March 3rd)
 
 
 ## Week 10
 
-class
-:   Mar 7
+### Class (March 7th)
 
-lab
-:   Mar 10
+
+### Lab (March 10th)
 
 - *r4ds* Ch 26: Communicate: Introduction
 - *r4ds* Ch 28: Graphics for communication
