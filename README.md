@@ -6,7 +6,7 @@ Course website is at https://UW-POLS501.github.io/pols_501_wi17/
 
 ## Preqrequisites
 
-This website is built with [Rmarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview)n
+This website is built with [Rmarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview).
 
 ## Usage
 
