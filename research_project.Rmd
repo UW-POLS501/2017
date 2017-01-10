@@ -2,6 +2,9 @@
 title: "Research Project"
 ---
 
+See the [schedule](schedule.html) for due dates.
+
+
 # Draft Proposal
 
 In one to two paragraphs propose a research project for this course.
@@ -11,6 +14,9 @@ If you were in POLS 500, will this be a continuation of your POLS 500 final proj
 
 The primary purpose of this proposal is to get you thinking about your question immediately and put an idea on paper.
 We will be able to give feedback, and you can adjust your proposal in the next draft.
+
+Turn in as a `.docx`, `.odf`, or `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3566710).
+
 
 # Research Proposal
 
