@@ -64,6 +64,13 @@ Abbreviations:
 - Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
 - *r4ds* Ch 6: Workflow scripts
 
+Optional
+
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-2
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3
+
+
 ## Week 2
 
 ### Class (January 10)
@@ -72,6 +79,11 @@ Abbreviations:
 - *r4ds* Ch 9: Wrangle: Introduction
 - *r4ds* Ch 10: Tibbles
 - *r4ds* Ch 11: Data import
+
+Optional
+
+- [Data Camp: Importing Data in R I](https://www.datacamp.com/courses/importing-data-in-r-part-1) This covers importing flat files but uses base R, instead of the **readr** package
+- [Data Camp: Importing Data in R](https://www.datacamp.com/courses/importing-data-in-r-part-2) This covers importing data.
 
 ### Lag (January 13)
 
@@ -96,6 +108,11 @@ Abbreviations:
 - *r4ds* Ch 16: Dates and times
 - *r4ds* Ch 20: R Markdown workflow
 
+Optional
+
+- Data Camp [Reporting with R markdown](https://www.datacamp.com/courses/reporting-with-r-markdown)
+- Data Camp [Joining Data in R with dplyr](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr)
+
 
 ## Week 4
 
@@ -107,6 +124,12 @@ Abbreviations:
 - *r4ds* Ch 17: Program: Introduction
 - *r4ds* Ch 18: Pipes
 - *r4ds* Ch 19: Functions
+
+Optional 
+
+- [Data Camp: Intermediate R](https://www.datacamp.com/courses/intermediate-r)
+- [Data Camp: Writing Functions in R](https://www.datacamp.com/courses/writing-functions-in-r)
+
 
 
 ### Lab (January 27th)
@@ -129,7 +152,6 @@ lab
 
 - *QSS* Ch 5: Discovery
 
-*This may get moved earlier*
 
 ## Week 6
 
