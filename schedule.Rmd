@@ -108,7 +108,7 @@ Optional
 Optional
 
 - [Cleaning data in R](https://www.datacamp.com/courses/cleaning-data-in-r)
-- Swirl *Getting and Cleaning Data* (Tidying data with dplyr)
+- Swirl *Getting and Cleaning Data* (Tidying data with tidyr)
 
 ### Lab (January 20th)
 
