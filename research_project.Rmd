@@ -10,7 +10,7 @@ See the [schedule](schedule.html) for due dates.
 In one to two paragraphs propose a research project for this course.
 State your research question. 
 Describe what data you will be using to address that question.
-If you were in POLS 500, will this be a continuation of your POLS 500 final project.
+If you were in POLS 500, will this be a continuation of your POLS 500 final project?
 
 The primary purpose of this proposal is to get you thinking about your question immediately and put an idea on paper.
 We will be able to give feedback, and you can adjust your proposal in the next draft.
@@ -20,9 +20,29 @@ Turn in as a `.docx`, `.odf`, or `.pdf` file via [Canvas](https://canvas.uw.edu/
 
 # Research Proposal
 
-TBA (This will be a slightly expanded version of the previous proposal that will incorporate instructor feedback and
-describe in more detail the availability of the data needed for the research.)
+In one to two paragraphs propose a research project for this course.
+State your research question. 
+Describe what data you will be using to address that question.
 
+1. Address any comments from the first proposal.
+2. What is your research question or puzzle? 
+3. Is the research question descriptive, causal, or predictive?
+4. What is the outcome variable of interest? Wnat are the explanatory variables?
+5. What data will you be using? What is the location of the data (include links to the data). 
+   Will your data be coming from one of many sources?
+   What format(s) are the data in? 
+   How do you intend to operationalize the concepts in your question with the data
+   at hand?
+6. What issues are you having or expect to have in getting and cleaning this data?
+
+Try to answer these questions as best as possible. 
+If you don't know, state it; we'll discuss it.
+If you are having problems describe them; that's why 6 is there. 
+Research projects are an iterative and stochastic process; the purpose of these
+assignments is to focus you on certain parts, find the problems and overcome them.
+
+
+Turn in a `.docx`, `.odf`, or `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3578633)
 
 # Data Analysis 1
 

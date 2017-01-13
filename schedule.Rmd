@@ -42,7 +42,7 @@ See [research project](research_project.html) page for instructions.
 Abbreviations:
 
 ------------- ----------------------------------------------------------------------------------------------------------------------------------------
-*r4ds*        Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
+*R4DS*        Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
 *QSS*          Imai, *A First Course in Quantitative Social Science*
 *OpenIntro*    [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
 *RealStats*    Bailey, *Real Stats*
@@ -99,6 +99,8 @@ Optional
 ## Week 3
 
 ### Class (January 17th)
+
+Assignment 1 due: use the [R template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1.R) and [Word document template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1-template.docx) for your solutions.
 
 - *QSS* Ch 2: Causality
 - *QSS* Ch 3: Measurement
