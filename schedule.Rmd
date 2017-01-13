@@ -82,8 +82,14 @@ Optional
 
 Optional
 
+- [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+- [Window functions and grouped mutate/filter](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html)
+- [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/cleaning-data-in-r) 
 - [Data Camp: Importing Data in R I](https://www.datacamp.com/courses/importing-data-in-r-part-1) This covers importing flat files but uses base R, instead of the **readr** package
 - [Data Camp: Importing Data in R](https://www.datacamp.com/courses/importing-data-in-r-part-2) This covers importing data.
+- [tibble 1.0.0](https://blog.rstudio.org/2016/03/24/tibble-1-0-0/)
+- [readr 1.0.0](https://blog.rstudio.org/2016/08/05/readr-1-0-0/)
+- Swirl *Getting and Cleaning Data* (Manipulating data with dplyr; Grouping and chaining with dplyr)
 
 ### Lag (January 13)
 
@@ -99,6 +105,10 @@ Optional
 - *r4ds* Ch 12: Tidy Data
 - Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
 
+Optional
+
+- [Cleaning data in R](https://www.datacamp.com/courses/cleaning-data-in-r)
+- Swirl *Getting and Cleaning Data* (Tidying data with dplyr)
 
 ### Lab (January 20th)
 
@@ -108,11 +118,16 @@ Optional
 - *r4ds* Ch 16: Dates and times
 - *r4ds* Ch 20: R Markdown workflow
 
+
 Optional
 
+- [Two-table verbs](https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html)
 - Data Camp [Reporting with R markdown](https://www.datacamp.com/courses/reporting-with-r-markdown)
 - Data Camp [Joining Data in R with dplyr](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr)
-
+- [Introduction to stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+- [Do more with dates and time in R with lubridate 1.3.0](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+- [Regular-Expressions.info](http://www.regular-expressions.info/tutorial.html)
+- Swirl *Getting and Cleaning Data* (Dates and Times with lubridate)
 
 ## Week 4
 
