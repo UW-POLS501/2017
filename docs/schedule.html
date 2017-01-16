@@ -311,62 +311,84 @@ div.tocify {
 <p>The final version of the paper for the research project is due <strong>Thurs, March 16, 17:00 PDT</strong>.</p>
 <p>Prior to the final paper being due there will be approximately weekly assignments in order to provide feedback, and allow you to immediately implement concepts and methods learned in the course.</p>
 <p>See <a href="research_project.html">research project</a> page for instructions.</p>
-<table>
+<table class="table table-stripped">
+<thead>
+<th>
+Assignment
+</th>
+<th>
+Due date
+</th>
+</thead>
 <tbody>
-<tr class="odd">
-<td align="left"><strong>Draft Proposal</strong></td>
-<td align="left">Tue, Jan 10</td>
+<tr>
+<td>
+<strong>Draft Proposal</strong>
+</td>
+<td>
+Tue, Jan 10
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Proposal</strong></td>
-<td align="left">Tue, Jan 17</td>
+<tr>
+<td>
+<strong>Proposal</strong>
+</td>
+<td>
+Tue, Jan 17
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>Data Analysis 1</strong></td>
-<td align="left">Tue, Jan 24</td>
+<tr>
+<td>
+<strong>Data Analysis 1</strong>
+</td>
+<td>
+Tue, Jan 24
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Data Analysis 2</strong></td>
-<td align="left">Tue, Feb 07</td>
+<tr>
+<td>
+<strong>Data Analysis 2</strong>
+</td>
+<td>
+Tue, Feb 07
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>Data Analysis 3</strong></td>
-<td align="left">Tue, Feb 21</td>
+<tr>
+<td>
+<strong>Data Analysis 3</strong>
+</td>
+<td>
+Tue, Feb 21
+</td>
 </tr>
-<tr class="even">
-<td align="left"><strong>Data Analysis 4</strong></td>
-<td align="left">Tue, Feb 28</td>
+<tr>
+<td>
+<strong>Data Analysis 4</strong>
+</td>
+<td>
+Tue, Feb 28
+</td>
 </tr>
-<tr class="odd">
-<td align="left"><strong>Paper Draft</strong></td>
-<td align="left">Tue, Mar 07</td>
+<tr>
+<td>
+<strong>Paper Draft</strong>
+</td>
+<td>
+Tue, Mar 07
+</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div id="readings-assignments-lectures" class="section level1">
 <h1>Readings, Assignments, Lectures</h1>
-<p>Abbreviations:</p>
-<table>
-<tbody>
-<tr class="odd">
-<td align="left"><em>r4ds</em></td>
-<td align="left">Wickham and Groelmund, <a href="http://r4ds.had.co.nz/">R for Data Science</a></td>
-</tr>
-<tr class="even">
-<td align="left"><em>QSS</em></td>
-<td align="left">Imai, <em>A First Course in Quantitative Social Science</em></td>
-</tr>
-<tr class="odd">
-<td align="left"><em>OpenIntro</em></td>
-<td align="left"><a href="https://www.openintro.org/stat/textbook.php?stat_book=os">OpenIntro Statistics, 3rd edition</a></td>
-</tr>
-<tr class="even">
-<td align="left"><em>RealStats</em></td>
-<td align="left">Bailey, <em>Real Stats</em></td>
-</tr>
-</tbody>
-</table>
+<p>Abbreviations used in the schedule:</p>
+<ul>
+<li><em>r4ds</em>: Wickham and Groelmund, <a href="http://r4ds.had.co.nz/">R for Data Science</a></li>
+<li><em>QSS</em>: Imai, <em>A First Course in Quantitative Social Science</em></li>
+<li><em>OpenIntro</em>: <a href="https://www.openintro.org/stat/textbook.php?stat_book=os">OpenIntro Statistics, 3rd edition</a></li>
+<li><em>RealStats</em>: Bailey, <em>Real Stats</em></li>
+</ul>
 <div id="week-1" class="section level2">
 <h2>Week 1</h2>
 <div id="class-january-3rd" class="section level3">
@@ -412,20 +434,21 @@ div.tocify {
 <div id="class-january-17th" class="section level3">
 <h3>Class (January 17th)</h3>
 <ul>
-<li><em>QSS</em> Ch 2: Causality</li>
-<li><em>QSS</em> Ch 3: Measurement</li>
-<li><em>r4ds</em> Ch 12: Tidy Data</li>
+<li><em>QSS</em> Ch 2: Causality. *THis</li>
+<li><em>r4ds</em> Ch 12: Tidy Data. *This is key for</li>
 <li>Wickham, Hadley. 2014. “<a href="http://vita.had.co.nz/papers/layered-grammar.html">Tidy Data</a>” <em>Journal of Statistical Software</em>.</li>
 </ul>
 </div>
 <div id="lab-january-20th" class="section level3">
 <h3>Lab (January 20th)</h3>
 <ul>
-<li><em>r4ds</em> Ch 13: Relational data</li>
-<li><em>r4ds</em> Ch 14: Strings</li>
-<li><em>r4ds</em> Ch 15: Factors</li>
-<li><em>r4ds</em> Ch 16: Dates and times</li>
-<li><em>r4ds</em> Ch 20: R Markdown workflow</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/relational-data.html">Ch 13: Relational data</a>. <em>This is the important chapter</em> Know and understand this well. Merging datasets</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/strings.html">Ch 14: Strings</a>. You don’t need to know all the details of regular expressions. But it is important to know they exist; if you need to search by a pattern—regular expressions are the way you do it. This is even useful when searching and replacing text in RStudio or other text editors.<br />
+</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/factors.html">Ch 15: Factors</a> This is not long and is useful.</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/dates-and-times.htm">Ch 16: Dates and times</a></li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/r-markdown.html">Ch 27: R Markdown workflow</a></li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/r-markdown-workflow.html">Ch 30: R Markdown workflow</a></li>
 </ul>
 </div>
 </div>
@@ -434,50 +457,47 @@ div.tocify {
 <div id="class-january-24th" class="section level3">
 <h3>Class (January 24th)</h3>
 <ul>
-<li><em>QSS</em> Ch 4: Prediction</li>
-<li><em>OpenIntro</em> Ch 7: Introduction to linear regression</li>
-<li><em>RS</em> Ch 3.1 “Bivariate Regression Model”</li>
-<li><em>r4ds</em> Ch 17: Program: Introduction</li>
-<li><em>r4ds</em> Ch 18: Pipes</li>
-<li><em>r4ds</em> Ch 19: Functions</li>
+<li><em>QSS</em> Ch 3: Measurement. There is nothing new in terms of programming, so the concepts are key.</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/program-intro.html">Ch 17: Program: Introduction</a> This is short. I</li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/pipes.html">Ch 18: Pipes</a></li>
+<li><em>r4ds</em> <a href="http://r4ds.had.co.nz/functions.html">Ch 19: Functions</a></li>
 </ul>
 </div>
 <div id="lab-january-27th" class="section level3">
 <h3>Lab (January 27th)</h3>
 <ul>
-<li><em>r4ds</em> Ch 27: R Markdown</li>
-<li><em>r4ds</em> Ch 29: R Markdown formats</li>
 <li><em>r4ds</em> Ch 20: Vectors</li>
 <li><em>r4ds</em> Ch 21: Iteration</li>
-<li><em>r4ds</em> Ch 22: Model: introduction</li>
-<li><em>r4ds</em> Ch 23: Model basics</li>
-<li><em>r4ds</em> Ch 24: Model Building</li>
+</ul>
+<p><strong>Optional</strong></p>
+<ul>
+<li>Jenny Bryan. <a href="https://jennybc.github.io/purrr-tutorial/">purrr tutorial</a></li>
 </ul>
 </div>
 </div>
 <div id="week-5" class="section level2">
 <h2>Week 5</h2>
-<dl>
-<dt>class</dt>
-<dd>Jan 31
-</dd>
-<dt>lab</dt>
-<dd>Feb 3
-</dd>
-</dl>
+<div id="class-jan-31st" class="section level3">
+<h3>Class (Jan 31st)</h3>
 <ul>
-<li><em>QSS</em> Ch 5: Discovery</li>
+<li><em>QSS</em> Ch 4: Prediction</li>
+<li><em>OpenIntro</em> Ch 7: Introduction to linear regression</li>
+<li><em>RS</em> Ch 3.1 “Bivariate Regression Model”</li>
+<li><em>r4ds</em> Ch 22: Model: introduction</li>
+<li><em>r4ds</em> Ch 23: Model basics</li>
+<li><em>r4ds</em> Ch 24: Model Building</li>
 </ul>
-<p><em>This may get moved earlier</em></p>
+</div>
+<div id="lab-feb-3rd" class="section level3">
+<h3>Lab (Feb 3rd)</h3>
+</div>
 </div>
 <div id="week-6" class="section level2">
 <h2>Week 6</h2>
 <div id="class-february-7th" class="section level3">
-<h3>Class (February 7th)</h3>
+<h3>Class (February 7th</h3>
 <ul>
-<li><em>QSS</em> Ch 6: Probability</li>
-<li><em>OpenIntro</em> Ch 2: Probability</li>
-<li><em>OpenIntro</em> Ch 3: Distributions of Random Variables</li>
+<li><em>QSS</em> Ch 5: Discovery</li>
 </ul>
 </div>
 <div id="lab-february-10th" class="section level3">
@@ -489,7 +509,9 @@ div.tocify {
 <div id="class-feb-14th" class="section level3">
 <h3>Class (Feb 14th)</h3>
 <ul>
-<li><em>r4ds</em> Ch 25: Many Models</li>
+<li><em>QSS</em> Ch 6: Probability</li>
+<li><em>OpenIntro</em> Ch 2: Probability</li>
+<li><em>OpenIntro</em> Ch 3: Distributions of Random Variables</li>
 </ul>
 </div>
 <div id="lab-feb-17th" class="section level3">

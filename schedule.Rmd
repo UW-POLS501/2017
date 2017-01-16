@@ -25,28 +25,54 @@ Prior to the final paper being due there will be approximately weekly assignment
 
 See [research project](research_project.html) page for instructions.
 
--------------------  ---------------------------
-**Draft Proposal**   `r dtfmt("2017-01-10")`
-**Proposal**         `r dtfmt("2017-01-17")`
-**Data Analysis 1**  `r dtfmt("2017-01-24")`
-**Data Analysis 2**  `r dtfmt("2017-02-07")`
-**Data Analysis 3**  `r dtfmt("2017-02-21")`
-**Data Analysis 4**  `r dtfmt("2017-02-28")`
-**Paper Draft**      `r dtfmt("2017-03-07")`
--------------------  ---------------------------
+<table class="table table-stripped">
+<thead>
+<th>Assignment</th>
+<th>Due date </th>
+</thead>
+<tbody>
+<tr>
+<td><strong>Draft Proposal</strong></td>
+<td>`r dtfmt("2017-01-10")`</td>
+</tr>
+<tr>
+<td><strong>Proposal</strong></td>
+<td>`r dtfmt("2017-01-17")`</td>
+</tr>
+<tr>
+<td><strong>Data Analysis 1</strong></td>
+<td>`r dtfmt("2017-01-24")`</td>
+</tr>
+<tr>
+<td><strong>Data Analysis 2</strong></td>
+<td>`r dtfmt("2017-02-07")`</td>
+</tr>
+<tr>
+<td><strong>Data Analysis 3</strong></td>
+<td>`r dtfmt("2017-02-21")`</td>
+</tr>
+<tr>
+<td><strong>Data Analysis 4</strong></td>
+<td>`r dtfmt("2017-02-28")`</td>
+</tr>
+<tr>
+<td><strong>Paper Draft</strong></td>
+<td>`r dtfmt("2017-03-07")`</td>
+</tr>
+</tbody>
+</table>
 
 
 
 # Readings, Assignments, Lectures
 
-Abbreviations:
+Abbreviations used in the schedule:
 
-------------- ----------------------------------------------------------------------------------------------------------------------------------------
-*r4ds*        Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
-*QSS*          Imai, *A First Course in Quantitative Social Science*
-*OpenIntro*    [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
-*RealStats*    Bailey, *Real Stats*
-------------- ----------------------------------------------------------------------------------------------------------------------------------------
+- *r4ds*: Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
+- *QSS*: Imai, *A First Course in Quantitative Social Science*
+- *OpenIntro*: [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
+- *RealStats*: Bailey, *Real Stats*
+
 
 ## Week 1
 
@@ -82,62 +108,61 @@ Abbreviations:
 
 ### Class (January 17th)
 
-- *QSS* Ch 2: Causality
-- *QSS* Ch 3: Measurement
-- *r4ds* Ch 12: Tidy Data
+- *QSS* Ch 2: Causality. *THis 
+- *r4ds* Ch 12: Tidy Data. *This is key for 
 - Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
 
 
 ### Lab (January 20th)
 
-- *r4ds* Ch 13: Relational data
-- *r4ds* Ch 14: Strings
-- *r4ds* Ch 15: Factors
-- *r4ds* Ch 16: Dates and times
-- *r4ds* Ch 20: R Markdown workflow
-
+- *r4ds* [Ch 13: Relational data](http://r4ds.had.co.nz/relational-data.html). *This is the important chapter* Know and understand this well. Merging datasets
+- *r4ds* [Ch 14: Strings](http://r4ds.had.co.nz/strings.html). You don't need to know all the details of regular expressions. But it is important to know they exist; if you need to search by a pattern---regular expressions are the way you do it. This is even useful when searching and replacing text in RStudio or other text editors.  
+- *r4ds* [Ch 15: Factors](http://r4ds.had.co.nz/factors.html) This is not long and is useful.
+- *r4ds* [Ch 16: Dates and times](http://r4ds.had.co.nz/dates-and-times.htm)
+- *r4ds* [Ch 27: R Markdown workflow](http://r4ds.had.co.nz/r-markdown.html)
+- *r4ds* [Ch 30: R Markdown workflow](http://r4ds.had.co.nz/r-markdown-workflow.html)
 
 ## Week 4
 
 ### Class (January 24th)
 
-- *QSS* Ch 4: Prediction
-- *OpenIntro* Ch 7: Introduction to linear regression
-- *RS* Ch 3.1 "Bivariate Regression Model"
-- *r4ds* Ch 17: Program: Introduction
-- *r4ds* Ch 18: Pipes
-- *r4ds* Ch 19: Functions
+- *QSS* Ch 3: Measurement. There is nothing new in terms of programming, so the concepts are key. 
+- *r4ds* [Ch 17: Program: Introduction](http://r4ds.had.co.nz/program-intro.html) This is short. I
+- *r4ds* [Ch 18: Pipes](http://r4ds.had.co.nz/pipes.html)
+- *r4ds* [Ch 19: Functions](http://r4ds.had.co.nz/functions.html)
 
 
 ### Lab (January 27th)
 
-- *r4ds* Ch 27: R Markdown
-- *r4ds* Ch 29: R Markdown formats
 - *r4ds* Ch 20: Vectors
 - *r4ds* Ch 21: Iteration
+
+**Optional**
+
+- Jenny Bryan. [purrr tutorial](https://jennybc.github.io/purrr-tutorial/)
+
+
+## Week 5
+
+
+### Class (Jan 31st)
+
+- *QSS* Ch 4: Prediction
+- *OpenIntro* Ch 7: Introduction to linear regression
+- *RS* Ch 3.1 "Bivariate Regression Model"
 - *r4ds* Ch 22: Model: introduction
 - *r4ds* Ch 23: Model basics
 - *r4ds* Ch 24: Model Building
 
-## Week 5
 
-class
-:   Jan 31
+### Lab (Feb 3rd)
 
-lab
-:   Feb 3
-
-- *QSS* Ch 5: Discovery
-
-*This may get moved earlier*
 
 ## Week 6
 
-### Class (February 7th)
+### Class (February 7th
 
-- *QSS* Ch 6: Probability
-- *OpenIntro* Ch 2: Probability
-- *OpenIntro* Ch 3: Distributions of Random Variables
+- *QSS* Ch 5: Discovery
 
 ### Lab (February 10th)
 
@@ -146,8 +171,10 @@ lab
 
 ### Class (Feb 14th)
 
+- *QSS* Ch 6: Probability
+- *OpenIntro* Ch 2: Probability
+- *OpenIntro* Ch 3: Distributions of Random Variables
 
-- *r4ds* Ch 25: Many Models
 
 ### Lab (Feb 17th)
 

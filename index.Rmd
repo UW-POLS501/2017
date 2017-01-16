@@ -61,9 +61,6 @@ output:
 
 <table class = "table table-striped">
 <tr>
-
-</tr>
-<tr>
 <td>Nora</td>
 <td>Wednesday</td>
 <td>10:00&ndash;12:00 pm</td>
