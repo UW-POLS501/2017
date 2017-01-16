@@ -1,0 +1,147 @@
+---
+title: "Finding Data"
+author: "Jeffrey Arnold"
+date: "1/9/2017"
+output: html_document
+---
+
+
+Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. 
+See also the Washington Library [Data Research Guide](http://guides.lib.uw.edu/c.php?g=341607&p=2299327)
+
+Open Data on github https://github.com/showcases/open-data
+
+A list of awesome public datasets  https://github.com/caesar0301/awesome-public-datasets
+
+University library reasearch guides
+
+- http://guides.lib.uw.edu/research
+- Proprietary databases: http://guides.lib.uw.edu/az.php
+
+
+Lists of lists
+
+- [Charles Stewart's Congressional Data Page](http://web.mit.edu/17.251/www/data_page.html)
+- http://ucsd.libguides.com/c.php?g=90743&p=586766
+- [Norwegian Center Research Data MacroData Guide](http://www.nsd.uib.no/macrodataguide/index.html)
+- http://libguides.mit.edu/polisci/data
+- http://guides.lib.berkeley.edu/Intro-to-Political-Science-Research/Stats
+
+A list of awesome lists https://github.com/sindresorhus/awesome
+
+Some R packages 
+
+- https://github.com/rOpenGov/psData
+- https://github.com/vincentarelbundock/countrycode
+
+# Open Government Data
+
+[data.world](https://data.world/)
+
+Socrata 
+
+- [Data.gov](https://www.data.gov/open-gov/) - includes links to open government data in cities, counties, states, and other countries.
+- [CKAN](http://ckan.org/) list of [Open Data Portals](http://dataportals.org/)
+- [NYC Open Data](https://nycopendata.socrata.com/)
+- [Seattle Open Data](https://data.seattle.gov/)
+- [DataHub](https://datahub.io/)
+
+
+# Repositories
+
+- [Harvard Dataverse](https://dataverse.harvard.edu/) Contains replication data for many political science articles (among other data). The R package [dvn](https://cran.r-project.org/web/packages/dvn/index.html) allows for direct download and upload of data to and from the Dataverse.
+- [ICPSR](http://www.icpsr.umich.edu/icpsrweb/landing.jsp) Collection of many political science and economics datasets.
+- [figshare](https://figshare.com/)
+- [Open Science Framework](http://osf.io/)
+- [Zenodo](https://zenodo.org/)
+
+- [Quandl](https://www.quandl.com/) A collection of financial and economic data. The R package [Quandl](https://www.quandl.com/tools/r) allows for easy access to Quandl data within R.
+- [General Social Survey(GSS)](http://gss.norc.org/)
+
+# Economics
+
+- [World Development Indicators (WDI)](http://data.worldbank.org/data-catalog/world-development-indicators). The R package [WDI](https://cran.r-project.org/web/packages/WDI/index.html) allows for downloading data.
+- [Penn World Table](http://cid.econ.ucdavis.edu/pwt.html)
+
+- [UNCTAD Trade and FDI data](http://unctadstat.unctad.org/EN/)
+- [WTO Trade and Tariff data](https://www.wto.org/english/res_e/statis_e/statis_e.htm)
+
+# American Politics
+
+- [FRED](https://research.stlouisfed.org/fred2/) Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.
+- [data.gov](https://cran.r-project.org/web/views/WebTechnologies.html) U.S. government open data
+- [U.S. Census Bureau](http://www.census.gov/) 
+- [NOMINATE Ideal Points of U.S. Congress](http://voteview.com/)
+- [American National Eelction Studies (ANES)](http://www.electionstudies.org/)
+- [Cooperative Congressional Election Study](http://projects.iq.harvard.edu/cces/data)
+- [unitedstates](https://github.com/unitedstates) github: miscellaneous data and tools for US data
+- [Office of the Clerk](http://clerk.house.gov/legislative/legvotes.aspx)
+- [US Census](https://www.census.gov/data.html)
+- [CQ Voting and Elections Collection](http://library.cqpress.com/elections/)
+- [Federal Election Commission Election Results](http://www.fec.gov/pubrec/electionresults.shtml)
+- [ProQuest Statistical Abstract of the United States](http://statabs.proquest.com/sa/index.html)
+- [Precinct Level Election Data Project](http://web.stanford.edu/~jrodden/jrhome_files/electiondata.htm)
+- [Open States](https://openstates.org/)
+- [California Roll Calls 1901-2000](http://mysite.du.edu/~smasket/research.html)
+- [VoteSmart](http://votesmart.org/)
+- [Historical Statistics of the United States (HSUS)](http://hsus.cambridge.org/HSUSWeb/HSUSEntryServlet)
+- [RAND State Statistics](http://www.randstatestats.org/us/)
+- [Roper Opinion Research Archive](https://ropercenter.cornell.edu/)
+- [State Supreme Court Data Project](http://www.ruf.rice.edu/~pbrace/statecourt/)
+- [Database on Ideology, Money in Politics, and Elections (DIME)](http://data.stanford.edu/dime/)
+- [The Supreme Court Database](http://scdb.wustl.edu/)
+- [Martin-Quinn Scores](http://mqscores.berkeley.edu/). Ideal points for US Supreme Court justices.
+
+# Comparative Politics
+
+- Policy Agendas Project <http://www.policyagendas.org/page/datasets-codebooks>
+- Varieties of Democracy (VDEM) project <http://kellogg.nd.edu/projects/vdem/>
+- [Polity Project data](http://www.systemicpeace.org/polity/polity4.htm) Political regime characteristics
+- [Database of Political Institutions](http://econ.worldbank.org/WBSITE/EXTERNAL/EXTDEC/EXTRESEARCH/0,,contentMDK:20649465~pagePK:64214825~piPK:64214943~theSitePK:469382,00.html)
+
+- [European Social Survey (ESS)](http://www.europeansocialsurvey.org/)
+- [Eurobarometer](http://ec.europa.eu/COMMFrontOffice/publicopinion/index.cfm)
+- [EuroStat](http://ec.europa.eu/eurostat) European Union Statistics
+- [UK Data](http://www.data-archive.ac.uk/)
+- [Consortium of European Social Science Data Archives (CESSDA)](http://cessda.net/) Like ICPSR for Europe
+- [Quality of Governance](http://qog.pol.gu.se/data)
+- [CIA World Factbook](https://www.cia.gov/library/publications/resources/the-world-factbook/)
+- [Comparative Political Data Set](http://www.cpds-data.org/)
+
+# International Relations
+
+- Paul Hensel maintains a list of Political Science Datasets <http://www.paulhensel.org/data.html>
+- [UCDP/PRIO Armed Conflict](http://www.pcr.uu.se/research/ucdp/datasets/ucdp_prio_armed_conflict_dataset/) Datasets on armed conflict
+- [PRIO Data](https://www.prio.org/Data/) Amred Conflict, Small Arms Dtabase, Governance, Geographical and Resource
+- [ACLED (Armed Conflict Location and Event Data Project)](http://www.acleddata.com/data/) Real-time data on political violence in African and Asian states
+- [OpenEvent Data/Phoenix Data Project](http://phoenixdata.org/data)
+- Data version of the CIA World Factbook: <http://jmatchparser.sourceforge.net/factbook/>
+- [Paul Hensel&rsquo;s List of International Relations Data](http://www.paulhensel.org/data.html)
+- [Issue Correlates of War (ICOW)](http://www.paulhensel.org/icow.html)
+- [Center for Systemic Peace](http://www.systemicpeace.org/inscrdata.html) Polity IV , Foricbly Displaced Popoulations, Major episodes of Political Violence, High Casualty Terrorist Bombings, Memberships in Coventional Integovernmental Organizations, PITF State Failure, Coup d'Etat, State Fragility Index, Conflict in India.
+- [Worldwide Governance Indicators](http://info.worldbank.org/governance/wgi/index.aspx#reports)
+
+
+# Open Data / Open Government Datasets
+
+legislatures, campaign finance, contributions, dockets.
+- [ROpenGov](https://ropengov.github.io/) has R packages to access various government related data. For packages to access data on the web from within R see the [Web Technologies and Services](https://cran.r-project.org/web/views/WebTechnologies.html) CRAN Task View.
+- [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/) : repository of machine learning datasets
+
+# Data Journalism/Transparency Groups
+
+- [GovTrack](https://www.govtrack.us/) Tracking US bills
+- [Sunlight Foundation](http://sunlightfoundation.com/) Provides open data on the U.S. government. Data on Congress, state.
+- [ProPublica](https://www.propublica.org/data/)
+   - [Congress API](https://propublica.github.io/congress-api-docs/)
+- [NYTimes Campaign Finance API](http://developer.nytimes.com/docs/campaign_finance_api/)
+- [Fivethirtyeight](http://fivethirtyeight.com) data on [github](https://github.com/fivethirtyeight/data)
+- [Vox](http://www.vox.com/) stories on [github](https://github.com/voxmedia/data-projects)
+- NY Times [Upshot](http://www.nytimes.com/upshot/) on [github](https://github.com/TheUpshot)
+- Guardian Data Blog [here](http://www.theguardian.com/news/datablog/interactive/2013/jan/14/all-our-datasets-index)
+- [Sunlight Foundation](https://sunlightfoundation.com/)
+- [Daily Kos Election](http://www.dailykos.com/blog/elections)
+
+# Cleaning data guide
+
+- [The Quartz guide to bad data](https://github.com/Quartz/bad-data-guide)

@@ -74,6 +74,7 @@ Abbreviations used in the schedule:
 - *RealStats*: Bailey, *Real Stats*
 
 
+
 ## Week 1
 
 ### Class (January 3rd)
@@ -90,6 +91,13 @@ Abbreviations used in the schedule:
 - Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
 - *r4ds* Ch 6: Workflow scripts
 
+Optional
+
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-2
+- https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3
+
+
 ## Week 2
 
 ### Class (January 10)
@@ -98,6 +106,17 @@ Abbreviations used in the schedule:
 - *r4ds* Ch 9: Wrangle: Introduction
 - *r4ds* Ch 10: Tibbles
 - *r4ds* Ch 11: Data import
+
+Optional
+
+- [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+- [Window functions and grouped mutate/filter](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html)
+- [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/cleaning-data-in-r) 
+- [Data Camp: Importing Data in R I](https://www.datacamp.com/courses/importing-data-in-r-part-1) This covers importing flat files but uses base R, instead of the **readr** package
+- [Data Camp: Importing Data in R](https://www.datacamp.com/courses/importing-data-in-r-part-2) This covers importing data.
+- [tibble 1.0.0](https://blog.rstudio.org/2016/03/24/tibble-1-0-0/)
+- [readr 1.0.0](https://blog.rstudio.org/2016/08/05/readr-1-0-0/)
+- Swirl *Getting and Cleaning Data* (Manipulating data with dplyr; Grouping and chaining with dplyr)
 
 ### Lag (January 13)
 
@@ -108,10 +127,17 @@ Abbreviations used in the schedule:
 
 ### Class (January 17th)
 
-- *QSS* Ch 2: Causality. *THis 
-- *r4ds* Ch 12: Tidy Data. *This is key for 
+
+Assignment 1 due: use the [R template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1.R) and [Word document template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1-template.docx) for your solutions.
+
+- *QSS* Ch 2: Causality
+- *r4ds* Ch 12: Tidy Data
 - Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
 
+Optional
+
+- [Cleaning data in R](https://www.datacamp.com/courses/cleaning-data-in-r)
+- Swirl *Getting and Cleaning Data* (Tidying data with tidyr)
 
 ### Lab (January 20th)
 
@@ -122,6 +148,16 @@ Abbreviations used in the schedule:
 - *r4ds* [Ch 27: R Markdown workflow](http://r4ds.had.co.nz/r-markdown.html)
 - *r4ds* [Ch 30: R Markdown workflow](http://r4ds.had.co.nz/r-markdown-workflow.html)
 
+Optional
+
+- [Two-table verbs](https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html)
+- Data Camp [Reporting with R markdown](https://www.datacamp.com/courses/reporting-with-r-markdown)
+- Data Camp [Joining Data in R with dplyr](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr)
+- [Introduction to stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+- [Do more with dates and time in R with lubridate 1.3.0](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+- [Regular-Expressions.info](http://www.regular-expressions.info/tutorial.html)
+- Swirl *Getting and Cleaning Data* (Dates and Times with lubridate)
+
 ## Week 4
 
 ### Class (January 24th)
@@ -130,6 +166,12 @@ Abbreviations used in the schedule:
 - *r4ds* [Ch 17: Program: Introduction](http://r4ds.had.co.nz/program-intro.html) This is short. I
 - *r4ds* [Ch 18: Pipes](http://r4ds.had.co.nz/pipes.html)
 - *r4ds* [Ch 19: Functions](http://r4ds.had.co.nz/functions.html)
+
+Optional 
+
+- [Data Camp: Intermediate R](https://www.datacamp.com/courses/intermediate-r)
+- [Data Camp: Writing Functions in R](https://www.datacamp.com/courses/writing-functions-in-r)
+
 
 
 ### Lab (January 27th)
