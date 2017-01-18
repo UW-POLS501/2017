@@ -8,6 +8,8 @@ Submit two files: (1) your R script, and (2) a concise write-up where you report
 
 # Tidy and Relational Data with World Development Indicators 
 
+**NOTE: Don't work on this yet, I'm (jrnold) am going to fill in the details of most of it. **
+
 This is practical example of using R to clean and tidy the World Bank [World Development Indicators](http://data.worldbank.org/data-catalog/world-development-indicators) data
 
    The primary World Bank collection of development indicators, compiled from officially-recognized international sources. It presents the most current and accurate global development data available, and includes national, regional and global estimates.[^1]
@@ -122,11 +124,11 @@ The Varieties of Democracy project is a recent project to develop indicators of 
 4. What is the relationship between democracy and transparency?
    What is the relationship between democracy and transparency comparing only countries within a given income level?
 
-
+<!--
 # Efficacy of Small Class Size in Early Education
 
 *QSS* Exercise 2.8.1
-
+-->
 
 # Success of Leader Assassination as a Natural Experiment
 
