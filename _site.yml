@@ -1,5 +1,5 @@
 name: "pols-501-wi17"
-exclude: ["README.md", "bib/*"]
+exclude: ["README.md", "bib/*", "data"]
 output_dir: "docs"
 navbar:
   title: "POLS/CS&SS 501"
@@ -10,6 +10,13 @@ navbar:
       href: "schedule.html"
     - text: "Project"
       href: "research_project.html"
+    - text: "Assignments"
+      menu:
+      - text: "Assignment 1"
+        href: "assignment-1.html"
+      - text: "Assignment 2"
+        href: "assignment-2.html"
+
 output:
   html_document:
     theme: cosmo

@@ -4,6 +4,9 @@
 #' date: 2017-01-XX
 #' ---
 
+# load necessary packages at the top of the script
+library("tidyverse")
+
 # [jrnold] This is a helper function to generate the URL for the QSS data
 # why do this, DRY (don't repeat yourself) and I'm efficiently lazy
 # you'll learn how to write functions soon.

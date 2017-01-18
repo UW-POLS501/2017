@@ -42,7 +42,7 @@ See [research project](research_project.html) page for instructions.
 Abbreviations:
 
 ------------- ----------------------------------------------------------------------------------------------------------------------------------------
-*R4DS*        Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
+*R4DS*        Wickham and Grolemund, [R for Data Science](http://r4ds.had.co.nz/)
 *QSS*          Imai, *A First Course in Quantitative Social Science*
 *OpenIntro*    [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
 *RealStats*    Bailey, *Real Stats*
@@ -66,9 +66,9 @@ Abbreviations:
 
 Optional
 
-- https://www.datacamp.com/courses/data-visualization-with-ggplot2-1
-- https://www.datacamp.com/courses/data-visualization-with-ggplot2-2
-- https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3
+- [Data Camp ggplot 1](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
+- [Data Camp ggplot 2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-2)
+- [Data Camp ggplot 3](https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3)
 
 
 ## Week 2
@@ -91,7 +91,7 @@ Optional
 - [readr 1.0.0](https://blog.rstudio.org/2016/08/05/readr-1-0-0/)
 - Swirl *Getting and Cleaning Data* (Manipulating data with dplyr; Grouping and chaining with dplyr)
 
-### Lag (January 13)
+### Lab (January 13)
 
 - *r4ds* Ch 8: Workflow projects
 - *r4ds* Ch 7: EDA
@@ -155,9 +155,6 @@ Optional
 - *r4ds* Ch 29: R Markdown formats
 - *r4ds* Ch 20: Vectors
 - *r4ds* Ch 21: Iteration
-- *r4ds* Ch 22: Model: introduction
-- *r4ds* Ch 23: Model basics
-- *r4ds* Ch 24: Model Building
 
 ## Week 5
 
@@ -195,7 +192,7 @@ lab
 ### Class (Feb 21st)
 
 - *QSS* Ch 7: Uncertainty
-- *OpenIntro* Ch 4: Foundations for interence
+- *OpenIntro* Ch 4: Foundations for inference
 - *OpenIntro* Ch 5: Inference for numerical data
 - *OpenIntro* Ch 6: Inference for categorical data
 
