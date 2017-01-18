@@ -4,5 +4,5 @@ handler <- function(input) {
 }
 
 servr::httw(".", site.dir = "docs",
-            pattern = "(\\.Rmd|_site\\.yml|_common\\.R|includes/.*$)",
+            pattern = "(.*\\.Rmd|_site\\.yml|_common\\.R|includes/.*)",
             handler = handler("."))
