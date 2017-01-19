@@ -323,8 +323,7 @@ div.tocify {
 <h1>Tidy and Relational Data with World Development Indicators</h1>
 <p>This is practical example of using R to clean and tidy the World Bank <a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators</a> data. This is a widely used dataset of economic, health, education, and societal indicators.</p>
 <pre class="r"><code>library(&quot;tidyverse&quot;)
-library(&quot;stringr&quot;)
-knitr::opts_chunk$set(cache=FALSE)</code></pre>
+library(&quot;stringr&quot;)</code></pre>
 <p>We first need to download the WDI data. This could be done manually by downloading the file and unzipping it, but these steps can also be automated with R functions. Note that there is a <a href="https://cran.r-project.org/package=WDI">WDI</a> R package, which provides a way to query the WDI database from within R, and may be better for your purposes. I won’t use it here because dealing with CSV issues is the main purpose of this exercise.</p>
 <p>Create a data directory if it does not already exist, and download the zip file if it does not already exists.</p>
 <p>I’m going to define multiple variables for URL that I am downloading, and locations of files and directories where I will put stuff. It’s useful to save these as variables (and often to put them at the top of the script) for two reasons.</p>
@@ -914,24 +913,291 @@ left_join(wdi_data_tidy, WDI$country, by = &quot;Country Code&quot;)</code></pre
 <li><p>Create a line plot in which the x-axis is years, the y-axis is the mean of the indicator, each income group has its own line and a different color, and faceted by indicator. Merge the indicator level dataset in order to give the indicators meaningful labels in the plot.</p></li>
 </ul></li>
 </ol>
-<!--
-### HDI
-
-Calculate the Human Development Indicator. The definition can be found here: http://hdr.undp.org/sites/default/files/hdr2015_technical_notes.pdf.
-Check your work against example data in the documentation.
-Check your work against the true values of the [Human Development Index](http://hdr.undp.org/en/data):
--->
+</div>
+<div id="gender-inequality" class="section level2">
+<h2>Gender Inequality</h2>
+<p>The UN has its own measures of Gender Inequality. Some other simple measures that often appear may be the difference in % of males and females in the labor force, or % difference in educational attainment.</p>
+<p>What I’m going to do is find all variables in the WDI that are disaggregated into male and female, and then calculate the difference in those measures. But there are</p>
+<pre class="r"><code>nrow(WDI$series)</code></pre>
+<pre><code>## [1] 1452</code></pre>
+<p>indicators in the WDI. I could search for male and female <a href="http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators">online</a>, then manually put together a list, probably in a CSV file with the indicator code for the male and female variables. Again, that’s a lot of work, and I’m not being paid by the hour.</p>
+<p>The purpose of this exercise is not to produce good measures of gender inequality, but to compute on data about the series themselves to find and match male and female variables to create the sort of dataset that could be used to construct such an index.</p>
+<p>The plan is to see whether male and female variables have regular codes or names. If there is some pattern, I can select the matching male and female variables. Let’s look at variables with “female” in the description. I use the regexp pattern <code>&quot;\\bfemale\\b&quot;</code>, where <code>\b</code> means the boundary of a word (space, punctuation, etc). If I didn’t do that it could pick up words with female as part of the name; I can’t think of any, but I’m paranoid.</p>
+<pre class="r"><code>WDI$series %&gt;%
+  filter(str_detect(`Indicator Name`, &quot;\\bfemale\\b&quot;)) %&gt;% select(`Indicator Name`, `Series Code`)</code></pre>
+<pre><code>## # A tibble: 109 × 2
+##                                                           `Indicator Name`
+##                                                                      &lt;chr&gt;
+## 1                               Firms with female top manager (% of firms)
+## 2                Firms with female participation in ownership (% of firms)
+## 3       Cost of business start-up procedures, female (% of GNI per capita)
+## 4                         Time required to start a business, female (days)
+## 5              Start-up procedures to register a business, female (number)
+## 6                    Literacy rate, youth female (% of females ages 15-24)
+## 7             Literacy rate, adult female (% of females ages 15 and above)
+## 8                          School enrollment, preprimary, female (% gross)
+## 9  Trained teachers in preprimary education, female (% of female teachers)
+## 10               Primary completion rate, female (% of relevant age group)
+## # ... with 99 more rows, and 1 more variables: `Series Code` &lt;chr&gt;</code></pre>
+<p>It seems that the series codes of female variables generally have an <code>FE</code> in them, e.g. <code>&quot;SP.DYN.LE00.FE.IN&quot;</code> or <code>&quot;SL.TLF.PART.FE.ZS&quot;</code> or <code>&quot;IC.REG.PROC.FE&quot;</code>.</p>
+<p>What about male variables? Now including the word boundary indicators is very important, or searching for names with the string “male” would also find all names with the string “female”.</p>
+<pre class="r"><code>str_detect(&quot;Firms with female top manager (% of firms)&quot;, &quot;male&quot;)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>str_detect(&quot;Firms with female top manager (% of firms)&quot;, &quot;\\bmale\\b&quot;)</code></pre>
+<pre><code>## [1] FALSE</code></pre>
+<p>So let’s search for the male variables,</p>
+<pre class="r"><code>WDI$series %&gt;%
+  filter(str_detect(`Indicator Name`, &quot;\\bmale\\b&quot;)) %&gt;%
+  select(`Series Code`, `Indicator Name`)</code></pre>
+<pre><code>## # A tibble: 95 × 2
+##           `Series Code`
+##                   &lt;chr&gt;
+## 1  IC.REG.COST.PC.MA.ZS
+## 2        IC.REG.DURS.MA
+## 3        IC.REG.PROC.MA
+## 4  SE.ADT.1524.LT.MA.ZS
+## 5     SE.ADT.LITR.MA.ZS
+## 6        SE.PRE.ENRR.MA
+## 7     SE.PRE.TCAQ.MA.ZS
+## 8     SE.PRM.CMPT.MA.ZS
+## 9     SE.PRM.CUAT.MA.ZS
+## 10       SE.PRM.ENRR.MA
+## # ... with 85 more rows, and 1 more variables: `Indicator Name` &lt;chr&gt;</code></pre>
+<p>It seems that the male variables, have names that include an <code>MA</code> in them.</p>
+<p>So one approach is the find all the female variables by finding variables with <code>FE</code> in their code, replace that with <code>MA</code> and match it to the male variable names.</p>
+<p>I will use the pattern <code>&quot;\\bFE\\b&quot;</code> since the <code>FE</code> appears either between periods, <code>.FE.</code> or at the end of the code <code>.FE</code>. If there are any other codes that include the substring <code>FE</code> I don’t want to detect them.</p>
+<pre class="r"><code>gender_variables &lt;-
+  WDI$series %&gt;%
+  filter(str_detect(`Series Code`, &quot;\\bFE\\b&quot;)) %&gt;%
+  select(female_series = `Series Code`,
+         female_name = `Indicator Name`)</code></pre>
+<p>One way to check that this worked is to look for any variables that don’t have the word “female” in their name.</p>
+<pre class="r"><code>filter(gender_variables, !str_detect(female_name, &quot;\\bfemale\\b&quot;))</code></pre>
+<pre><code>## # A tibble: 4 × 2
+##       female_series
+##               &lt;chr&gt;
+## 1 SH.DYN.AIDS.FE.ZS
+## 2    SH.PRV.SMOK.FE
+## 3 SL.EMP.INSV.FE.ZS
+## 4 SP.M18.2024.FE.ZS
+## # ... with 1 more variables: female_name &lt;chr&gt;</code></pre>
+<p>The four variables don’t have female in their name because they use the word “women” instead, so that’s okay. I should also manually scan through the names of the variables, because there could always be something about the data that I didn’t consider. Likewise, for the variables that aren’t captured. But I’m going to move on knowing that this may not be perfect, but it’s a pretty good first cut. It finds</p>
+<pre class="r"><code>nrow(gender_variables)</code></pre>
+<pre><code>## [1] 106</code></pre>
+<p>female variables.</p>
+<p>Now let’s find the corresponding male variables.</p>
+<pre class="r"><code>gender_variables &lt;-
+  gender_variables %&gt;%
+  mutate(male_series = str_replace(female_series, &quot;\\bFE\\b&quot;, &quot;MA&quot;))</code></pre>
+<p>Now merge with the original dataset to ensure that those variables actually exist, because we should assume nothing (or assume that the data wants to make your life miserable),</p>
+<pre class="r"><code>gender_variables &lt;-
+  gender_variables %&gt;%
+  left_join(select(WDI$series, 
+                   male_series = `Series Code`, 
+                   male_name = `Indicator Name`),
+                   by = &quot;male_series&quot;)</code></pre>
+<p>Female series which didn’t have a male series will have a missing value for <code>male_name</code>,</p>
+<pre class="r"><code>filter(gender_variables, is.na(male_name))</code></pre>
+<pre><code>## # A tibble: 14 × 4
+##           female_series
+##                   &lt;chr&gt;
+## 1     SE.PRM.ENRL.FE.ZS
+## 2     SE.PRM.TCHR.FE.ZS
+## 3     SE.SEC.ENRL.FE.ZS
+## 4  SE.SEC.ENRL.GC.FE.ZS
+## 5  SE.SEC.ENRL.VO.FE.ZS
+## 6        SE.SEC.TCHR.FE
+## 7     SE.SEC.TCHR.FE.ZS
+## 8     SE.TER.TCHR.FE.ZS
+## 9     SH.DYN.AIDS.FE.ZS
+## 10    SL.EMP.INSV.FE.ZS
+## 11 SL.TLF.PART.TL.FE.ZS
+## 12    SL.TLF.TOTL.FE.ZS
+## 13    SP.M18.2024.FE.ZS
+## 14    SP.POP.TOTL.FE.ZS
+## # ... with 3 more variables: female_name &lt;chr&gt;, male_series &lt;chr&gt;,
+## #   male_name &lt;chr&gt;</code></pre>
+<p>It looks like these variables mostly shares, so the male value is implicit (100 - female value). I’ll drop and ignore them for now, but there are not many of these, and I could handle them separately as special cases.</p>
+<pre class="r"><code>gender_variables &lt;-
+  filter(gender_variables, !is.na(male_name))</code></pre>
+<p>What I want to end up with is a dataset with columns:</p>
+<ul>
+<li>country</li>
+<li>year</li>
+<li>indicator code (I’ll need to define my own)</li>
+<li>male value</li>
+<li>female value</li>
+<li>difference (female - male)</li>
+</ul>
+<p>Add an overall series name that replaces <code>FE</code> and <code>MA</code> with a double-underscore (<code>__</code>). I know <code>__</code> doesn’t appear anywhere in series names, so it’s easy to replace that pattern to get back ther original codes.</p>
+<pre class="r"><code>gender_variables &lt;-
+  mutate(gender_variables, series = str_replace(female_series, &quot;\\bFE\\b&quot;, &quot;__&quot;))</code></pre>
+<p>Reshape it to be long</p>
+<pre class="r"><code>gender_series_codes &lt;-
+  gender_variables %&gt;%
+  select(series, male_series, female_series) %&gt;%
+  gather(variable, `Series Code`, -series) %&gt;%
+  separate(variable, c(&quot;gender&quot;, &quot;code&quot;)) %&gt;%
+  select(-code)</code></pre>
+<p>Now, we can take the long WDI with columns country, year, series, value, and extract only those series related to gender. Then create separate columns for male and female values. And calculate the difference in values between female and male indicators.</p>
+<pre class="r"><code>left_join(gender_series_codes, wdi_data_cst,
+          by = c(&quot;Series Code&quot; = &quot;Indicator Code&quot;)) %&gt;%
+  select(-`Series Code`) %&gt;%
+  spread(gender, value) %&gt;%
+  mutate(gender_diff = female - male) %&gt;%
+  filter(gender_diff != 0)</code></pre>
+<pre><code>## # A tibble: 236,354 × 7
+##                  series `Country Name` `Country Code`  year female  male
+##                   &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;dbl&gt;
+## 1  IC.REG.COST.PC.__.ZS          Benin            BEN  2003  148.1 148.0
+## 2  IC.REG.COST.PC.__.ZS          Benin            BEN  2004  173.6 173.5
+## 3  IC.REG.COST.PC.__.ZS          Benin            BEN  2006  211.1 211.0
+## 4  IC.REG.COST.PC.__.ZS          Benin            BEN  2007  197.2 197.1
+## 5  IC.REG.COST.PC.__.ZS          Benin            BEN  2008  198.2 198.1
+## 6  IC.REG.COST.PC.__.ZS          Benin            BEN  2009  157.4 157.3
+## 7  IC.REG.COST.PC.__.ZS          Benin            BEN  2010  154.4 154.3
+## 8  IC.REG.COST.PC.__.ZS          Benin            BEN  2012  126.9 126.8
+## 9  IC.REG.COST.PC.__.ZS          Benin            BEN  2013  122.8 122.7
+## 10 IC.REG.COST.PC.__.ZS          Benin            BEN  2014   55.9  55.8
+## # ... with 236,344 more rows, and 1 more variables: gender_diff &lt;dbl&gt;</code></pre>
+<p>This is not a great methodology. Calculating a difference is likely inapproriate for many variables. We would want to rescale the differences to the spread of the distribution of these values because currently there is no sense of what is a big difference. But everything from here on out requires more domain expertise. The point of this exercise was to give an example of computing on variable metadata to select and match variables to each other.</p>
 </div>
 <div id="transparency-and-missing-values" class="section level2">
 <h2>Transparency and Missing Values</h2>
 <p>Hollyer et al. (2011) calculates a measure of governmental transparency using the number of missing values in the WDI.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> We’ll calculate something similar.</p>
-<ol style="list-style-type: decimal">
-<li><p>For each country-year calculate a similar figure. Calculate a similar index of missingness. Consider the following: would you use all variables? If not, how would you select those variables? Would you calculate missing values in all variables and all time periods equally?</p></li>
-<li><p>Which countries are least transparent?</p></li>
-<li><p>How do transparency relate to income?</p></li>
-<li><p>Subset by income and plot.</p></li>
-<li><p>Recently the UN released a variable on the “Overall measure of statistical capacity”. How does the (original) HRV transparency relate to that measure?</p></li>
-</ol>
+<p>For each country-year calculate a similar figure. Calculate a similar index of missingness. Consider the following: would you use all variables? If not, how would you select those variables? Would you calculate missing values in all variables and all time periods equally?</p>
+<p>The WDI groups variables into topics. I want to calculate the missingness for each country within a different topic, but those provided in <code>Topics</code> are more specific than I’d like. I want to extract the top-level topic and use that: e.g. “Economic Policy &amp; Debt” rather than “Economic Policy &amp; Debt: Balance of payments: Capital &amp; financial account”.</p>
+<p>I’ll create a dataset of unique topics</p>
+<pre class="r"><code>topics &lt;- WDI$series %&gt;% select(Topic) %&gt;% distinct()</code></pre>
+<p>I’ll split the variable Topic by <code>:</code>:</p>
+<pre class="r"><code>head(str_split(topics$Topic, &quot;:&quot;))</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Environment&quot;              &quot; Agricultural production&quot;
+## 
+## [[2]]
+## [1] &quot;Environment&quot; &quot; Land use&quot;  
+## 
+## [[3]]
+## [1] &quot;Economic Policy &amp; Debt&quot;    &quot; Balance of payments&quot;     
+## [3] &quot; Current account&quot;          &quot; Goods, services &amp; income&quot;
+## 
+## [[4]]
+## [1] &quot;Economic Policy &amp; Debt&quot;       &quot; Balance of payments&quot;        
+## [3] &quot; Capital &amp; financial account&quot;
+## 
+## [[5]]
+## [1] &quot;Economic Policy &amp; Debt&quot; &quot; Balance of payments&quot;  
+## [3] &quot; Current account&quot;       &quot; Transfers&quot;            
+## 
+## [[6]]
+## [1] &quot;Economic Policy &amp; Debt&quot; &quot; Balance of payments&quot;  
+## [3] &quot; Current account&quot;       &quot; Balances&quot;</code></pre>
+<p>The problem is that there is an extra space after the <code>:</code>, so the other topics. Since <code>str_split</code> returns a list, I’ll use <code>map</code> to apply it to each element in the list.</p>
+<pre class="r"><code>map(str_split(topics$Topic, &quot;:&quot;), str_trim) %&gt;% head()</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;Environment&quot;             &quot;Agricultural production&quot;
+## 
+## [[2]]
+## [1] &quot;Environment&quot; &quot;Land use&quot;   
+## 
+## [[3]]
+## [1] &quot;Economic Policy &amp; Debt&quot;   &quot;Balance of payments&quot;     
+## [3] &quot;Current account&quot;          &quot;Goods, services &amp; income&quot;
+## 
+## [[4]]
+## [1] &quot;Economic Policy &amp; Debt&quot;      &quot;Balance of payments&quot;        
+## [3] &quot;Capital &amp; financial account&quot;
+## 
+## [[5]]
+## [1] &quot;Economic Policy &amp; Debt&quot; &quot;Balance of payments&quot;   
+## [3] &quot;Current account&quot;        &quot;Transfers&quot;             
+## 
+## [[6]]
+## [1] &quot;Economic Policy &amp; Debt&quot; &quot;Balance of payments&quot;   
+## [3] &quot;Current account&quot;        &quot;Balances&quot;</code></pre>
+<p>Looks good. The extra spaces are gone. Now that it is working, I can add this as a list column to the <code>topics</code> dataset.</p>
+<pre class="r"><code>topics &lt;-
+  mutate(topics, sub_topics = map(str_split(Topic, &quot;:&quot;), str_trim))</code></pre>
+<p>I would also like the main (first) topic as a character vector. I can extract that using a map function. I use <code>map_chr</code> since I want it to return a character vector rather than a list.</p>
+<pre class="r"><code>map_chr(topics$sub_topics, function(x) x[[1]]) %&gt;%
+  head()</code></pre>
+<pre><code>## [1] &quot;Environment&quot;            &quot;Environment&quot;           
+## [3] &quot;Economic Policy &amp; Debt&quot; &quot;Economic Policy &amp; Debt&quot;
+## [5] &quot;Economic Policy &amp; Debt&quot; &quot;Economic Policy &amp; Debt&quot;</code></pre>
+<p>Since extracting an element is such a common case, <code>map</code> has a shortcut. If you use a number or a character vector, it will extract that element. This will do the same thing as above:</p>
+<pre class="r"><code>map_chr(topics$sub_topics, 1) %&gt;% head()</code></pre>
+<pre><code>## [1] &quot;Environment&quot;            &quot;Environment&quot;           
+## [3] &quot;Economic Policy &amp; Debt&quot; &quot;Economic Policy &amp; Debt&quot;
+## [5] &quot;Economic Policy &amp; Debt&quot; &quot;Economic Policy &amp; Debt&quot;</code></pre>
+<p>Now that that’s working, let’s add it as a</p>
+<pre class="r"><code>topics &lt;-
+  mutate(topics, main_topic = map_chr(sub_topics, 1))</code></pre>
+<p>Now the <code>topics</code> are organized by their main topic, and we also have a variable to access the full hierarchy if need be.</p>
+<pre class="r"><code>glimpse(topics)</code></pre>
+<pre><code>## Observations: 90
+## Variables: 3
+## $ Topic      &lt;chr&gt; &quot;Environment: Agricultural production&quot;, &quot;Environmen...
+## $ sub_topics &lt;list&gt; [&lt;&quot;Environment&quot;, &quot;Agricultural production&quot;&gt;, &lt;&quot;Env...
+## $ main_topic &lt;chr&gt; &quot;Environment&quot;, &quot;Environment&quot;, &quot;Economic Policy &amp; De...</code></pre>
+<pre class="r"><code>count(topics, main_topic)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##                   main_topic     n
+##                        &lt;chr&gt; &lt;int&gt;
+## 1     Economic Policy &amp; Debt    38
+## 2                  Education     4
+## 3                Environment     8
+## 4           Financial Sector     6
+## 5                     Health     8
+## 6             Infrastructure     3
+## 7                    Poverty     3
+## 8     Private Sector &amp; Trade     9
+## 9              Public Sector     6
+## 10 Social Protection &amp; Labor     5</code></pre>
+<p>Let’s merge the topic data back to the series level data. I will create a new dataset so that the data in <code>WDI</code> always remains the original data.</p>
+<pre class="r"><code>series &lt;- left_join(WDI$series, topics, by = &quot;Topic&quot;)</code></pre>
+<p>Let’s count the number of series by main topic,</p>
+<pre class="r"><code>count(series, main_topic, sort = TRUE)</code></pre>
+<pre><code>## # A tibble: 10 × 2
+##                   main_topic     n
+##                        &lt;chr&gt; &lt;int&gt;
+## 1     Economic Policy &amp; Debt   505
+## 2     Private Sector &amp; Trade   156
+## 3                  Education   151
+## 4  Social Protection &amp; Labor   151
+## 5                     Health   148
+## 6                Environment   137
+## 7              Public Sector    92
+## 8           Financial Sector    54
+## 9             Infrastructure    36
+## 10                   Poverty    22</code></pre>
+<p>Now take the country-year-series dataset, <code>wdi_data_cst</code>, merge it with the series data, and for each country year, aggregate the proportion missing within each category.</p>
+<pre class="r"><code>missing &lt;- 
+  left_join(wdi_data_cst, 
+          # keep only the variables I&#39;m going to use to save space:
+          select(series, `Series Code`, Topic, main_topic),
+          by = c(&quot;Indicator Code&quot; = &quot;Series Code&quot;)) %&gt;%
+  group_by(`Country Code`, main_topic, year) %&gt;%
+  mutate(missing = is.na(value)) %&gt;%
+  summarise(prop_missing = mean(missing))
+summary(missing$prop_missing) </code></pre>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##       0       0       0       0       0       0</code></pre>
+<p>Something’s wrong. Oh yeah, I deleted all the missing rows when a used <code>gather</code> to create <code>wdi_data_cst</code> because it seemed like a good idea at the time. Now I can go back, and adjust my previous code, but that could break previous things. Instead, I’ll start from <code>WDI$data</code> and</p>
+<pre class="r"><code>missingness &lt;-
+  WDI$data %&gt;%
+  select(-`Indicator Name`, -`Country Name`) %&gt;%
+  gather(year, value, matches(&quot;^\\d+$&quot;)) %&gt;%
+  left_join(select(series, `Series Code`, Topic, main_topic),
+            by = c(&quot;Indicator Code&quot; = &quot;Series Code&quot;)) %&gt;%
+  group_by(`Country Code`, main_topic, year) %&gt;%
+  mutate(missing = is.na(value)) %&gt;%
+  summarise(prop_missng = mean(missing))
+summary(missingness$prop_missing)  </code></pre>
+<pre><code>## Warning: Unknown column &#39;prop_missing&#39;</code></pre>
+<pre><code>## Length  Class   Mode 
+##      0   NULL   NULL</code></pre>
+<p>That looks better. Now there are missing values for each country.</p>
+<p>There is still one big problem to be. The WDI indicators have varying coverage over time. We should drop any indicator that is missing for <em>all</em> countries in a year. If the WDI isn’t tracking it that year, we shouldn’t hold it against the country.</p>
 </div>
 <div id="joining-wdi-to-vdem-data" class="section level2">
 <h2>Joining WDI to VDEM data</h2>
