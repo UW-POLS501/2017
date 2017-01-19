@@ -323,8 +323,7 @@ div.tocify {
 <h1>Tidy and Relational Data with World Development Indicators</h1>
 <p>This is practical example of using R to clean and tidy the World Bank <a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators</a> data. This is a widely used dataset of economic, health, education, and societal indicators.</p>
 <pre class="r"><code>library(&quot;tidyverse&quot;)
-library(&quot;stringr&quot;)
-knitr::opts_chunk$set(cache=FALSE)</code></pre>
+library(&quot;stringr&quot;)</code></pre>
 <p>We first need to download the WDI data. This could be done manually by downloading the file and unzipping it, but these steps can also be automated with R functions. Note that there is a <a href="https://cran.r-project.org/package=WDI">WDI</a> R package, which provides a way to query the WDI database from within R, and may be better for your purposes. I won’t use it here because dealing with CSV issues is the main purpose of this exercise.</p>
 <p>Create a data directory if it does not already exist, and download the zip file if it does not already exists.</p>
 <p>I’m going to define multiple variables for URL that I am downloading, and locations of files and directories where I will put stuff. It’s useful to save these as variables (and often to put them at the top of the script) for two reasons.</p>
@@ -432,7 +431,7 @@ glimpse(wdi_country)</code></pre>
 ## #   `Latest industrial data` &lt;int&gt;, `Latest trade data` &lt;int&gt;, `Latest
 ## #   water withdrawal data` &lt;int&gt;</code></pre>
 <p><code>WDI_Data.csv</code> has the bulk of the WDI data. The table key is the combination of a country ID (<code>Country Code</code>) and the <code>Indicator Code</code>, with the columns being years of data, and the cells being the values of those indicators.</p>
-<pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;Data&quot;), progress = FALSE)
+<pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;Data&quot;))
 glimpse(wdi_data)</code></pre>
 <pre><code>## Observations: 383,328
 ## Variables: 61

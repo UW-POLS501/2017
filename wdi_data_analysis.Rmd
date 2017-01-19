@@ -9,11 +9,13 @@ This is practical example of using R to clean and tidy the World Bank [World Dev
 
 [^1]: http://data.worldbank.org/data-catalog/world-development-indicators
 
+```{r, include=FALSE}
+options(dplyr.show_progress = FALSE)
+```
 
 ```{r message=FALSE}
 library("tidyverse")
 library("stringr")
-knitr::opts_chunk$set(cache=FALSE)
 ```
 
 We first need to download the WDI data.
@@ -107,7 +109,7 @@ head(wdi_country)
 `WDI_Data.csv` has the bulk of the WDI data. 
 The table key is the combination of a country ID (`Country Code`) and the `Indicator Code`, with the columns being years of data, and the cells being the values of those indicators.
 ```{r message=FALSE}
-wdi_data <- read_csv(wdi("Data"), progress = FALSE)
+wdi_data <- read_csv(wdi("Data"))
 glimpse(wdi_data)
 wdi_data %>% select(1:5) %>% slice(1:2)
 ```
