@@ -13,6 +13,7 @@ This is practical example of using R to clean and tidy the World Bank [World Dev
 ```{r message=FALSE}
 library("tidyverse")
 library("stringr")
+knitr::opts_chunk$set(cache=FALSE)
 ```
 
 We first need to download the WDI data.
@@ -106,7 +107,7 @@ head(wdi_country)
 `WDI_Data.csv` has the bulk of the WDI data. 
 The table key is the combination of a country ID (`Country Code`) and the `Indicator Code`, with the columns being years of data, and the cells being the values of those indicators.
 ```{r message=FALSE}
-wdi_data <- read_csv(wdi("Data"))
+wdi_data <- read_csv(wdi("Data"), progress = FALSE)
 glimpse(wdi_data)
 wdi_data %>% select(1:5) %>% slice(1:2)
 ```
@@ -253,10 +254,10 @@ read_wdi_csv <- function(file, ...) {
 ```
 The `...` passes arguments to `read_csv`, which is useful if it turns out that a specific file needs to be treated differently.
 Now I can do this:
-```{r}
+```{r message=FALSE}
 wdi_country <- read_wdi_csv(wdi("Country"))
 wdi_cs_notes <- read_wdi_csv(wdi("CS_Notes"))
-wdi_data <- read_wdi_csv(wdi("Data"))
+wdi_data <- read_wdi_csv(wdi("Data"), progress = FALSE)
 wdi_description <- read_wdi_csv(wdi("Description"))
 wdi_footnotes <- read_wdi_csv(wdi("Footnotes"))
 wdi_series <- read_wdi_csv(wdi("Series"))
@@ -274,7 +275,7 @@ for (filename in filelist) {
 I can get the names of the files using `dir`.
 But how do I programmatically generate the variable names. 
 The answer is to put them in a list, and then refer to the list.
-```{r}
+```{r message=FALSE}
 # create
 filenames <- dir(wdi_dir, full.names = TRUE)
 WDI <- vector("list", length(filenames))
@@ -288,7 +289,7 @@ for (i in seq_along(filenames)) {
   name <- str_match(name, "WDI_(.*)\\.csv")[1, 2]
   # I want the names to be lower-cased
   name <- str_to_lower(name)
-  WDI[[i]] <- read_wdi_csv(fn)
+  WDI[[i]] <- read_wdi_csv(fn, progress = FALSE)
   wdi_names[[i]] <- name
 }
 names(WDI) <- wdi_names
