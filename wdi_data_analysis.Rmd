@@ -13,7 +13,7 @@ This is practical example of using R to clean and tidy the World Bank [World Dev
 options(dplyr.show_progress = FALSE)
 ```
 
-```{r message=FALSE}
+```{r setup,message=FALSE}
 library("tidyverse")
 library("stringr")
 ```
@@ -453,29 +453,246 @@ wdi_data_tidy <-
     - Create a line plot in which the x-axis is years, the y-axis is the mean of the indicator, each income group has its own line and a different color, and faceted by indicator. Merge the indicator level dataset in order to give the indicators meaningful labels in the plot.
       
 
-<!--
-### HDI
 
-Calculate the Human Development Indicator. The definition can be found here: http://hdr.undp.org/sites/default/files/hdr2015_technical_notes.pdf.
-Check your work against example data in the documentation.
-Check your work against the true values of the [Human Development Index](http://hdr.undp.org/en/data):
--->
+
+## Gender Inequality
+
+The UN has its own measures of Gender Inequality.
+Some other simple measures that often appear may be the difference in % of males and females in the labor force, or % difference in educational attainment.
+
+What I'm going to do is find all variables in the WDI that are disaggregated into male and female, and then calculate the difference in those measures.
+But there are
+```{r}
+nrow(WDI$series)
+```
+indicators in the WDI.
+I could search for male and female [online](http://databank.worldbank.org/data/reports.aspx?source=world-development-indicators), then manually put together a list, probably in a CSV file with the indicator code for the male and female variables.
+Again, that's a lot of work, and I'm not being paid by the hour.
+
+The purpose of this exercise is not to produce good measures of gender inequality, but to compute on data about the series themselves to find and match male and female variables to create the sort of dataset that could be used to construct such an index.
+
+The plan is to see whether male and female variables have regular codes or names.
+If there is some pattern, I can select the matching male and female variables.
+Let's look at variables with "female" in the description. 
+I use the regexp pattern `"\\bfemale\\b"`, where `\b` means the boundary of a word (space, punctuation, etc). If I didn't do that it could pick up words with female as part of the name; I can't think of any, but I'm paranoid.
+```{r}
+WDI$series %>%
+  filter(str_detect(`Indicator Name`, "\\bfemale\\b")) %>% select(`Indicator Name`, `Series Code`)
+```
+It seems that the series codes of female variables generally have an `FE` in them, e.g. `"SP.DYN.LE00.FE.IN"` or `"SL.TLF.PART.FE.ZS"` or `"IC.REG.PROC.FE"`.
+
+What about male variables? Now including the word boundary indicators is very important, or searching for names with the string "male" would also find all names with the string "female".
+```{r}
+str_detect("Firms with female top manager (% of firms)", "male")
+```
+```{r}
+str_detect("Firms with female top manager (% of firms)", "\\bmale\\b")
+```
+
+So let's search for the male variables,
+```{r}
+WDI$series %>%
+  filter(str_detect(`Indicator Name`, "\\bmale\\b")) %>%
+  select(`Series Code`, `Indicator Name`)
+```
+It seems that the male variables, have names that include an `MA` in them.
+
+So one approach is the find all the female variables by finding variables with `FE` in their code, replace that with `MA` and match it to the male variable names.
+
+I will use the pattern `"\\bFE\\b"` since the `FE` appears either between periods, `.FE.` or at the end of the code `.FE`. 
+If there are any other codes that include the substring `FE` I don't want to detect them.
+```{r}
+gender_variables <-
+  WDI$series %>%
+  filter(str_detect(`Series Code`, "\\bFE\\b")) %>%
+  select(female_series = `Series Code`,
+         female_name = `Indicator Name`)
+```
+One way to check that this worked is to look for any variables that don't have the word "female" in their name.
+```{r}
+filter(gender_variables, !str_detect(female_name, "\\bfemale\\b"))
+```
+The four variables don't have female in their name because they use the word "women" instead, so that's okay.
+I should also manually scan through the names of the variables, because there could always be something about the data that I didn't consider. 
+Likewise, for the variables that aren't captured.
+But I'm going to move on knowing that this may not be perfect, but it's a pretty good first cut.
+It finds
+```{r}
+nrow(gender_variables)
+```
+female variables.
+
+Now let's find the corresponding male variables.
+```{r}
+gender_variables <-
+  gender_variables %>%
+  mutate(male_series = str_replace(female_series, "\\bFE\\b", "MA"))
+```
+Now merge with the original dataset to ensure that those variables actually exist, because we should assume nothing (or assume that the data wants to make your life miserable),
+```{r}
+gender_variables <-
+  gender_variables %>%
+  left_join(select(WDI$series, 
+                   male_series = `Series Code`, 
+                   male_name = `Indicator Name`),
+                   by = "male_series")
+```
+Female series which didn't have a male series will have a missing value for `male_name`,
+```{r}
+filter(gender_variables, is.na(male_name))
+```
+It looks like these variables mostly shares, so the male value is implicit (100 - female value).
+I'll drop and ignore them for now, but there are not many of these, and I could handle them separately as special cases.
+```{r}
+gender_variables <-
+  filter(gender_variables, !is.na(male_name))
+```
+
+What I want to end up with is a dataset with columns:
+
+- country
+- year
+- indicator code (I'll need to define my own)
+- male value
+- female value
+- difference (female - male)
+
+Add an overall series name that replaces `FE` and `MA` with a double-underscore (`__`).
+I know `__` doesn't appear anywhere in series names, so it's easy to replace that pattern to get back ther original codes.
+```{r}
+gender_variables <-
+  mutate(gender_variables, series = str_replace(female_series, "\\bFE\\b", "__"))
+```
+Reshape it to be long
+```{r}
+gender_series_codes <-
+  gender_variables %>%
+  select(series, male_series, female_series) %>%
+  gather(variable, `Series Code`, -series) %>%
+  separate(variable, c("gender", "code")) %>%
+  select(-code)
+```
+
+Now, we can take the long WDI with columns country, year, series, value, and extract only those series related to gender.
+Then create separate columns for male and female values.
+And calculate the difference in values between female and male indicators.
+```{r}
+left_join(gender_series_codes, wdi_data_cst,
+          by = c("Series Code" = "Indicator Code")) %>%
+  select(-`Series Code`) %>%
+  spread(gender, value) %>%
+  mutate(gender_diff = female - male) %>%
+  filter(gender_diff != 0)
+```
+
+This is not a great methodology. 
+Calculating a difference is likely inapproriate for many variables. 
+We would want to rescale the differences to the spread of the distribution of these values because currently there is no sense of what is a big difference.
+But everything from here on out requires more domain expertise.
+The point of this exercise was to give an example of computing on variable metadata to select and match variables to each other.
+
 
 ## Transparency and Missing Values
 
 Hollyer et al. (2011) calculates a measure of governmental transparency using the number of missing values in the WDI.[^hollyer]
 We'll calculate something similar.
 
-1. For each country-year calculate a similar figure. Calculate a similar index of missingness. Consider the following: would you use all variables? If not, how would you select those variables? Would you calculate missing values in all variables and all time periods equally?
+For each country-year calculate a similar figure. Calculate a similar index of missingness. Consider the following: would you use all variables? If not, how would you select those variables? Would you calculate missing values in all variables and all time periods equally?
 
-2. Which countries are least transparent?
+The WDI groups variables into topics.
+I want to calculate the missingness for each country within a different topic, but those provided in `Topics` are more specific than I'd like. 
+I want to extract the top-level topic and use that: e.g. "Economic Policy & Debt" rather than "Economic Policy & Debt: Balance of payments: Capital & financial account".
 
-3. How do transparency relate to income?
+I'll create a dataset of unique topics
+```{r}
+topics <- WDI$series %>% select(Topic) %>% distinct()
+```
+I'll split the variable Topic by `:`:
+```{r}
+head(str_split(topics$Topic, ":"))
+```
+The problem is that there is an extra space after the `:`, so the other topics.
+Since `str_split` returns a list, I'll use `map` to apply it to each element in the list.
+```{r}
+map(str_split(topics$Topic, ":"), str_trim) %>% head()
+```
+Looks good. The extra spaces are gone. Now that it is working, 
+I can add this as a list column to the `topics` dataset.
+```{r}
+topics <-
+  mutate(topics, sub_topics = map(str_split(Topic, ":"), str_trim))
+```
+I would also like the main (first) topic as a character vector.
+I can extract that using a map function.
+I use `map_chr` since I want it to return a character vector rather than a list.
+```{r}
+map_chr(topics$sub_topics, function(x) x[[1]]) %>%
+  head()
+```
+Since extracting an element is such a common case, `map` has a shortcut.
+If you use a number or a character vector, it will extract that element.
+This will do the same thing as above:
+```{r}
+map_chr(topics$sub_topics, 1) %>% head()
+```
+Now that that's working, let's add it as a 
+```{r}
+topics <-
+  mutate(topics, main_topic = map_chr(sub_topics, 1))
+```
+Now the `topics` are organized by their main topic, and we also have a variable to access the full hierarchy if need be.
+```{r}
+glimpse(topics)
+```
+```{r}
+count(topics, main_topic)
+```
 
-4. Subset by income and plot.
+Let's merge the topic data back to the series level data.
+I will create a new dataset so that the data in `WDI` always remains the original data.
+```{r}
+series <- left_join(WDI$series, topics, by = "Topic")
+```
+Let's count the number of series by main topic,
+```{r}
+count(series, main_topic, sort = TRUE)
+```
 
-5. Recently the UN released a variable on the "Overall measure of statistical capacity". How does the (original) HRV transparency relate to that measure?
-       
+Now take the country-year-series dataset, `wdi_data_cst`, merge it with the series data, and for each country year, aggregate the proportion missing within each category.
+
+```{r}
+missing <- 
+  left_join(wdi_data_cst, 
+          # keep only the variables I'm going to use to save space:
+          select(series, `Series Code`, Topic, main_topic),
+          by = c("Indicator Code" = "Series Code")) %>%
+  group_by(`Country Code`, main_topic, year) %>%
+  mutate(missing = is.na(value)) %>%
+  summarise(prop_missing = mean(missing))
+summary(missing$prop_missing) 
+```
+Something's wrong. Oh yeah, I deleted all the missing rows when a used `gather` to create `wdi_data_cst` because it seemed like a good idea at the time.
+Now I can go back, and adjust my previous code, but that could break previous things. 
+Instead, I'll start from `WDI$data` and 
+
+```{r}
+missingness <-
+  WDI$data %>%
+  select(-`Indicator Name`, -`Country Name`) %>%
+  gather(year, value, matches("^\\d+$")) %>%
+  left_join(select(series, `Series Code`, Topic, main_topic),
+            by = c("Indicator Code" = "Series Code")) %>%
+  group_by(`Country Code`, main_topic, year) %>%
+  mutate(missing = is.na(value)) %>%
+  summarise(prop_missng = mean(missing))
+summary(missingness$prop_missing)  
+```
+
+That looks better. Now there are missing values for each country.
+
+There is still one big problem to be. The WDI indicators have varying coverage over time. We should drop any indicator that is missing for *all* countries in a year. If the WDI isn't tracking it that year, we shouldn't hold it against the country.
+
+
 [^hollyer]: See the [HRV Transparency Project](http://0001c70.wcomhost.com/wp2/papers/) for more recent  information on it; a 2014 paper of theirs in *Political Analysis* provides a more rigorous measure. 
 
 
