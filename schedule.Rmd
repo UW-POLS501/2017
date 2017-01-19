@@ -139,6 +139,7 @@ Optional
 
 ### Lab (January 20th)
 
+- [WDI Data Analysis Example](wdi_data_analysis.Rmd)
 - *r4ds* [Ch 13: Relational data](http://r4ds.had.co.nz/relational-data.html). *This is the important chapter* Know and understand this well. Merging datasets
 - *r4ds* [Ch 14: Strings](http://r4ds.had.co.nz/strings.html). You don't need to know all the details of regular expressions. But it is important to know they exist; if you need to search by a pattern---regular expressions are the way you do it. This is even useful when searching and replacing text in RStudio or other text editors.  
 - *r4ds* [Ch 15: Factors](http://r4ds.had.co.nz/factors.html) This is not long and is useful.

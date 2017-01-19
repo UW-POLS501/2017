@@ -320,98 +320,9 @@ div.tocify {
 
 
 <p>Submit two files: (1) your R script, and (2) a concise write-up where you report your results. The write-up should be submitted as a PDF file. You may use any program you wish (Word, LaTeX, etc.) to create the write-up, but only submit a PDF.</p>
-<div id="tidy-and-relational-data-with-world-development-indicators" class="section level1">
-<h1>Tidy and Relational Data with World Development Indicators</h1>
-<p>This is practical example of using R to clean and tidy the World Bank <a href="http://data.worldbank.org/data-catalog/world-development-indicators">World Development Indicators</a> data</p>
-<p>The primary World Bank collection of development indicators, compiled from officially-recognized international sources. It presents the most current and accurate global development data available, and includes national, regional and global estimates.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
-<pre class="r"><code>library(&quot;tidyverse&quot;)
-library(&quot;stringr&quot;)</code></pre>
-<p>We first need to download the WDI data. This could be done manually by downloading the file and unzipping it, but these steps can also be automated with R functions.</p>
-<p>Create a data directory if it does not already exist, and download the zip file if it does not already exists.</p>
-<pre class="r"><code># URL of the zip file
-wdi_url &lt;- &quot;http://databank.worldbank.org/data/download/WDI_csv.zip&quot;
-# location to save data
-dst_dir &lt;- &quot;data&quot;
-# create a directory
-# showWarnings to be silent if already exists, and recursive
-# to create subdirs
-dir.create(dst_dir, showWarnings = FALSE, recursive = TRUE)
-dst_file &lt;- file.path(dst_dir, &quot;WDI_csv.zip&quot;)
-# directory to unzip the contents of WDI_csv into
-wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
-<p>Now download the zip file, and unzip it into <code>data/WDI</code>.</p>
-<p><strong>WARNING: this will take a few minutes since it is a large file</strong> But because it takes so long, only download it once. Unzip it to <code>data/WDI</code> using the function <code>unzip()</code>.</p>
-<pre class="r"><code>if (!file.exists(dst_file)) {
-  download.file(wdi_url, dst_file)
-  unzip(dst_file, exdir = wdi_dir)
-}</code></pre>
-<p>Let’s see what files were included in the zip file</p>
-<pre class="r"><code>dir(&quot;data/WDI&quot;)</code></pre>
-<pre><code>## [1] &quot;WDI_Country.csv&quot;     &quot;WDI_CS_Notes.csv&quot;    &quot;WDI_Data.csv&quot;       
-## [4] &quot;WDI_Description.csv&quot; &quot;WDI_Footnotes.csv&quot;   &quot;WDI_Series.csv&quot;     
-## [7] &quot;WDI_ST_Notes.csv&quot;</code></pre>
-<p>The <code>dir</code> function lists the files in a directory.</p>
-<div id="importing-and-tidying-data" class="section level2">
-<h2>Importing and tidying data</h2>
-<ol style="list-style-type: decimal">
-<li><p>What files are included in the zip file and what do they seem to correspond to.</p></li>
-<li><p>Load the country-level CSV file. Print out the full names of the countries. What’s wrong with them Use the <code>readr::guess_encoding</code> function to find the probable encoding, adjust the <code>locale</code> to be able to load the data in the correct format.</p></li>
-<li><p>If you save the csv file using <code>readr::write_csv</code> what encoding will it be in? (Fun fact: if you use Excel on Macs it will always read and write CSV files using the Windows-1252 encoding, which can be problematic, so if you edit the csv file using Excel you can have problems reading it back into R.)</p></li>
-<li><p>Load the country-year file. Check the encoding before loading, and use the same locale as above.</p></li>
-<li><p>Is this tidy data? Why or why not? Why do you think they organized the data this way?</p></li>
-<li><p>Create a tidy dataset in which the rows correspond to (country, year) tuples, and <code>country</code>, <code>year</code>, and all the indicators are columns.</p></li>
-<li><p>Merge the country-year data with the country-level data.</p></li>
-<li><p>The WDI data include “country” observations that are actually aggregations of countries, for example, “OECD members”, “High income”, “Sub-Saharan Africa (all income levels)”. Filter out those observations. Hint: there is a variable that is missing for non-countries, so you shouldn’t need to enumerate all of the non-country values.</p></li>
-<li><p>Choose a few variables you are interested.</p>
-<ul>
-<li><p>Summarize the distributions of these variables by year and income group: mean, median, min, max, standard deviation, 25th percentile, 75th percentile. Accomplish by first using <code>gather</code> to create a data frame with columns: <code>country</code>, <code>year</code>, <code>indicator</code>, and <code>value</code>. Then you can use <code>group_by()</code> and <code>summarize()</code> to summarize the data.</p></li>
-<li><p>Accomplish the same task using <code>mutate_at</code> without using <code>gather</code></p></li>
-<li><p>Create a line plot in which the x-axis is years, the y-axis is the mean of the indicator, each income group has its own line and a different color, and faceted by indicator. Merge the indicator level dataset in order to give the indicators meaningful labels in the plot.</p></li>
-</ul></li>
-</ol>
-<!--
-### HDI
-
-Calculate the Human Development Indicator. The definition can be found here: http://hdr.undp.org/sites/default/files/hdr2015_technical_notes.pdf.
-Check your work against example data in the documentation.
-Check your work against the true values of the [Human Development Index](http://hdr.undp.org/en/data):
--->
-</div>
-<div id="transparency-and-missing-values" class="section level2">
-<h2>Transparency and Missing Values</h2>
-<p>Hollyer et al. (2011) calculates a measure of governmental transparency using the number of missing values in the WDI.[^hollyer] We’ll calculate something similar.</p>
-<ol style="list-style-type: decimal">
-<li><p>For each country-year calculate a similar figure. Calculate a similar index of missingness. Consider the following: would you use all variables? If not, how would you select those variables? Would you calculate missing values in all variables and all time periods equally?</p></li>
-<li><p>Which countries are least transparent?</p></li>
-<li><p>How do transparency relate to income?</p></li>
-<li><p>Subset by income and plot.</p></li>
-<li><p>Recently the UN released a variable on the “Overall measure of statistical capacity”. How does the (original) HRV transparency relate to that measure?</p></li>
-</ol>
-</div>
-<div id="joining-wdi-to-vdem-data" class="section level2">
-<h2>Joining WDI to VDEM data</h2>
-<p>The Varieties of Democracy project is a recent project to develop indicators of democracy. We would like to merge it with the WDI indicators. Download <a href="https://www.v-dem.net/en/data/data-version-6-2/">Version 6.2</a> County-Year dataset.</p>
-<ol style="list-style-type: decimal">
-<li><p>What are the terms of using the data? (Why doesn’t this document include a script to automatically download it?) How do you cite the data?</p></li>
-<li><p>What are the primary VDEM indices? Subset the data to include only those indices and country and year identifiers.</p></li>
-<li><p>Merge the VDEM and WDI data. What does VDEM use as its country-level indicator? What does the WDI use? Note: The <strong>countrycode</strong> package may be useful here.</p></li>
-<li><p>What is the relationship between democracy and transparency? What is the relationship between democracy and transparency comparing only countries within a given income level?</p></li>
-</ol>
-</div>
-</div>
-<div id="efficacy-of-small-class-size-in-early-education" class="section level1">
-<h1>Efficacy of Small Class Size in Early Education</h1>
-<p><em>QSS</em> Exercise 2.8.1</p>
-</div>
 <div id="success-of-leader-assassination-as-a-natural-experiment" class="section level1">
 <h1>Success of Leader Assassination as a Natural Experiment</h1>
 <p><em>QSS</em> Exercise 2.8.3</p>
-</div>
-<div class="footnotes">
-<hr />
-<ol>
-<li id="fn1"><p>See the <a href="http://0001c70.wcomhost.com/wp2/papers/">HRV Transparency Project</a> for more recent information on it; a 2014 paper of theirs in <em>Political Analysis</em> provides a more rigorous measure.<a href="#fnref1">↩</a></p></li>
-</ol>
 </div>
 
 <p>
