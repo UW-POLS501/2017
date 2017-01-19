@@ -50,7 +50,7 @@ Now download the zip file, and unzip it into `data/WDI`.
 **WARNING: this will take a few minutes since it is a large file**
 But because it takes so long, only download it once.
 Unzip it to `data/WDI` using the function `unzip()`.
-```{r}
+```{r message=FALSE}
 if (!file.exists(dst_file)) {
   download.file(wdi_url, dst_file)
   unzip(dst_file, exdir = wdi_dir)
@@ -96,7 +96,7 @@ It is also better to `file.path` because the function name conveys the intent of
 Since there is no documentation, I open up the files and figure it out.
 
 `WDI_Country.csv` has country-level variables. The table key is `Country Code`, and it includes names, other country codes, and various information specific to the country.
-```{r}
+```{r message=FALSE}
 wdi_country <- read_csv(wdi("Country"))
 glimpse(wdi_country)
 head(wdi_country)
@@ -105,7 +105,7 @@ head(wdi_country)
 
 `WDI_Data.csv` has the bulk of the WDI data. 
 The table key is the combination of a country ID (`Country Code`) and the `Indicator Code`, with the columns being years of data, and the cells being the values of those indicators.
-```{r}
+```{r message=FALSE}
 wdi_data <- read_csv(wdi("Data"))
 glimpse(wdi_data)
 wdi_data %>% select(1:5) %>% slice(1:2)
@@ -123,7 +123,7 @@ wdi_data[["Country Code"]][1:2]
 
 
 `WDI_Description.csv` is unusual.
-```{r}
+```{r message=FALSE}
 read_csv(wdi("Description"))
 ```
 It has the extension `.csv` but this looks like a text file (trust but verify file-extensions, they can lie to you); it only has one column, with a bad name.
@@ -131,7 +131,7 @@ It has a header with the date of the last data revision, and comments on dates o
 
 `WDI_CS_Notes.csv` seems to be `C`ountry-`S`eries data with notes for different series for each country. For example the sources used for each country.
 The keys are `CountryCode` and `SeriesCode`.
-```{r}
+```{r message=FALSE}
 wdi_cs_notes <- read_csv(wdi("CS_Notes"))
 wdi_cs_notes %>% select(DESCRIPTION) %>% slice(1:3) 
 ```
@@ -139,14 +139,14 @@ wdi_cs_notes %>% select(DESCRIPTION) %>% slice(1:3)
 `WDI_Footnotes.csv` has notes for each *cell* in `WDI_Data.csv` (the combination of country, series, and year).
 The keys are `CountryCode`, `SeriesCode`, and `Year`. 
 There's a few weird things here: `Year` values are prefixed by `YR`
-```{r}
+```{r message=FALSE}
 wdi_footnotes <- read_csv(wdi("Footnotes"))
 glimpse(wdi_footnotes)
 wdi_footnotes$DESCRIPTION[1:3]
 ```
 
 `WDI_Series.csv` has metadata on the `Series`. Notably, it has human readable descriptions of the unique series identifiers.
-```{r error=TRUE}
+```{r error=TRUE,message=FALSE}
 wdi_series <- read_csv(wdi("Series"))
 glimpse(wdi_series)
 ```
@@ -179,7 +179,7 @@ After reading the Wikipodia pages on them, we know these are encodings that also
 
 See the R4DS section [11.3.2 Parsing a vector: Strings](http://r4ds.had.co.nz/data-import.html#readr-strings) for how to use locale.
 I'll define a new locale using the "Latin1" encoding (equivalent to ISO-8859-1, but more descriptive),
-```{r}
+```{r message=FALSE}
 locale_latin1 <- locale(encoding = "Latin1")
 wdi_series <- read_csv(wdi("Series"), locale = locale_latin1)
 ```
@@ -238,7 +238,7 @@ locale_windows1252 <- locale(encoding = "Windows-1252")
 ```
 I'll need to reload all the files using that new encoding.
 I could load each file separately,
-```{r}
+```{r message=FALSE}
 wdi_country <- read_csv(wdi("Country"), locale = locale_windows1252)
 wdi_data <- read_csv(wdi("CS_Notes"), locale = locale_windows1252)
 # ... and so on

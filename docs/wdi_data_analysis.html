@@ -371,16 +371,8 @@ wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
 <p>It is also better to <code>file.path</code> because the function name conveys the intent of the operation (you are creating a file name), in a way that <code>str_c</code> does not (you concatenating some character vectors, but it could be for anything). It also uses the correct seperator for different operatings systems.</p>
 <p>Since there is no documentation, I open up the files and figure it out.</p>
 <p><code>WDI_Country.csv</code> has country-level variables. The table key is <code>Country Code</code>, and it includes names, other country codes, and various information specific to the country.</p>
-<pre class="r"><code>wdi_country &lt;- read_csv(wdi(&quot;Country&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   `Latest industrial data` = col_integer(),
-##   `Latest trade data` = col_integer(),
-##   `Latest water withdrawal data` = col_integer()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code>glimpse(wdi_country)</code></pre>
+<pre class="r"><code>wdi_country &lt;- read_csv(wdi(&quot;Country&quot;))
+glimpse(wdi_country)</code></pre>
 <pre><code>## Observations: 263
 ## Variables: 31
 ## $ Country Code                                      &lt;chr&gt; &quot;ABW&quot;, &quot;ADO&quot;...
@@ -439,7 +431,256 @@ wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
 ## #   `Latest industrial data` &lt;int&gt;, `Latest trade data` &lt;int&gt;, `Latest
 ## #   water withdrawal data` &lt;int&gt;</code></pre>
 <p><code>WDI_Data.csv</code> has the bulk of the WDI data. The table key is the combination of a country ID (<code>Country Code</code>) and the <code>Indicator Code</code>, with the columns being years of data, and the cells being the values of those indicators.</p>
-<pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;Data&quot;))</code></pre>
+<pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;Data&quot;))
+glimpse(wdi_data)</code></pre>
+<pre><code>## Observations: 383,328
+## Variables: 61
+## $ Country Name   &lt;chr&gt; &quot;Arab World&quot;, &quot;Arab World&quot;, &quot;Arab World&quot;, &quot;Arab...
+## $ Country Code   &lt;chr&gt; &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;...
+## $ Indicator Name &lt;chr&gt; &quot;2005 PPP conversion factor, GDP (LCU per inter...
+## $ Indicator Code &lt;chr&gt; &quot;PA.NUS.PPP.05&quot;, &quot;PA.NUS.PRVT.PP.05&quot;, &quot;EG.ELC.A...
+## $ 1960           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1961           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1962           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1963           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1964           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1965           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1966           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1967           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1968           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1969           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1970           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1971           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1972           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1973           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1974           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1975           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1976           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1977           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1978           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1979           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1980           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1981           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1982           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1983           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1984           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1985           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1986           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1987           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1988           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1989           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1990           &lt;dbl&gt; NA, NA, 7.546396e+01, 5.869606e+01, 9.184719e+0...
+## $ 1991           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1992           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1993           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1994           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1995           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1996           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1997           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1998           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 1999           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2000           &lt;dbl&gt; NA, NA, 7.953486e+01, 6.586757e+01, 9.165335e+0...
+## $ 2001           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2002           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2003           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2004           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2005           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2006           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2007           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2008           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2009           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2010           &lt;dbl&gt; NA, NA, 8.436235e+01, 7.198423e+01, 9.383966e+0...
+## $ 2011           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2012           &lt;dbl&gt; NA, NA, 8.628035e+01, 7.391781e+01, 9.515673e+0...
+## $ 2013           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2014           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2015           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
+## $ 2016           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
+<pre class="r"><code>wdi_data %&gt;% select(1:5) %&gt;% slice(1:2)</code></pre>
+<pre><code>## # A tibble: 2 × 5
+##   `Country Name` `Country Code`
+##            &lt;chr&gt;          &lt;chr&gt;
+## 1     Arab World            ARB
+## 2     Arab World            ARB
+## # ... with 3 more variables: `Indicator Name` &lt;chr&gt;, `Indicator
+## #   Code` &lt;chr&gt;, `1960` &lt;dbl&gt;</code></pre>
+<p>Many of these columns have “non-syntactic” names, i.e. we couldn’t use them as a variable in R. To reference them surround them in backticks.</p>
+<pre class="r"><code>select(wdi_data, `Country Code`, `Indicator Code`) %&gt;% head()</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   `Country Code`  `Indicator Code`
+##            &lt;chr&gt;             &lt;chr&gt;
+## 1            ARB     PA.NUS.PPP.05
+## 2            ARB PA.NUS.PRVT.PP.05
+## 3            ARB    EG.ELC.ACCS.ZS
+## 4            ARB EG.ELC.ACCS.RU.ZS
+## 5            ARB EG.ELC.ACCS.UR.ZS
+## 6            ARB    EG.NSF.ACCS.ZS</code></pre>
+<pre class="r"><code>wdi_data$`Country Code`[1:2]</code></pre>
+<pre><code>## [1] &quot;ARB&quot; &quot;ARB&quot;</code></pre>
+<p>However, if you are using <code>[[</code> (and providing a character vector of variable names) you don’t need backticks,</p>
+<pre class="r"><code>wdi_data[[&quot;Country Code&quot;]][1:2]</code></pre>
+<pre><code>## [1] &quot;ARB&quot; &quot;ARB&quot;</code></pre>
+<p><code>WDI_Description.csv</code> is unusual.</p>
+<pre class="r"><code>read_csv(wdi(&quot;Description&quot;))</code></pre>
+<pre><code>## # A tibble: 88 × 1
+##                                                 `World Development Indicators`
+##                                                                          &lt;chr&gt;
+## 1                                                               The World Bank
+## 2                                                              3 January, 2017
+## 3  World Development Indicators (WDI) is the primary World Bank database for d
+## 4  See other worksheets in this Excel file for a list of series changes since 
+## 5  3 January, 2017: A minor update was processed to correct additional governm
+## 6  28 December, 2016: A minor update was processed to revise historical data f
+## 7  21 December, 2016: A minor update was processed to correct government finan
+## 8  16 December, 2016: This release features new external debt data from the In
+## 9  17 November, 2016: Data have been updated for Doing Business indicators, an
+## 10 14 October, 2016: An update was processed for national poverty and child mo
+## # ... with 78 more rows</code></pre>
+<p>It has the extension <code>.csv</code> but this looks like a text file (trust but verify file-extensions, they can lie to you); it only has one column, with a bad name. It has a header with the date of the last data revision, and comments on dates of data revisions.</p>
+<p><code>WDI_CS_Notes.csv</code> seems to be <code>C</code>ountry-<code>S</code>eries data with notes for different series for each country. For example the sources used for each country. The keys are <code>CountryCode</code> and <code>SeriesCode</code>.</p>
+<pre class="r"><code>wdi_cs_notes &lt;- read_csv(wdi(&quot;CS_Notes&quot;))
+wdi_cs_notes %&gt;% select(DESCRIPTION) %&gt;% slice(1:3) </code></pre>
+<pre><code>## # A tibble: 3 × 1
+##                                                                   DESCRIPTION
+##                                                                         &lt;chr&gt;
+## 1 Sources: Estimated based on UN Energy Statistics (2014); World Development 
+## 2                                        Sources: UN Energy Statistics (2014)
+## 3                                        Sources: UN Energy Statistics (2014)</code></pre>
+<p><code>WDI_Footnotes.csv</code> has notes for each <em>cell</em> in <code>WDI_Data.csv</code> (the combination of country, series, and year). The keys are <code>CountryCode</code>, <code>SeriesCode</code>, and <code>Year</code>. There’s a few weird things here: <code>Year</code> values are prefixed by <code>YR</code></p>
+<pre class="r"><code>wdi_footnotes &lt;- read_csv(wdi(&quot;Footnotes&quot;))
+glimpse(wdi_footnotes)</code></pre>
+<pre><code>## Observations: 584,006
+## Variables: 4
+## $ CountryCode &lt;chr&gt; &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;...
+## $ SeriesCode  &lt;chr&gt; &quot;AG.LND.FRST.K2&quot;, &quot;AG.LND.FRST.K2&quot;, &quot;AG.LND.FRST.K...
+## $ Year        &lt;chr&gt; &quot;YR1990&quot;, &quot;YR2000&quot;, &quot;YR2005&quot;, &quot;YR1988&quot;, &quot;YR1989&quot;, ...
+## $ DESCRIPTION &lt;chr&gt; &quot;Not specified&quot;, &quot;Not specified&quot;, &quot;Not specified&quot;,...</code></pre>
+<pre class="r"><code>wdi_footnotes$DESCRIPTION[1:3]</code></pre>
+<pre><code>## [1] &quot;Not specified&quot; &quot;Not specified&quot; &quot;Not specified&quot;</code></pre>
+<p><code>WDI_Series.csv</code> has metadata on the <code>Series</code>. Notably, it has human readable descriptions of the unique series identifiers.</p>
+<pre class="r"><code>wdi_series &lt;- read_csv(wdi(&quot;Series&quot;))
+glimpse(wdi_series)</code></pre>
+<pre><code>## Observations: 1,452
+## Variables: 20</code></pre>
+<pre><code>## Error in nchar(x): invalid multibyte string, element 11</code></pre>
+<p>Damn, that sucks. The error message <code>invalid multibyte string</code> effectively means there was a character in this file that was not recognized by the character encoding setting we are using. The part <code>element 11</code> means it was character 11. It could also be character 10, since off the top of head I’m not sure whether this is counting from 0 or 1 (see <a href="https://en.wikipedia.org/wiki/Zero-based_numbering">zero-based numbering</a>).</p>
+<p>Stop. Right now. Watch this video.</p>
+<div class="figure">
+<img src="https://www.youtube.com/watch?v=MijmeoH9LT4" />
+
+</div>
+<p>Okay, now you’re back and you have some idea of what a character encoding is: it is a mapping from a number to the character (glyph) to display. There are lots of them. The world has more or less settled on one called <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, but there are still many files of different encodings floating around. This appears to be one of them. By default, <code>read_csv</code> reads the data using UTF-8, and the <code>locale</code> argument controls several settings, including the encoding to use. So, to load this data, I need to figure out two things (1) what encoding the data is in, and (2) how to use <code>locale()</code></p>
+<p>There is no perfect way to tell the character encoding of a file. When reading a file, a program can tell its <em>not</em> a certain encoding if it encounters a byte pattern that isn’t used by that encoding. But there’s no sure way to tell if it is a certain encoding. The way this is “solved” is using an algorithm that guesses the encoding using some hueristics. The <strong>readr</strong> package includes the function <code>guess_encoding</code>:</p>
+<pre class="r"><code>guess_encoding(wdi(&quot;Series&quot;))</code></pre>
+<pre><code>##     encoding confidence
+## 1 ISO-8859-1       0.72
+## 2 ISO-8859-2       0.22</code></pre>
+<p>It guesses it is either <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-1">ISO-8859-1</a> (Latin1) or <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-2">ISO-8859-2</a> (Latin2) After reading the Wikipodia pages on them, we know these are encodings that also include the accented Latin letters and other letters used in European languages that use the Latin alphabet.</p>
+<p>See the R4DS section <a href="http://r4ds.had.co.nz/data-import.html#readr-strings">11.3.2 Parsing a vector: Strings</a> for how to use locale. I’ll define a new locale using the “Latin1” encoding (equivalent to ISO-8859-1, but more descriptive),</p>
+<pre class="r"><code>locale_latin1 &lt;- locale(encoding = &quot;Latin1&quot;)
+wdi_series &lt;- read_csv(wdi(&quot;Series&quot;), locale = locale_latin1)</code></pre>
+<p>Now it works!</p>
+<pre class="r"><code>glimpse(wdi_series)</code></pre>
+<pre><code>## Observations: 1,452
+## Variables: 20
+## $ Series Code                         &lt;chr&gt; &quot;AG.AGR.TRAC.NO&quot;, &quot;AG.CON....
+## $ Topic                               &lt;chr&gt; &quot;Environment: Agricultural...
+## $ Indicator Name                      &lt;chr&gt; &quot;Agricultural machinery, t...
+## $ Short definition                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Long definition                     &lt;chr&gt; &quot;Agricultural machinery re...
+## $ Unit of measure                     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Periodicity                         &lt;chr&gt; &quot;Annual&quot;, &quot;Annual&quot;, &quot;Annua...
+## $ Base Period                         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Other notes                         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Aggregation method                  &lt;chr&gt; &quot;Sum&quot;, &quot;Weighted average&quot;,...
+## $ Limitations and exceptions          &lt;chr&gt; &quot;The data are collected by...
+## $ Notes from original source          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ General comments                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Source                              &lt;chr&gt; &quot;Food and Agriculture Orga...
+## $ Statistical concept and methodology &lt;chr&gt; &quot;A tractor provides the po...
+## $ Development relevance               &lt;chr&gt; &quot;Agricultural land covers ...
+## $ Related source links                &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Other web links                     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ Related indicators                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
+## $ License Type                        &lt;chr&gt; &quot;Open&quot;, &quot;Open&quot;, &quot;Open&quot;, &quot;O...</code></pre>
+<p>The key for this table is <code>Series Code</code>, and it has a variety of metadata on the series. <code>Indicator name</code> is a human friendly label for the variable.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Load the country-level CSV file. Print out the full names of the countries. What’s wrong with them Use the <code>readr::guess_encoding</code> function to find the probable encoding, adjust the <code>locale</code> to be able to load the data in the correct format.</li>
+</ol>
+<pre class="r"><code>wdi_country$`Long Name`</code></pre>
+<p>If you scan through the output you’ll notice some names that have errors. Here are a few country names with problems.</p>
+<pre class="r"><code>wdi_country$`Long Name`[c(40, 49, 216)]</code></pre>
+<pre><code>## [1] &quot;Republic of C\xf4te d&#39;Ivoire&quot;                   
+## [2] &quot;Cura\xe7ao&quot;                                        
+## [3] &quot;Democratic Republic of S\xe3o Tom\xe9 and Principe&quot;</code></pre>
+<p>They should read “Republic of Côte d’Ivoire”, “Curaçao”, and “Democratic Republicn of São Tomé and Principé”), but instead they have symbols like <code>\xf4</code>. A leading <code>\x</code> usually refers to a <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal number</a>. In this case it is the hexadecimal number of the character which the encoding can’t recognize. Often, googling for these hexadecimal numbers will let you figure out what it should be, and perhaps the encoding (you probably aren’t the first person to encounter that problem). Other ways in which encoding problems are indicated (not in R) could be with a leading <code>\u</code> for a unicode character, or the use of the symbol � or the empty box (for missing emoji).</p>
+<p>To figure out what the encoding is, I’ll again use <code>guess_encoding</code>:</p>
+<pre class="r"><code>guess_encoding(wdi(&quot;Country&quot;))</code></pre>
+<pre><code>##       encoding confidence
+## 1 windows-1252       0.56
+## 2 windows-1250       0.22</code></pre>
+<p>This file is guessed to be <a href="https://en.wikipedia.org/wiki/Windows-1252">Windows-1252</a> (sometimes called CP-1252 where CP stands for “code point”). But that is different than the previous file, which was encoded as ISO-1859-1.</p>
+<p>WTF? Are the files encoded differently? Now I’m paranoid. I should check all the CSV files to see their encodings.</p>
+<pre class="r"><code>for (filename in dir(wdi_dir, full.names = TRUE)) {
+  cat(filename, &quot;\n&quot;)
+  print(guess_encoding(filename))
+}</code></pre>
+<pre><code>## data/WDI/WDI_Country.csv 
+##       encoding confidence
+## 1 windows-1252       0.56
+## 2 windows-1250       0.22
+## data/WDI/WDI_CS_Notes.csv 
+##       encoding confidence
+## 1 windows-1252       0.50
+## 2 windows-1250       0.22
+## data/WDI/WDI_Data.csv 
+##   encoding confidence
+## 1    ASCII          1
+## data/WDI/WDI_Description.csv 
+##     encoding confidence
+## 1 ISO-8859-1       0.71
+## 2 ISO-8859-2       0.23
+## data/WDI/WDI_Footnotes.csv 
+##     encoding confidence
+## 1 ISO-8859-1       0.46
+## data/WDI/WDI_Series.csv 
+##     encoding confidence
+## 1 ISO-8859-1       0.72
+## 2 ISO-8859-2       0.22
+## data/WDI/WDI_ST_Notes.csv 
+##     encoding confidence
+## 1 ISO-8859-1       0.75</code></pre>
+<p>Bug after reading through the Wikpedia page and some additional Googling, I learn that Windows-1252 is a <em>superset</em> of ISO-1859-1. This means that we lose nothing by specifying Windows-1252, and a few files must use one of the characters that appears in Windows-1252 and not ISO-1859-1. So I can set the encoding to <code>Windows-1252</code> for all the CSV files.</p>
+<p>This may seem terribly complicated, and I don’t envy the engineers who have had to figure out and maintain all this. But, what you just learned will cover 99% of all your encoding issues as long as you are working with English or Western European language texts.</p>
+<p>Try UTF-8. If there are problems with loading it using the default UTF-8, it was probably created by some Windows program that used Windows-1252. Try that. If Windows-1252 doesn’t work, then you have a problem. However, you are working with Chinese, Japanese, Arabic, Cyrillic, … that’s another story).</p>
+<p>As before, I’ll create a new <code>locale</code> object with Windows-1252 encoding.</p>
+<pre class="r"><code>locale_windows1252 &lt;- locale(encoding = &quot;Windows-1252&quot;)</code></pre>
+<p>I’ll need to reload all the files using that new encoding. I could load each file separately,</p>
+<pre class="r"><code>wdi_country &lt;- read_csv(wdi(&quot;Country&quot;), locale = locale_windows1252)
+wdi_data &lt;- read_csv(wdi(&quot;CS_Notes&quot;), locale = locale_windows1252)
+# ... and so on</code></pre>
+<p>But this is seeming redundant, I am continually calling <code>read_csv(wdi(name), locale = locale_windows1252)</code>. As R4DS says, if you copy something three or more times, you should write a function. So here it is,</p>
+<pre class="r"><code>read_wdi_csv &lt;- function(file, ...) {
+  read_csv(file, ..., locale = locale(encoding = &quot;Windows-1252&quot;))
+}</code></pre>
+<p>The <code>...</code> passes arguments to <code>read_csv</code>, which is useful if it turns out that a specific file needs to be treated differently. Now I can do this:</p>
+<pre class="r"><code>wdi_country &lt;- read_wdi_csv(wdi(&quot;Country&quot;))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   `Latest industrial data` = col_integer(),
+##   `Latest trade data` = col_integer(),
+##   `Latest water withdrawal data` = col_integer()
+## )</code></pre>
+<pre><code>## See spec(...) for full column specifications.</code></pre>
+<pre class="r"><code>wdi_cs_notes &lt;- read_wdi_csv(wdi(&quot;CS_Notes&quot;))</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   CountryCode = col_character(),
+##   SeriesCode = col_character(),
+##   DESCRIPTION = col_character()
+## )</code></pre>
+<pre class="r"><code>wdi_data &lt;- read_wdi_csv(wdi(&quot;Data&quot;))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   .default = col_double(),
@@ -447,9 +688,90 @@ wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
 ##   `Country Code` = col_character(),
 ##   `Indicator Name` = col_character(),
 ##   `Indicator Code` = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
+## )
+## See spec(...) for full column specifications.</code></pre>
 <pre><code>## 
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|========                                                                       |  10%   17 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
 |==========                                                                     |  13%   23 MB
 |==========                                                                     |  13%   23 MB
 |==========                                                                     |  13%   23 MB
@@ -2478,305 +2800,6 @@ wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
 |===============================================================================|  99%  178 MB
 |===============================================================================|  99%  178 MB
 |================================================================================| 100%  178 MB</code></pre>
-<pre class="r"><code>glimpse(wdi_data)</code></pre>
-<pre><code>## Observations: 383,328
-## Variables: 61
-## $ Country Name   &lt;chr&gt; &quot;Arab World&quot;, &quot;Arab World&quot;, &quot;Arab World&quot;, &quot;Arab...
-## $ Country Code   &lt;chr&gt; &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;, &quot;ARB&quot;...
-## $ Indicator Name &lt;chr&gt; &quot;2005 PPP conversion factor, GDP (LCU per inter...
-## $ Indicator Code &lt;chr&gt; &quot;PA.NUS.PPP.05&quot;, &quot;PA.NUS.PRVT.PP.05&quot;, &quot;EG.ELC.A...
-## $ 1960           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1961           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1962           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1963           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1964           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1965           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1966           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1967           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1968           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1969           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1970           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1971           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1972           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1973           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1974           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1975           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1976           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1977           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1978           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1979           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1980           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1981           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1982           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1983           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1984           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1985           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1986           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1987           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1988           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1989           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1990           &lt;dbl&gt; NA, NA, 7.546396e+01, 5.869606e+01, 9.184719e+0...
-## $ 1991           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1992           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1993           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1994           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1995           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1996           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1997           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1998           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 1999           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2000           &lt;dbl&gt; NA, NA, 7.953486e+01, 6.586757e+01, 9.165335e+0...
-## $ 2001           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2002           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2003           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2004           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2005           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2006           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2007           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2008           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2009           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2010           &lt;dbl&gt; NA, NA, 8.436235e+01, 7.198423e+01, 9.383966e+0...
-## $ 2011           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2012           &lt;dbl&gt; NA, NA, 8.628035e+01, 7.391781e+01, 9.515673e+0...
-## $ 2013           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2014           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2015           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...
-## $ 2016           &lt;dbl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,...</code></pre>
-<pre class="r"><code>wdi_data %&gt;% select(1:5) %&gt;% slice(1:2)</code></pre>
-<pre><code>## # A tibble: 2 × 5
-##   `Country Name` `Country Code`
-##            &lt;chr&gt;          &lt;chr&gt;
-## 1     Arab World            ARB
-## 2     Arab World            ARB
-## # ... with 3 more variables: `Indicator Name` &lt;chr&gt;, `Indicator
-## #   Code` &lt;chr&gt;, `1960` &lt;dbl&gt;</code></pre>
-<p>Many of these columns have “non-syntactic” names, i.e. we couldn’t use them as a variable in R. To reference them surround them in backticks.</p>
-<pre class="r"><code>select(wdi_data, `Country Code`, `Indicator Code`) %&gt;% head()</code></pre>
-<pre><code>## # A tibble: 6 × 2
-##   `Country Code`  `Indicator Code`
-##            &lt;chr&gt;             &lt;chr&gt;
-## 1            ARB     PA.NUS.PPP.05
-## 2            ARB PA.NUS.PRVT.PP.05
-## 3            ARB    EG.ELC.ACCS.ZS
-## 4            ARB EG.ELC.ACCS.RU.ZS
-## 5            ARB EG.ELC.ACCS.UR.ZS
-## 6            ARB    EG.NSF.ACCS.ZS</code></pre>
-<pre class="r"><code>wdi_data$`Country Code`[1:2]</code></pre>
-<pre><code>## [1] &quot;ARB&quot; &quot;ARB&quot;</code></pre>
-<p>However, if you are using <code>[[</code> (and providing a character vector of variable names) you don’t need backticks,</p>
-<pre class="r"><code>wdi_data[[&quot;Country Code&quot;]][1:2]</code></pre>
-<pre><code>## [1] &quot;ARB&quot; &quot;ARB&quot;</code></pre>
-<p><code>WDI_Description.csv</code> is unusual.</p>
-<pre class="r"><code>read_csv(wdi(&quot;Description&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   `World Development Indicators` = col_character()
-## )</code></pre>
-<pre><code>## # A tibble: 88 × 1
-##                                                 `World Development Indicators`
-##                                                                          &lt;chr&gt;
-## 1                                                               The World Bank
-## 2                                                              3 January, 2017
-## 3  World Development Indicators (WDI) is the primary World Bank database for d
-## 4  See other worksheets in this Excel file for a list of series changes since 
-## 5  3 January, 2017: A minor update was processed to correct additional governm
-## 6  28 December, 2016: A minor update was processed to revise historical data f
-## 7  21 December, 2016: A minor update was processed to correct government finan
-## 8  16 December, 2016: This release features new external debt data from the In
-## 9  17 November, 2016: Data have been updated for Doing Business indicators, an
-## 10 14 October, 2016: An update was processed for national poverty and child mo
-## # ... with 78 more rows</code></pre>
-<p>It has the extension <code>.csv</code> but this looks like a text file (trust but verify file-extensions, they can lie to you); it only has one column, with a bad name. It has a header with the date of the last data revision, and comments on dates of data revisions.</p>
-<p><code>WDI_CS_Notes.csv</code> seems to be <code>C</code>ountry-<code>S</code>eries data with notes for different series for each country. For example the sources used for each country. The keys are <code>CountryCode</code> and <code>SeriesCode</code>.</p>
-<pre class="r"><code>wdi_cs_notes &lt;- read_csv(wdi(&quot;CS_Notes&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   CountryCode = col_character(),
-##   SeriesCode = col_character(),
-##   DESCRIPTION = col_character()
-## )</code></pre>
-<pre class="r"><code>wdi_cs_notes %&gt;% select(DESCRIPTION) %&gt;% slice(1:3) </code></pre>
-<pre><code>## # A tibble: 3 × 1
-##                                                                   DESCRIPTION
-##                                                                         &lt;chr&gt;
-## 1 Sources: Estimated based on UN Energy Statistics (2014); World Development 
-## 2                                        Sources: UN Energy Statistics (2014)
-## 3                                        Sources: UN Energy Statistics (2014)</code></pre>
-<p><code>WDI_Footnotes.csv</code> has notes for each <em>cell</em> in <code>WDI_Data.csv</code> (the combination of country, series, and year). The keys are <code>CountryCode</code>, <code>SeriesCode</code>, and <code>Year</code>. There’s a few weird things here: <code>Year</code> values are prefixed by <code>YR</code></p>
-<pre class="r"><code>wdi_footnotes &lt;- read_csv(wdi(&quot;Footnotes&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   CountryCode = col_character(),
-##   SeriesCode = col_character(),
-##   Year = col_character(),
-##   DESCRIPTION = col_character()
-## )</code></pre>
-<pre class="r"><code>glimpse(wdi_footnotes)</code></pre>
-<pre><code>## Observations: 584,006
-## Variables: 4
-## $ CountryCode &lt;chr&gt; &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;ABW&quot;, &quot;...
-## $ SeriesCode  &lt;chr&gt; &quot;AG.LND.FRST.K2&quot;, &quot;AG.LND.FRST.K2&quot;, &quot;AG.LND.FRST.K...
-## $ Year        &lt;chr&gt; &quot;YR1990&quot;, &quot;YR2000&quot;, &quot;YR2005&quot;, &quot;YR1988&quot;, &quot;YR1989&quot;, ...
-## $ DESCRIPTION &lt;chr&gt; &quot;Not specified&quot;, &quot;Not specified&quot;, &quot;Not specified&quot;,...</code></pre>
-<pre class="r"><code>wdi_footnotes$DESCRIPTION[1:3]</code></pre>
-<pre><code>## [1] &quot;Not specified&quot; &quot;Not specified&quot; &quot;Not specified&quot;</code></pre>
-<p><code>WDI_Series.csv</code> has metadata on the <code>Series</code>. Notably, it has human readable descriptions of the unique series identifiers.</p>
-<pre class="r"><code>wdi_series &lt;- read_csv(wdi(&quot;Series&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code>glimpse(wdi_series)</code></pre>
-<pre><code>## Observations: 1,452
-## Variables: 20</code></pre>
-<pre><code>## Error in nchar(x): invalid multibyte string, element 11</code></pre>
-<p>Damn, that sucks. The error message <code>invalid multibyte string</code> effectively means there was a character in this file that was not recognized by the character encoding setting we are using. The part <code>element 11</code> means it was character 11. It could also be character 10, since off the top of head I’m not sure whether this is counting from 0 or 1 (see <a href="https://en.wikipedia.org/wiki/Zero-based_numbering">zero-based numbering</a>).</p>
-<p>Stop. Right now. Watch this video.</p>
-<div class="figure">
-<img src="https://www.youtube.com/watch?v=MijmeoH9LT4" />
-
-</div>
-<p>Okay, now you’re back and you have some idea of what a character encoding is: it is a mapping from a number to the character (glyph) to display. There are lots of them. The world has more or less settled on one called <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, but there are still many files of different encodings floating around. This appears to be one of them. By default, <code>read_csv</code> reads the data using UTF-8, and the <code>locale</code> argument controls several settings, including the encoding to use. So, to load this data, I need to figure out two things (1) what encoding the data is in, and (2) how to use <code>locale()</code></p>
-<p>There is no perfect way to tell the character encoding of a file. When reading a file, a program can tell its <em>not</em> a certain encoding if it encounters a byte pattern that isn’t used by that encoding. But there’s no sure way to tell if it is a certain encoding. The way this is “solved” is using an algorithm that guesses the encoding using some hueristics. The <strong>readr</strong> package includes the function <code>guess_encoding</code>:</p>
-<pre class="r"><code>guess_encoding(wdi(&quot;Series&quot;))</code></pre>
-<pre><code>##     encoding confidence
-## 1 ISO-8859-1       0.72
-## 2 ISO-8859-2       0.22</code></pre>
-<p>It guesses it is either <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-1">ISO-8859-1</a> (Latin1) or <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-2">ISO-8859-2</a> (Latin2) After reading the Wikipodia pages on them, we know these are encodings that also include the accented Latin letters and other letters used in European languages that use the Latin alphabet.</p>
-<p>See the R4DS section <a href="http://r4ds.had.co.nz/data-import.html#readr-strings">11.3.2 Parsing a vector: Strings</a> for how to use locale. I’ll define a new locale using the “Latin1” encoding (equivalent to ISO-8859-1, but more descriptive),</p>
-<pre class="r"><code>locale_latin1 &lt;- locale(encoding = &quot;Latin1&quot;)
-wdi_series &lt;- read_csv(wdi(&quot;Series&quot;), locale = locale_latin1)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<p>Now it works!</p>
-<pre class="r"><code>glimpse(wdi_series)</code></pre>
-<pre><code>## Observations: 1,452
-## Variables: 20
-## $ Series Code                         &lt;chr&gt; &quot;AG.AGR.TRAC.NO&quot;, &quot;AG.CON....
-## $ Topic                               &lt;chr&gt; &quot;Environment: Agricultural...
-## $ Indicator Name                      &lt;chr&gt; &quot;Agricultural machinery, t...
-## $ Short definition                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Long definition                     &lt;chr&gt; &quot;Agricultural machinery re...
-## $ Unit of measure                     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Periodicity                         &lt;chr&gt; &quot;Annual&quot;, &quot;Annual&quot;, &quot;Annua...
-## $ Base Period                         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Other notes                         &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Aggregation method                  &lt;chr&gt; &quot;Sum&quot;, &quot;Weighted average&quot;,...
-## $ Limitations and exceptions          &lt;chr&gt; &quot;The data are collected by...
-## $ Notes from original source          &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ General comments                    &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Source                              &lt;chr&gt; &quot;Food and Agriculture Orga...
-## $ Statistical concept and methodology &lt;chr&gt; &quot;A tractor provides the po...
-## $ Development relevance               &lt;chr&gt; &quot;Agricultural land covers ...
-## $ Related source links                &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Other web links                     &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ Related indicators                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA...
-## $ License Type                        &lt;chr&gt; &quot;Open&quot;, &quot;Open&quot;, &quot;Open&quot;, &quot;O...</code></pre>
-<p>The key for this table is <code>Series Code</code>, and it has a variety of metadata on the series. <code>Indicator name</code> is a human friendly label for the variable.</p>
-<ol start="2" style="list-style-type: decimal">
-<li>Load the country-level CSV file. Print out the full names of the countries. What’s wrong with them Use the <code>readr::guess_encoding</code> function to find the probable encoding, adjust the <code>locale</code> to be able to load the data in the correct format.</li>
-</ol>
-<pre class="r"><code>wdi_country$`Long Name`</code></pre>
-<p>If you scan through the output you’ll notice some names that have errors. Here are a few country names with problems.</p>
-<pre class="r"><code>wdi_country$`Long Name`[c(40, 49, 216)]</code></pre>
-<pre><code>## [1] &quot;Republic of C\xf4te d&#39;Ivoire&quot;                   
-## [2] &quot;Cura\xe7ao&quot;                                        
-## [3] &quot;Democratic Republic of S\xe3o Tom\xe9 and Principe&quot;</code></pre>
-<p>They should read “Republic of Côte d’Ivoire”, “Curaçao”, and “Democratic Republicn of São Tomé and Principé”), but instead they have symbols like <code>\xf4</code>. A leading <code>\x</code> usually refers to a <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal number</a>. In this case it is the hexadecimal number of the character which the encoding can’t recognize. Often, googling for these hexadecimal numbers will let you figure out what it should be, and perhaps the encoding (you probably aren’t the first person to encounter that problem). Other ways in which encoding problems are indicated (not in R) could be with a leading <code>\u</code> for a unicode character, or the use of the symbol � or the empty box (for missing emoji).</p>
-<p>To figure out what the encoding is, I’ll again use <code>guess_encoding</code>:</p>
-<pre class="r"><code>guess_encoding(wdi(&quot;Country&quot;))</code></pre>
-<pre><code>##       encoding confidence
-## 1 windows-1252       0.56
-## 2 windows-1250       0.22</code></pre>
-<p>This file is guessed to be <a href="https://en.wikipedia.org/wiki/Windows-1252">Windows-1252</a> (sometimes called CP-1252 where CP stands for “code point”). But that is different than the previous file, which was encoded as ISO-1859-1.</p>
-<p>WTF? Are the files encoded differently? Now I’m paranoid. I should check all the CSV files to see their encodings.</p>
-<pre class="r"><code>for (filename in dir(wdi_dir, full.names = TRUE)) {
-  cat(filename, &quot;\n&quot;)
-  print(guess_encoding(filename))
-}</code></pre>
-<pre><code>## data/WDI/WDI_Country.csv 
-##       encoding confidence
-## 1 windows-1252       0.56
-## 2 windows-1250       0.22
-## data/WDI/WDI_CS_Notes.csv 
-##       encoding confidence
-## 1 windows-1252       0.50
-## 2 windows-1250       0.22
-## data/WDI/WDI_Data.csv 
-##   encoding confidence
-## 1    ASCII          1
-## data/WDI/WDI_Description.csv 
-##     encoding confidence
-## 1 ISO-8859-1       0.71
-## 2 ISO-8859-2       0.23
-## data/WDI/WDI_Footnotes.csv 
-##     encoding confidence
-## 1 ISO-8859-1       0.46
-## data/WDI/WDI_Series.csv 
-##     encoding confidence
-## 1 ISO-8859-1       0.72
-## 2 ISO-8859-2       0.22
-## data/WDI/WDI_ST_Notes.csv 
-##     encoding confidence
-## 1 ISO-8859-1       0.75</code></pre>
-<p>Bug after reading through the Wikpedia page and some additional Googling, I learn that Windows-1252 is a <em>superset</em> of ISO-1859-1. This means that we lose nothing by specifying Windows-1252, and a few files must use one of the characters that appears in Windows-1252 and not ISO-1859-1. So I can set the encoding to <code>Windows-1252</code> for all the CSV files.</p>
-<p>This may seem terribly complicated, and I don’t envy the engineers who have had to figure out and maintain all this. But, what you just learned will cover 99% of all your encoding issues as long as you are working with English or Western European language texts.</p>
-<p>Try UTF-8. If there are problems with loading it using the default UTF-8, it was probably created by some Windows program that used Windows-1252. Try that. If Windows-1252 doesn’t work, then you have a problem. However, you are working with Chinese, Japanese, Arabic, Cyrillic, … that’s another story).</p>
-<p>As before, I’ll create a new <code>locale</code> object with Windows-1252 encoding.</p>
-<pre class="r"><code>locale_windows1252 &lt;- locale(encoding = &quot;Windows-1252&quot;)</code></pre>
-<p>I’ll need to reload all the files using that new encoding. I could load each file separately,</p>
-<pre class="r"><code>wdi_country &lt;- read_csv(wdi(&quot;Country&quot;), locale = locale_windows1252)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   `Latest industrial data` = col_integer(),
-##   `Latest trade data` = col_integer(),
-##   `Latest water withdrawal data` = col_integer()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;CS_Notes&quot;), locale = locale_windows1252)</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   CountryCode = col_character(),
-##   SeriesCode = col_character(),
-##   DESCRIPTION = col_character()
-## )</code></pre>
-<pre class="r"><code># ... and so on</code></pre>
-<p>But this is seeming redundant, I am continually calling <code>read_csv(wdi(name), locale = locale_windows1252)</code>. As R4DS says, if you copy something three or more times, you should write a function. So here it is,</p>
-<pre class="r"><code>read_wdi_csv &lt;- function(file, ...) {
-  read_csv(file, ..., locale = locale(encoding = &quot;Windows-1252&quot;))
-}</code></pre>
-<p>The <code>...</code> passes arguments to <code>read_csv</code>, which is useful if it turns out that a specific file needs to be treated differently. Now I can do this:</p>
-<pre class="r"><code>wdi_country &lt;- read_wdi_csv(wdi(&quot;Country&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_character(),
-##   `Latest industrial data` = col_integer(),
-##   `Latest trade data` = col_integer(),
-##   `Latest water withdrawal data` = col_integer()
-## )</code></pre>
-<pre><code>## See spec(...) for full column specifications.</code></pre>
-<pre class="r"><code>wdi_cs_notes &lt;- read_wdi_csv(wdi(&quot;CS_Notes&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   CountryCode = col_character(),
-##   SeriesCode = col_character(),
-##   DESCRIPTION = col_character()
-## )</code></pre>
-<pre class="r"><code>wdi_data &lt;- read_wdi_csv(wdi(&quot;Data&quot;))</code></pre>
-<pre><code>## Parsed with column specification:
-## cols(
-##   .default = col_double(),
-##   `Country Name` = col_character(),
-##   `Country Code` = col_character(),
-##   `Indicator Name` = col_character(),
-##   `Indicator Code` = col_character()
-## )
-## See spec(...) for full column specifications.</code></pre>
 <pre class="r"><code>wdi_description &lt;- read_wdi_csv(wdi(&quot;Description&quot;))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -2790,6 +2813,201 @@ wdi_series &lt;- read_csv(wdi(&quot;Series&quot;), locale = locale_latin1)</code
 ##   Year = col_character(),
 ##   DESCRIPTION = col_character()
 ## )</code></pre>
+<pre><code>## 
+|==============                                                                 |  18%   10 MB
+|===============                                                                |  18%   10 MB
+|===============                                                                |  19%   10 MB
+|===============                                                                |  19%   10 MB
+|================                                                               |  20%   10 MB
+|================                                                               |  20%   11 MB
+|================                                                               |  21%   11 MB
+|=================                                                              |  21%   11 MB
+|=================                                                              |  22%   12 MB
+|==================                                                             |  22%   12 MB
+|==================                                                             |  23%   12 MB
+|==================                                                             |  23%   12 MB
+|==================                                                             |  23%   12 MB
+|===================                                                            |  24%   13 MB
+|===================                                                            |  24%   13 MB
+|===================                                                            |  24%   13 MB
+|====================                                                           |  25%   13 MB
+|====================                                                           |  25%   14 MB
+|====================                                                           |  26%   14 MB
+|=====================                                                          |  26%   14 MB
+|=====================                                                          |  27%   14 MB
+|======================                                                         |  27%   14 MB
+|======================                                                         |  28%   15 MB
+|======================                                                         |  28%   15 MB
+|=======================                                                        |  28%   15 MB
+|=======================                                                        |  29%   15 MB
+|=======================                                                        |  29%   16 MB
+|========================                                                       |  30%   16 MB
+|========================                                                       |  30%   16 MB
+|========================                                                       |  31%   16 MB
+|=========================                                                      |  31%   17 MB
+|=========================                                                      |  32%   17 MB
+|=========================                                                      |  32%   17 MB
+|==========================                                                     |  32%   17 MB
+|==========================                                                     |  33%   18 MB
+|==========================                                                     |  33%   18 MB
+|===========================                                                    |  34%   18 MB
+|===========================                                                    |  34%   18 MB
+|===========================                                                    |  34%   18 MB
+|============================                                                   |  35%   19 MB
+|============================                                                   |  35%   19 MB
+|============================                                                   |  36%   19 MB
+|=============================                                                  |  36%   19 MB
+|=============================                                                  |  37%   20 MB
+|==============================                                                 |  37%   20 MB
+|==============================                                                 |  38%   20 MB
+|==============================                                                 |  38%   20 MB
+|===============================                                                |  38%   21 MB
+|===============================                                                |  39%   21 MB
+|===============================                                                |  39%   21 MB
+|================================                                               |  40%   21 MB
+|================================                                               |  40%   22 MB
+|================================                                               |  41%   22 MB
+|=================================                                              |  41%   22 MB
+|=================================                                              |  42%   22 MB
+|==================================                                             |  42%   23 MB
+|==================================                                             |  42%   23 MB
+|==================================                                             |  43%   23 MB
+|===================================                                            |  43%   23 MB
+|===================================                                            |  44%   24 MB
+|===================================                                            |  44%   24 MB
+|====================================                                           |  45%   24 MB
+|====================================                                           |  45%   24 MB
+|====================================                                           |  46%   25 MB
+|=====================================                                          |  46%   25 MB
+|=====================================                                          |  46%   25 MB
+|=====================================                                          |  47%   25 MB
+|======================================                                         |  47%   26 MB
+|======================================                                         |  48%   26 MB
+|======================================                                         |  48%   26 MB
+|=======================================                                        |  49%   26 MB
+|=======================================                                        |  49%   26 MB
+|=======================================                                        |  49%   27 MB
+|========================================                                       |  50%   27 MB
+|========================================                                       |  50%   27 MB
+|========================================                                       |  50%   27 MB
+|=========================================                                      |  51%   27 MB
+|=========================================                                      |  51%   28 MB
+|=========================================                                      |  52%   28 MB
+|=========================================                                      |  52%   28 MB
+|==========================================                                     |  52%   28 MB
+|==========================================                                     |  53%   29 MB
+|==========================================                                     |  53%   29 MB
+|===========================================                                    |  53%   29 MB
+|===========================================                                    |  54%   29 MB
+|===========================================                                    |  54%   29 MB
+|============================================                                   |  55%   30 MB
+|============================================                                   |  55%   30 MB
+|============================================                                   |  56%   30 MB
+|=============================================                                  |  56%   30 MB
+|=============================================                                  |  57%   31 MB
+|==============================================                                 |  57%   31 MB
+|==============================================                                 |  57%   31 MB
+|==============================================                                 |  58%   31 MB
+|===============================================                                |  58%   32 MB
+|===============================================                                |  59%   32 MB
+|===============================================                                |  59%   32 MB
+|================================================                               |  60%   32 MB
+|================================================                               |  60%   32 MB
+|================================================                               |  60%   33 MB
+|=================================================                              |  61%   33 MB
+|=================================================                              |  61%   33 MB
+|=================================================                              |  62%   33 MB
+|=================================================                              |  62%   33 MB
+|==================================================                             |  62%   34 MB
+|==================================================                             |  63%   34 MB
+|==================================================                             |  63%   34 MB
+|===================================================                            |  64%   34 MB
+|===================================================                            |  64%   35 MB
+|===================================================                            |  64%   35 MB
+|====================================================                           |  65%   35 MB
+|====================================================                           |  65%   35 MB
+|====================================================                           |  65%   35 MB
+|=====================================================                          |  66%   36 MB
+|=====================================================                          |  66%   36 MB
+|=====================================================                          |  67%   36 MB
+|======================================================                         |  67%   36 MB
+|======================================================                         |  68%   37 MB
+|======================================================                         |  68%   37 MB
+|=======================================================                        |  69%   37 MB
+|=======================================================                        |  69%   37 MB
+|=======================================================                        |  69%   37 MB
+|========================================================                       |  70%   38 MB
+|========================================================                       |  70%   38 MB
+|=========================================================                      |  71%   38 MB
+|=========================================================                      |  71%   39 MB
+|=========================================================                      |  72%   39 MB
+|==========================================================                     |  72%   39 MB
+|==========================================================                     |  73%   39 MB
+|==========================================================                     |  73%   40 MB
+|===========================================================                    |  74%   40 MB
+|===========================================================                    |  74%   40 MB
+|===========================================================                    |  74%   40 MB
+|============================================================                   |  75%   41 MB
+|============================================================                   |  75%   41 MB
+|============================================================                   |  76%   41 MB
+|=============================================================                  |  76%   41 MB
+|=============================================================                  |  77%   41 MB
+|==============================================================                 |  77%   42 MB
+|==============================================================                 |  77%   42 MB
+|==============================================================                 |  78%   42 MB
+|==============================================================                 |  78%   42 MB
+|===============================================================                |  79%   43 MB
+|===============================================================                |  79%   43 MB
+|===============================================================                |  79%   43 MB
+|================================================================               |  80%   43 MB
+|================================================================               |  80%   44 MB
+|=================================================================              |  81%   44 MB
+|=================================================================              |  81%   44 MB
+|=================================================================              |  82%   44 MB
+|=================================================================              |  82%   44 MB
+|==================================================================             |  82%   45 MB
+|==================================================================             |  83%   45 MB
+|==================================================================             |  83%   45 MB
+|===================================================================            |  83%   45 MB
+|===================================================================            |  84%   45 MB
+|===================================================================            |  84%   46 MB
+|====================================================================           |  85%   46 MB
+|====================================================================           |  85%   46 MB
+|====================================================================           |  86%   46 MB
+|=====================================================================          |  86%   47 MB
+|=====================================================================          |  86%   47 MB
+|=====================================================================          |  87%   47 MB
+|======================================================================         |  87%   47 MB
+|======================================================================         |  88%   47 MB
+|======================================================================         |  88%   48 MB
+|=======================================================================        |  89%   48 MB
+|=======================================================================        |  89%   48 MB
+|=======================================================================        |  89%   48 MB
+|========================================================================       |  90%   49 MB
+|========================================================================       |  90%   49 MB
+|========================================================================       |  90%   49 MB
+|=========================================================================      |  91%   49 MB
+|=========================================================================      |  91%   50 MB
+|=========================================================================      |  92%   50 MB
+|==========================================================================     |  92%   50 MB
+|==========================================================================     |  92%   50 MB
+|==========================================================================     |  93%   50 MB
+|==========================================================================     |  93%   51 MB
+|===========================================================================    |  94%   51 MB
+|===========================================================================    |  94%   51 MB
+|============================================================================   |  95%   51 MB
+|============================================================================   |  95%   52 MB
+|=============================================================================  |  96%   52 MB
+|=============================================================================  |  96%   52 MB
+|=============================================================================  |  97%   52 MB
+|============================================================================== |  97%   53 MB
+|============================================================================== |  97%   53 MB
+|============================================================================== |  98%   53 MB
+|============================================================================== |  98%   53 MB
+|===============================================================================|  99%   53 MB
+|===============================================================================|  99%   54 MB
+|===============================================================================|  99%   54 MB
+|================================================================================| 100%   54 MB</code></pre>
 <pre class="r"><code>wdi_series &lt;- read_wdi_csv(wdi(&quot;Series&quot;))</code></pre>
 <pre><code>## Parsed with column specification:
 ## cols(
@@ -2848,6 +3066,258 @@ for (i in seq_along(filenames)) {
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
 <pre><code>## 
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%           
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   0%    1 MB
+|                                                                               |   1%    1 MB
+|                                                                               |   1%    1 MB
+|                                                                               |   1%    1 MB
+|                                                                               |   1%    2 MB
+|                                                                               |   1%    2 MB
+|                                                                               |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    2 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   1%    3 MB
+|=                                                                              |   2%    3 MB
+|=                                                                              |   2%    3 MB
+|=                                                                              |   2%    3 MB
+|=                                                                              |   2%    3 MB
+|=                                                                              |   2%    3 MB
+|=                                                                              |   2%    4 MB
+|=                                                                              |   2%    4 MB
+|=                                                                              |   2%    4 MB
+|=                                                                              |   2%    4 MB
+|=                                                                              |   2%    4 MB
+|=                                                                              |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    4 MB
+|==                                                                             |   2%    5 MB
+|==                                                                             |   2%    5 MB
+|==                                                                             |   2%    5 MB
+|==                                                                             |   2%    5 MB
+|==                                                                             |   2%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    5 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|==                                                                             |   3%    6 MB
+|===                                                                            |   3%    6 MB
+|===                                                                            |   3%    6 MB
+|===                                                                            |   3%    6 MB
+|===                                                                            |   3%    6 MB
+|===                                                                            |   3%    7 MB
+|===                                                                            |   3%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    7 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|===                                                                            |   4%    8 MB
+|====                                                                           |   5%    8 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%    9 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   5%   10 MB
+|====                                                                           |   6%   10 MB
+|====                                                                           |   6%   10 MB
+|====                                                                           |   6%   10 MB
+|====                                                                           |   6%   11 MB
+|====                                                                           |   6%   11 MB
+|====                                                                           |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   11 MB
+|=====                                                                          |   6%   12 MB
+|=====                                                                          |   6%   12 MB
+|=====                                                                          |   6%   12 MB
+|=====                                                                          |   6%   12 MB
+|=====                                                                          |   6%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   12 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|=====                                                                          |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   13 MB
+|======                                                                         |   7%   14 MB
+|======                                                                         |   7%   14 MB
+|======                                                                         |   7%   14 MB
+|======                                                                         |   7%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   14 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|======                                                                         |   8%   15 MB
+|=======                                                                        |   8%   15 MB
+|=======                                                                        |   8%   15 MB
+|=======                                                                        |   8%   15 MB
+|=======                                                                        |   8%   15 MB
+|=======                                                                        |   8%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   16 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|========                                                                       |  10%   17 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
 |========                                                                       |  11%   19 MB
 |========                                                                       |  11%   19 MB
 |========                                                                       |  11%   20 MB
