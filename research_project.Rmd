@@ -15,7 +15,7 @@ If you were in POLS 500, will this be a continuation of your POLS 500 final proj
 The primary purpose of this proposal is to get you thinking about your question immediately and put an idea on paper.
 We will be able to give feedback, and you can adjust your proposal in the next draft.
 
-Turn in as a `.docx`, `.odf`, or `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3566710).
+Turn in as a `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3566710).
 
 
 # Research Proposal
@@ -56,6 +56,8 @@ Turn in a `.pdf` file via [Canvas]().
 
 # Data Analysis 2
 
+*Draft*
+
 - State your research question.
 - Describe and document your research sources. Cite all data used using a proper data citation.
 
@@ -72,6 +74,8 @@ Some questions that should be answered:
 - For all outcome variables and the covariates of interest visualize the relationship between the outcome and covariates of interest using the appropriate data visualization methods.
 - Apply k-means clustering to your data in a meaningful way. If you have multiple measures of something similar this may be a way to reduce the dimensions.
 
+For this assignment both a document and reproducible code will be turned in.
+The format will be provided later this week.
 
 # Data Analysis 3
 
@@ -107,6 +111,12 @@ If there are issues of confidentiality or privacy that prevent the author from d
 
 
 ## Formatting Guidelines
+
+Templates which follow the formatting guidelines are available for: 
+
+- [Word](https://github.com/jrnold/psmanuscripts/raw/master/templates/manuscript.docx)
+- [LaTeX](https://github.com/jrnold/psmanuscripts/raw/master/templates/manuscript.tex)
+- [R Markdown](https://github.com/jrnold/psmanuscripts)
 
 ### Main Text
 

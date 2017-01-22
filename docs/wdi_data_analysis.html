@@ -369,7 +369,9 @@ wdi_dir &lt;- file.path(dst_dir, &quot;WDI&quot;)</code></pre>
 <p>The original page is <a href="here">http://data.worldbank.org/data-catalog/world-development-indicators</a>, but it doesn not include any data.</p>
 <p>Let’s see what files were included in the zip file</p>
 <pre class="r"><code>dir(dst_dir)</code></pre>
-<pre><code>## [1] &quot;WDI&quot;         &quot;WDI_csv.zip&quot;</code></pre>
+<pre><code>## [1] &quot;__MACOSX&quot;                        &quot;Country_Year_V-Dem_CSV_v6.2&quot;    
+## [3] &quot;Country_Year_V-Dem_CSV_v6.2.zip&quot; &quot;WDI&quot;                            
+## [5] &quot;WDI_csv.zip&quot;</code></pre>
 <p>The <code>dir</code> function lists the files in a directory. Unfortunately they are all CSV files, and there is no included documentation. However, they are clearly and consistently named.</p>
 <p>Since I’m lazy, I don’t want to keep referring to the files as</p>
 <pre class="r"><code>file.path(wdi_dir, &quot;WDI_Country.csv&quot;</code></pre>
@@ -448,6 +450,91 @@ glimpse(wdi_country)</code></pre>
 <p><code>WDI_Data.csv</code> has the bulk of the WDI data. The table key is the combination of a country ID (<code>Country Code</code>) and the <code>Indicator Code</code>, with the columns being years of data, and the cells being the values of those indicators.</p>
 <pre class="r"><code>wdi_data &lt;- read_csv(wdi(&quot;Data&quot;))</code></pre>
 <pre><code>## 
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|=======                                                                        |   9%   17 MB
+|========                                                                       |  10%   17 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   18 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  10%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   19 MB
+|========                                                                       |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   20 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  11%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   21 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|=========                                                                      |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   22 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  12%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   23 MB
+|==========                                                                     |  13%   24 MB
 |==========                                                                     |  13%   24 MB
 |==========                                                                     |  13%   24 MB
 |==========                                                                     |  13%   24 MB
