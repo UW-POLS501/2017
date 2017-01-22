@@ -7,39 +7,32 @@ output: html_document
 
 
 Here are links to some datasets potentially of interest to political scientists. However, the data collection process in academia is disaggregated, with many data sets collected by researchers for specific purposes and distributed by the researcher with their paper. 
+
 See also the Washington Library [Data Research Guide](http://guides.lib.uw.edu/c.php?g=341607&p=2299327)
 
-Open Data on github https://github.com/showcases/open-data
-
-A list of awesome public datasets  https://github.com/caesar0301/awesome-public-datasets
-
-University library reasearch guides
-
-- http://guides.lib.uw.edu/research
-- Proprietary databases: http://guides.lib.uw.edu/az.php
-
-
-Lists of lists
+# Lists of lists
 
 - [Charles Stewart's Congressional Data Page](http://web.mit.edu/17.251/www/data_page.html)
 - http://ucsd.libguides.com/c.php?g=90743&p=586766
 - [Norwegian Center Research Data MacroData Guide](http://www.nsd.uib.no/macrodataguide/index.html)
 - http://libguides.mit.edu/polisci/data
 - http://guides.lib.berkeley.edu/Intro-to-Political-Science-Research/Stats
+- [A list of https://github.com/caesar0301/awesome-public-datasets
+- [A list of awesome lists](https://github.com/sindresorhus/awesome)
+- [Open data on github](https://github.com/showcases/open-data)
 
-A list of awesome lists https://github.com/sindresorhus/awesome
+# Some R packages 
 
-Some R packages 
+- [ROpenGov](https://ropengov.github.io/) has R packages to access various government related data.
+- For packages to access data on the web from within R see the [Open Data Task View](https://github.com/ropensci/opendataCRAN)
+- [wbstats](https://cran.rstudio.com/web/packages/wbstats/index.html) World Bank statistics
+- [psData](https://github.com/rOpenGov/psData): Get some common political science data sets
+- [countrycode](https://github.com/vincentarelbundock/countrycode): Correspondence between common country codes: e.g. COW, World Bank, ISO.
 
-- https://github.com/rOpenGov/psData
-- https://github.com/vincentarelbundock/countrycode
+# Open Data and Open Government Data
 
-# Open Government Data
-
-[data.world](https://data.world/)
-
-Socrata 
-
+- [data.world](https://data.world/)
+- Socrata 
 - [Data.gov](https://www.data.gov/open-gov/) - includes links to open government data in cities, counties, states, and other countries.
 - [CKAN](http://ckan.org/) list of [Open Data Portals](http://dataportals.org/)
 - [NYC Open Data](https://nycopendata.socrata.com/)
@@ -55,20 +48,18 @@ Socrata
 - [Open Science Framework](http://osf.io/)
 - [Zenodo](https://zenodo.org/)
 
-- [Quandl](https://www.quandl.com/) A collection of financial and economic data. The R package [Quandl](https://www.quandl.com/tools/r) allows for easy access to Quandl data within R.
-- [General Social Survey(GSS)](http://gss.norc.org/)
 
 # Economics
 
+- [Quandl](https://www.quandl.com/) A collection of financial and economic data. The R package [Quandl](https://www.quandl.com/tools/r) allows for easy access to Quandl data within R.
 - [World Development Indicators (WDI)](http://data.worldbank.org/data-catalog/world-development-indicators). The R package [WDI](https://cran.r-project.org/web/packages/WDI/index.html) allows for downloading data.
 - [Penn World Table](http://cid.econ.ucdavis.edu/pwt.html)
-
 - [UNCTAD Trade and FDI data](http://unctadstat.unctad.org/EN/)
 - [WTO Trade and Tariff data](https://www.wto.org/english/res_e/statis_e/statis_e.htm)
+- [FRED](https://research.stlouisfed.org/fred2/) Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.
 
 # American Politics
 
-- [FRED](https://research.stlouisfed.org/fred2/) Collection of U.S. economic data by the Federal Reserve Bank of St. Louis.
 - [data.gov](https://cran.r-project.org/web/views/WebTechnologies.html) U.S. government open data
 - [U.S. Census Bureau](http://www.census.gov/) 
 - [NOMINATE Ideal Points of U.S. Congress](http://voteview.com/)
@@ -91,6 +82,7 @@ Socrata
 - [Database on Ideology, Money in Politics, and Elections (DIME)](http://data.stanford.edu/dime/)
 - [The Supreme Court Database](http://scdb.wustl.edu/)
 - [Martin-Quinn Scores](http://mqscores.berkeley.edu/). Ideal points for US Supreme Court justices.
+
 
 # Comparative Politics
 
@@ -121,12 +113,6 @@ Socrata
 - [Center for Systemic Peace](http://www.systemicpeace.org/inscrdata.html) Polity IV , Foricbly Displaced Popoulations, Major episodes of Political Violence, High Casualty Terrorist Bombings, Memberships in Coventional Integovernmental Organizations, PITF State Failure, Coup d'Etat, State Fragility Index, Conflict in India.
 - [Worldwide Governance Indicators](http://info.worldbank.org/governance/wgi/index.aspx#reports)
 
-
-# Open Data / Open Government Datasets
-
-legislatures, campaign finance, contributions, dockets.
-- [ROpenGov](https://ropengov.github.io/) has R packages to access various government related data. For packages to access data on the web from within R see the [Web Technologies and Services](https://cran.r-project.org/web/views/WebTechnologies.html) CRAN Task View.
-- [UCI Machine Learning Repository](http://archive.ics.uci.edu/ml/) : repository of machine learning datasets
 
 # Data Journalism/Transparency Groups
 
