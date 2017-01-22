@@ -9,6 +9,9 @@ This is practical example of using R to clean and tidy the World Bank [World Dev
 
 [^1]: http://data.worldbank.org/data-catalog/world-development-indicators
 
+```{r, include=FALSE}
+options(dplyr.show_progress = FALSE)
+```
 
 ```{r setup,message=FALSE}
 library("tidyverse")
@@ -46,6 +49,7 @@ dst_file <- file.path(dst_dir, "WDI_csv.zip")
 wdi_dir <- file.path(dst_dir, "WDI")
 ```
 Now download the zip file, and unzip it into `data/WDI`.
+
 
 **WARNING: this will take a few minutes since it is a large file**
 But because it takes so long, only download it once.
@@ -106,7 +110,7 @@ head(wdi_country)
 `WDI_Data.csv` has the bulk of the WDI data. 
 The table key is the combination of a country ID (`Country Code`) and the `Indicator Code`, with the columns being years of data, and the cells being the values of those indicators.
 ```{r message=FALSE}
-wdi_data <- read_csv(wdi("Data"), progress = FALSE)
+wdi_data <- read_csv(wdi("Data"))
 glimpse(wdi_data)
 wdi_data %>% select(1:5) %>% slice(1:2)
 ```
@@ -150,13 +154,13 @@ wdi_footnotes$DESCRIPTION[1:3]
 wdi_series <- read_csv(wdi("Series"))
 glimpse(wdi_series)
 ```
-Damn, that sucks. The error message `invalid multibyte string` effectively means there was a character in this file that was not recognized by the character encoding setting we are using.
+Damn, that sucks. The error message `invalid multibyte string` means that there was a character in this file that was not recognized by the character encoding setting we are using.
 The part `element 11` means it was character 11. 
 It could also be character 10, since off the top of head I'm not sure whether this is counting from 0 or 1 (see [zero-based numbering](https://en.wikipedia.org/wiki/Zero-based_numbering)).
 
 Stop. Right now. Watch this video.
 
-![](https://www.youtube.com/watch?v=MijmeoH9LT4)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MijmeoH9LT4" frameborder="0" allowfullscreen></iframe>
 
 Okay, now you're back and you have some idea of what a character encoding is: it is a mapping from a number to the character (glyph) to display. 
 There are lots of them.
@@ -331,7 +335,7 @@ wdi_data_cst <-
   WDI$data %>%
   select(-`Indicator Name`, `Country Name`) %>%
   gather(year, value, matches("^[0-9][0-9][0-9][0-9]$"),
-         na.rm = TRUE)
+         na.rm = TRUE, convert = TRUE)
 
 ```
 We'll see later that this format can be useful for (1) simultaneously summarizing many varaibles, or (2) plotting multiple variables in ggplot.
@@ -404,7 +408,7 @@ or
 left_join(wdi_data_tidy, WDI$country, by = "Country Code")
 ```
 In the former, I'd probably include a comment as to what I was merging on:
-```{r}
+```{r eval=FALSE}
 # merge the tidy data to country level data by country codes
 left_join(wdi_data_tidy, WDI$country)
 ```
@@ -681,13 +685,61 @@ missingness <-
             by = c("Indicator Code" = "Series Code")) %>%
   group_by(`Country Code`, main_topic, year) %>%
   mutate(missing = is.na(value)) %>%
-  summarise(prop_missng = mean(missing))
+  summarise(prop_missing = mean(missing))
+summary(missingness$prop_missing)  
+```
+That looks better. Now there are missing values for each country.
+
+However, WDI indicators have varying coverage over time, both due to the capabilities and decisions of the coverage and also structural missingnness (the UN was not collecting that indicator at that time). We should drop any indicator that is missing for *all* countries in a year. If the WDI isn't tracking it that year, we shouldn't hold it against the country.
+
+We can edit the previous code by adding a grouped filer to remove
+any indicator years where there are no non-missing values.
+```{r}
+missingness <-
+  WDI$data %>%
+  select(-`Indicator Name`, -`Country Name`) %>%
+  gather(year, value, matches("^\\d+$")) %>%
+  left_join(select(series, `Series Code`, Topic, main_topic),
+            by = c("Indicator Code" = "Series Code")) %>%
+  ### New code
+  ### remove indicators which are missing for all countries in a year
+  group_by(`Indicator Code`, year) %>%
+  filter(!all(is.na(value))) %>%
+  ###
+  group_by(`Country Code`, main_topic, year) %>%
+  mutate(missing = is.na(value)) %>%
+  summarise(prop_missing = mean(missing),
+            n_indicators = n())
 summary(missingness$prop_missing)  
 ```
 
-That looks better. Now there are missing values for each country.
 
-There is still one big problem to be. The WDI indicators have varying coverage over time. We should drop any indicator that is missing for *all* countries in a year. If the WDI isn't tracking it that year, we shouldn't hold it against the country.
+```{r}
+missingness %>%
+  group_by(main_topic, year) %>%
+  summarise(prop_missing = mean(prop_missing)) %>%
+  ggplot(aes(x = as.integer(year), y = prop_missing, colour = main_topic)) +
+    geom_line()
+
+```
+
+The top 10 countries with most missing economic values:
+```{r}
+missingness %>%
+  filter(main_topic == "Economic Policy & Debt",
+         year == 2012) %>%
+  top_n(10, desc(prop_missing)) %>%
+  arrange(prop_missing)
+```
+and least missing
+```{r}
+missingness %>%
+  filter(main_topic == "Economic Policy & Debt",
+         year == 2012) %>%
+  top_n(10, desc(prop_missing)) %>%
+  arrange(prop_missing)
+```
+
 
 
 [^hollyer]: See the [HRV Transparency Project](http://0001c70.wcomhost.com/wp2/papers/) for more recent  information on it; a 2014 paper of theirs in *Political Analysis* provides a more rigorous measure. 
@@ -697,11 +749,46 @@ There is still one big problem to be. The WDI indicators have varying coverage o
 
 The Varieties of Democracy project is a recent project to develop indicators of democracy.  We would like to merge it with the WDI indicators. Download [Version 6.2](https://www.v-dem.net/en/data/data-version-6-2/) County-Year dataset.
 
-1. What are the terms of using the data? (Why doesn't this document include a script to automatically download it?) How do you cite the data?
+```{r}
 
-2. What are the primary VDEM indices? Subset the data to include only those indices and country and year identifiers.
 
-3. Merge the VDEM and WDI data. What does VDEM use as its country-level indicator? What does the WDI use? Note: The **countrycode** package may be useful here.
 
-4. What is the relationship between democracy and transparency?
-   What is the relationship between democracy and transparency comparing only countries within a given income level?
+```
+
+If this were a script, I would have put these constants at the top of the file, but in this document, they fit here better.
+```{r}
+vdem_url <- "http://v-dem.pol.gu.se/v6.2/Country_Year_V-Dem_CSV_v6.2.zip" 
+# basename gets only the filename part
+vdem_zip <- file.path(dst_dir, basename(vdem_url))
+```
+
+```{r message=FALSE,results='hide'}
+if (!file.exists(vdem_zip)) {
+  download.file(vdem_url, vdem_zip)
+  vdem_files <- unzip(vdem_zip, exdir = dst_dir)
+}
+vdem_dir <- file.path(dst_dir, "Country_Year_V-Dem_CSV_v6.2")
+vdem_file <- file.path(vdem_dir, "V-Dem-DS-CY-v6.2.csv")
+```
+
+What's in the zip file?
+```{r}
+dir(vdem_dir)
+```
+The file names are all self-explanatory so there's not much else to write here.
+The only CSV file is the one with the data:
+```{r results='hide'}
+vdem <- read_csv(vdem_file)
+```
+with `read_csv` there are a lot of parsing errors.
+The trailing characters is likely because the 
+```{r}
+problems(vdem)
+```
+
+What are the primary VDEM indices? Subset the data to include only those indices and country and year identifiers.
+
+Merge the VDEM and WDI data. What does VDEM use as its country-level indicator? What does the WDI use? Note: The **countrycode** package may be useful here.
+
+
+
