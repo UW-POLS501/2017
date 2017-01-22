@@ -113,3 +113,18 @@ Not used:
 - "Data Visualization and Statistical Graphics in Big Data Analysis" http://www.annualreviews.org/doi/abs/10.1146/annurev-statistics-041715-033420
 - Gelman "Exploratory Data Analysis for Complex Models" 2005
 - Wickham "Graphical Inference for infovis" 2010
+
+Sources used in GOV 2000 (harvard)
+
+1. Andy Hall APSR : measure extremism
+2. APSR Censorship of Chinese 
+3. Josh Kertzer JoP paper
+4. Gerber, Green, and Larimer (APSR, 2008)
+5. Berkeley Gender Bias Case
+6. Nunn and Wantchekon
+7. Fish 2002 Islam and Authoritarianism
+8. Buchanan 2000
+9. Michael Ross Is Democracy Good for the Poor. 
+10. Indiscriminate Insurgent Attacks
+11. Card Krueger 2009
+
