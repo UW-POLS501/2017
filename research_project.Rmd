@@ -27,7 +27,7 @@ Describe what data you will be using to address that question.
 1. Address any comments from the first proposal.
 2. What is your research question or puzzle? 
 3. Is the research question descriptive, causal, or predictive?
-4. What is the outcome variable of interest? Wnat are the explanatory variables?
+4. What is the outcome variable of interest? What are the explanatory variables?
 5. What data will you be using? What is the location of the data (include links to the data). 
    Will your data be coming from one of many sources?
    What format(s) are the data in? 
@@ -49,7 +49,7 @@ Turn in a `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignm
 This is to check-in on your progress.
 
 - What are your data sources? Cite the data appropriately using name or title of the dataset, authors, version, creation date, and persistent data identifier (e.g. DOI) if available or URL if one is not. See [Political Analysis guidelienes](https://academic.oup.com/pan/pages/Instructions_To_Authors) for data citation.
-- What is the current status of your data aquisition and wrangling? What challenges have you encountered, and what challanges are you still having?
+- What is the current status of your data acquisition and wrangling? What challenges have you encountered, and what challenges are you still having?
 
 Turn in a `.pdf` file via [Canvas]().
 
@@ -66,10 +66,10 @@ Some questions that should be answered:
 - What are the number of observations? What is the unit of analysis, what is the unit of observation?
 - How do the variables in your dataset relate to your 
 - What was the sampling process for your data sources? 
-- What is the number of obervations for your data?
+- What is the number of observations for your data?
 - Are there any missing values in the variables of interest? 
 - Are there any outliers in the variables of interest?
-- Provide a summary statistic table in the format common to social science journals: non-missing observations, mean, sd, min max. Find a recent journal article for how these are formatted.
+- Provide a summary statistic table in the format common to social science journals: non-missing observations, mean, standard deviation, min max. Find a recent journal article for how these are formatted.
 - For *at least* the outcome variable(s) and the covariates of interest, visualize their distributions using the appropriate data visualization methods.
 - For all outcome variables and the covariates of interest visualize the relationship between the outcome and covariates of interest using the appropriate data visualization methods.
 - Apply k-means clustering to your data in a meaningful way. If you have multiple measures of something similar this may be a way to reduce the dimensions.
@@ -79,15 +79,22 @@ The format will be provided later this week.
 
 # Data Analysis 3
 
-TBA
+*DRAFT*
+
+Addressing threats to validity through (1) careful subsetting, or (2) linear regression, or a design based strategy.
+
 
 # Data Analysis 4
 
-TBA
+*DRAFT*
+
+Addressing uncertainty: confidence intervals, hypothesis testing, and cross-validation.
+
 
 # Draft Paper
 
 The draft should be in the same format as the final paper.
+
 
 # Final Paper
 
@@ -100,14 +107,18 @@ All analysis presented must be reproducible and the manuscript must be formatted
 ## Reproducibility policy
 
 All data and code necessary to reproduce the analyses presented in the paper must be provided.
-The data and analyes should be well documented and understandable to a reader.
+The data and analyses should be well documented and understandable to a reader.
 In particular, it should be clear how the code relates to the analyses presented in the paper.
 The analysis code must run and reproduce the analyses as presented in the paper.
 Authors are encouraged to use literate programming tools such as R Markdown and knitr.
 
-If there are issues of confidentiality or privacy that prevent the author from directly sharing their data, they should consult with the instructor on the best means to address it.
+It must be well-organized, and should adhere to the principles, if not the recommendations of [Good Enough Practices for Scientific Computing](https://arxiv.org/pdf/1609.00037v2.pdf).
+Students are strongly encouraged to start with the provided [project template](https://github.com/UW-POLS501/project_template).
+At a minimum, it *must* contain a `README.md` file which describes the organization of the projects and instructions on how to reproduce the analysis.
 
-**More Specific guidelines on organizing your code and submission will be provided**
+The project should be in a Dropbox <!-- or Google Drive --> folder shared with the instructor.
+
+If there are issues of confidentiality or privacy that prevent the author from directly sharing their data with the instructor, they should consult with the instructor as soon as possible.
 
 
 ## Formatting Guidelines
@@ -140,7 +151,7 @@ It should not contain a table of contents like paragraph at the end of the intro
 Tables and figures should be included where they fall in the text, and not in an appendix. Tables and figures should be formatted for publication.
 In particular do not include the direct output of software such as R.
 They should be clear, readable, and easily understandable.
-In formating tables and figures should generally follow the guidelines for "Tables and Figures" in [Political Analysis](https://academic.oup.com/pan/pages/Instructions_To_Authors).
+In formatting tables and figures should generally follow the guidelines for "Tables and Figures" in [Political Analysis](https://academic.oup.com/pan/pages/Instructions_To_Authors).
 
 You are encouraged to use graphics to illustrate your main argument and research findings.
 If color is used, then it should be used appropriately, following the  best practices in data visualization.
@@ -148,14 +159,14 @@ If color is used, then it should be used appropriately, following the  best prac
 Numbers used in the manuscript text, figures, and tables should be reported with no more precision than they are measured with or is substantively meaningful.
 A good rule of thumb is to use no more than 2 digits unless there is good reason to do so.
 Do not report more significant digits than the standard errors imply.
-Variables should be scaled to make the reporting of results as straighforward as possible.
+Variables should be scaled to make the reporting of results as straightforward as possible.
 If variables are on vastly different scales, then they should be rescaled to produce estimates on similar scales.
-Uncertain numbers should be accompainied by an indication of their uncertainty, generally a standard error or confidence interval.
+Uncertain numbers should be accompanied by an indication of their uncertainty, generally a standard error or confidence interval.
 
 The uncertainty of estimates is best conveyed by standard errors or confidence intervals.
 Generally, tables should not routinely report t-statistics or p-values for tests of the null hypothesis that each coefficient is zero.
 Do not use asterisks, "stars", or other symbols to represent varying levels of statistical significance.
-Regression tables should report the estimate and standard errors of the coefficients, without stars indiciating significance levels.
+Regression tables should report the estimate and standard errors of the coefficients, without stars indicating significance levels.
 In an author states that a test is "statistically significant", it must be at the .05 level or lower.
 
 ### Supporting information
@@ -168,7 +179,7 @@ In particular, the main text should include the main specifications with robustn
 
 Explanatory footnotes may be included but should not be used for simple citations.
 Simple citations should be made in-line in author-year format.
-Do not use endnotes. 
+Do not use end notes. 
 Do not use acronyms or computational abbreviations when discussing variables in the text.
 All variables that appear in tables or figures should be described in appropriate detail in the text.
 
@@ -184,7 +195,7 @@ These both store references and format citations and references according to spe
 All data used in the paper must be cited.
 Citations must include enough information for readers to find the original sources, and for those original sources to be consistently identified in the future.
 Data citations should appear in the the manuscript's reference list, contain the name or title of the dataset, the author(s), version, date of creation, and a persistent data identifier, such as a DOI, if one is available. 
-If a persistent identifier is not available, include a URI if one is avaiable.
+If a persistent identifier is not available, include a URI if one is available.
 
 
 
