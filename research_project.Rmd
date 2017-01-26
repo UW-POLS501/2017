@@ -188,7 +188,7 @@ All variables that appear in tables or figures should be described in appropriat
 
 References should be listed in a separate section titled "References."
 Citations should be in the author-year format, and references should follow the formats common to political science journals. This is generally the *Chicago Manual of Style* author-year format.
-It is best to start getting used to using a [reference manager](https://en.wikipedia.org/wiki/Reference_management_software) such as [Zotero](https://www.zotero.org/), [Mendeley](https://www.mendeley.com/), [Papers](http://papersapp.com/), [Colwiz](https://www.colwiz.com/), [Endnote](http://endnote.com/), or BibTeX (with [JabRef(http://www.jabref.org/)]).
+It is best to start getting used to using a [reference manager](https://en.wikipedia.org/wiki/Reference_management_software) such as [Zotero](https://www.zotero.org/), [Mendeley](https://www.mendeley.com/), [Papers](http://papersapp.com/), [Colwiz](https://www.colwiz.com/), [Endnote](http://endnote.com/), or BibTeX (with [JabRef](http://www.jabref.org/)]).
 These both store references and format citations and references according to specified styles.
 
 ### Data citation 
