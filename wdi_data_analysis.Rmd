@@ -77,10 +77,11 @@ However, they are clearly and consistently named.
 
 Since I'm lazy, I don't want to keep referring to the files as
 ```{r eval=FALSE}
-file.path(wdi_dir, "WDI_Country.csv"
+file.path(wdi_dir, "WDI_Country.csv")
 ```
 So I'm going to write a quick function so that I get the path the file by only giving its name.
 I'm abstracting away how and where these files are stored.
+
 ```{r}
 wdi <- function(name) {
   file.path(wdi_dir, str_c("WDI_", name, ".csv"))
@@ -102,8 +103,6 @@ Since there is no documentation, I open up the files and figure it out.
 `WDI_Country.csv` has country-level variables. The table key is `Country Code`, and it includes names, other country codes, and various information specific to the country.
 ```{r message=FALSE}
 wdi_country <- read_csv(wdi("Country"))
-glimpse(wdi_country)
-head(wdi_country)
 ```
 
 

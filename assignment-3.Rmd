@@ -1,0 +1,15 @@
+---
+title: "POLS 501: Assignment 3"
+date: January 26, 2017
+---
+
+Submit two files: (1) your R script, and (2) a concise write-up where you report your results. The write-up should be submitted as a PDF file. You may use any program you wish (Word, LaTeX, etc.) to create the write-up, but only submit a PDF.
+
+
+# Political Efficacy in China and Mexico
+
+*QSS* Exercise 3.9.2
+
+# Voting in the United Nations General Assembly
+
+*QSS* Exercise 3.9.3

@@ -37,14 +37,14 @@ Describe what data you will be using to address that question.
 
 Try to answer these questions as best as possible. 
 If you don't know, state it; we'll discuss it.
-If you are having problems describe them; that's why 6 is there. 
+If you are having problems describe them; that's why item 6 is there. 
 Research projects are an iterative and stochastic process; the purpose of these
 assignments is to focus you on certain parts, find the problems and overcome them.
 
 
 Turn in a `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3578633)
 
-# Data Analysis 1
+# Data Analysis 1: Data Availability
 
 This is to check-in on your progress.
 
@@ -54,9 +54,7 @@ This is to check-in on your progress.
 Turn in a `.pdf` file via [Canvas]().
 
 
-# Data Analysis 2
-
-*Draft*
+# Data Analysis 2: EDA
 
 - State your research question.
 - Describe and document your research sources. Cite all data used using a proper data citation.
@@ -64,8 +62,8 @@ Turn in a `.pdf` file via [Canvas]().
 Some questions that should be answered:
 
 - What are the number of observations? What is the unit of analysis, what is the unit of observation?
-- How do the variables in your dataset relate to your 
-- What was the sampling process for your data sources? 
+- How do the variables in your dataset relate to the variables in your theory? In other words, how are you operationalizing your concepts? Justify that operationalization, and acknowledge any shortcomings of it.
+- What was the sampling process for your sample of observations?
 - What is the number of observations for your data?
 - Are there any missing values in the variables of interest? 
 - Are there any outliers in the variables of interest?
@@ -75,16 +73,19 @@ Some questions that should be answered:
 - Apply k-means clustering to your data in a meaningful way. If you have multiple measures of something similar this may be a way to reduce the dimensions.
 
 For this assignment both a document and reproducible code will be turned in.
-The format will be provided later this week.
 
-# Data Analysis 3
+Submit by either sharing a Dropbox or Google Drive folder, or submitting a `.zip` file to [Canvas](https://canvas.uw.edu/courses/1098109/assignments/3590026).
+In your submission you must include the document and any code and data needed to generate the results in that  document.
+
+
+# Data Analysis 3: Regression and Prediction
 
 *DRAFT*
 
 Addressing threats to validity through (1) careful subsetting, or (2) linear regression, or a design based strategy.
 
 
-# Data Analysis 4
+# Data Analysis 4: Hypothesis Testing
 
 *DRAFT*
 
