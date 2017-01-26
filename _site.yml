@@ -16,6 +16,8 @@ navbar:
         href: "assignment-1.html"
       - text: "Assignment 2"
         href: "assignment-2.html"
+      - text: "Assignment 3"
+        href: "assignment-3.html"
     - text: "Resources"
       menu:
       - text: "Help with R"
