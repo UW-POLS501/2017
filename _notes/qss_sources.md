@@ -1,6 +1,5 @@
 # Chapter 1 Introduction
 
-
 ## Exercises
 
 1.5.1 Bias in Self-Reported Turnout: ANES
