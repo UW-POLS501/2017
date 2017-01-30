@@ -1,0 +1,169 @@
+# Readings, Assignments, Lectures
+
+Abbreviations used in the schedule:
+
+- *r4ds*: Wickham and Groelmund, [R for Data Science](http://r4ds.had.co.nz/)
+- *QSS*: Imai, *A First Course in Quantitative Social Science*
+- *OpenIntro*: [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
+- *RealStats*: Bailey, *Real Stats*
+
+- week: 1
+  - date: 2017-01-03
+    type: class
+    readings:
+      - *r4ds* Ch 1: Introduction
+      - *r4ds* Ch 2: Explore -- Introduction
+      - *QSS* Ch 1
+
+  - date: 2017-01-07
+    type: lab
+    readings:
+    - [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+    - *r4ds* Ch 3: Data visualization
+    - *r4ds* Ch 4: Workflow basics
+    - Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
+    - *r4ds* Ch 6: Workflow scripts
+    additional:
+    - [Data Camp ggplot 1](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
+    - [Data Camp ggplot 2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-2)
+    - [Data Camp ggplot 3](https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3)
+
+- week: 2
+  - date: 2017-01-10
+    readings:
+    - *r4ds* Ch 5: Data transformation
+    - *r4ds* Ch 9: Wrangle: Introduction
+    - *r4ds* Ch 10: Tibbles
+    - *r4ds* Ch 11: Data import
+    optional:
+    - [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
+    - [Window functions and grouped mutate/filter](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html)
+    - [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/cleaning-data-in-r)
+    - [Data Camp: Importing Data in R I](https://www.datacamp.com/courses/importing-data-in-r-part-1) This covers importing flat files but uses base R, instead of the **readr** package
+    - [Data Camp: Importing Data in R](https://www.datacamp.com/courses/importing-data-in-r-part-2) This covers importing data.
+    - [tibble 1.0.0](https://blog.rstudio.org/2016/03/24/tibble-1-0-0/)
+    - [readr 1.0.0](https://blog.rstudio.org/2016/08/05/readr-1-0-0/)
+    - Swirl *Getting and Cleaning Data* (Manipulating data with dplyr; Grouping and chaining with dplyr)
+
+  - date: 2017-01-13
+    type: lab
+    readings:
+    - *r4ds* Ch 8: Workflow projects
+    - *r4ds* Ch 7: EDA
+
+- week: 3
+  - date: 2017-01-17
+    readings:
+    - *QSS* Ch 2: Causality
+    - *r4ds* Ch 12: Tidy Data
+    - Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
+    aditional:
+    - [Cleaning data in R](https://www.datacamp.com/courses/cleaning-data-in-r)
+    - Swirl *Getting and Cleaning Data* (Tidying data with tidyr)
+
+  - date: 2017-01-20
+    readings:
+    - [WDI Data Analysis Example](wdi_data_analysis.html)
+    - *r4ds* [Ch 13: Relational data](http://r4ds.had.co.nz/relational-data.html). *This is the important chapter* Know and understand this well. Merging datasets
+    - *r4ds* [Ch 14: Strings](http://r4ds.had.co.nz/strings.html). You don't need to know all the details of regular expressions. But it is important to know they exist; if you need to search by a pattern---regular expressions are the way you do it. This is even useful when searching and replacing text in RStudio or other text editors.
+    - *r4ds* [Ch 15: Factors](http://r4ds.had.co.nz/factors.html) This is not long and is useful.
+    - *r4ds* [Ch 16: Dates and times](http://r4ds.had.co.nz/dates-and-times.htm)
+    - *r4ds* [Ch 27: R Markdown workflow](http://r4ds.had.co.nz/r-markdown.html)
+    - *r4ds* [Ch 30: R Markdown workflow](http://r4ds.had.co.nz/r-markdown-workflow.html)
+    optional:
+    - [Two-table verbs](https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html)
+    - Data Camp [Reporting with R markdown](https://www.datacamp.com/courses/reporting-with-r-markdown)
+    - Data Camp [Joining Data in R with dplyr](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr)
+    - [Introduction to stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
+    - [Do more with dates and time in R with lubridate 1.3.0](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
+    - [Regular-Expressions.info](http://www.regular-expressions.info/tutorial.html)
+    - Swirl *Getting and Cleaning Data* (Dates and Times with lubridate)
+
+- week: 4
+
+  - date: 2017-01-24
+    readings:
+      - *QSS* Ch 3: Measurement. There is nothing new in terms of programming, so the concepts are key.
+      - *r4ds* [Ch 17: Program: Introduction](http://r4ds.had.co.nz/program-intro.html) This is short. I
+      - *r4ds* [Ch 18: Pipes](http://r4ds.had.co.nz/pipes.html)
+      - *r4ds* [Ch 19: Functions](http://r4ds.had.co.nz/functions.html)
+    additional:
+      - [Data Camp: Intermediate R](https://www.datacamp.com/courses/intermediate-r)
+      - [Data Camp: Writing Functions in R](https://www.datacamp.com/courses/writing-functions-in-r)
+
+  - date: 2017-01-27
+    readings:
+      - *r4ds* Ch 20: Vectors
+      - *r4ds* Ch 21: Iteration
+    optional:
+      - Jenny Bryan. [purrr tutorial](https://jennybc.github.io/purrr-tutorial/)
+
+- week: 5
+  - date: 2017-01-31
+  readings:
+  - *QSS* Ch 4: Prediction
+  - *OpenIntro* Ch 7: Introduction to linear regression
+  - *Real Stats* Ch 3.1 "Bivariate Regression Model"
+
+
+
+### Lab (Feb 3rd)
+
+- *r4ds* Ch 22: Model: introduction
+- *r4ds* Ch 23: Model basics
+
+
+
+## Week 6
+
+### Class (February 7th
+
+
+- *QSS* Ch 5: Discovery
+
+### Lab (February 10th)
+
+
+## Week 7
+
+### Class (Feb 14th)
+
+- *QSS* Ch 6: Probability
+
+**Optional**
+
+- *OpenIntro* Ch 2: Probability
+- *OpenIntro* Ch 3: Distributions of Random Variables
+
+
+### Lab (Feb 17th)
+
+## Week 8
+
+### Class (Feb 21st)
+
+- *QSS* Ch 7: Uncertainty
+
+**Optional**
+
+- *OpenIntro* Ch 4: Foundations for inference
+- *OpenIntro* Ch 5: Inference for numerical data
+- *OpenIntro* Ch 6: Inference for categorical data
+
+### Lab (Feb 24th)
+
+## Week 9
+
+### Class (February 28th)
+
+
+### Lab (March 3rd)
+
+
+## Week 10
+
+### Class (March 7th)
+
+- *r4ds* Ch 28: Graphics for communication
+
+### Lab (March 10th)
