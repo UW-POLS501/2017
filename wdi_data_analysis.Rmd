@@ -10,6 +10,7 @@ This is practical example of using R to clean and tidy the World Bank [World Dev
 [^1]: http://data.worldbank.org/data-catalog/world-development-indicators
 
 ```{r, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, autodep = TRUE)
 options(dplyr.show_progress = FALSE)
 ```
 

@@ -2,10 +2,15 @@
 title: Schedule
 ---
 
-```{r include=FALSE, results='hide'}
+```{r include=FALSE, results='hide', message = FALSE}
+library("tidyverse")
 library("lubridate")
 library("stringr")
-dtfmt <- function(x) format(ymd(x), "%a, %b %d")
+library("yaml")
+library("htmltools")
+library("commonmark")
+knitr::opts_chunk$set(echo = FALSE)
+schedule <- yaml.load_file("schedule.yaml")
 ```
 
 
@@ -17,11 +22,9 @@ This schedule is an approximation, subject to change due needs of the students i
 Students will be informed of changes to the schedule.
 
 
-# Research Project 
+# Research Project
 
-The final version of the paper for the research project is due **Thurs, March 16, 17:00 PDT**.
-
-Prior to the final paper being due there will be approximately weekly assignments in order to provide feedback, and allow you to immediately implement concepts and methods learned in the course. 
+Prior to the final paper being due there will be approximately weekly assignments in order to provide feedback, and allow you to immediately implement concepts and methods learned in the course.
 
 See [research project](research_project.html) page for instructions.
 
@@ -31,37 +34,51 @@ See [research project](research_project.html) page for instructions.
 <th>Due date </th>
 </thead>
 <tbody>
-<tr>
-<td><strong>Draft Proposal</strong></td>
-<td>`r dtfmt("2017-01-10")`</td>
-</tr>
-<tr>
-<td><strong>Proposal</strong></td>
-<td>`r dtfmt("2017-01-17")`</td>
-</tr>
-<tr>
-<td><strong>Data Analysis 1</strong></td>
-<td>`r dtfmt("2017-01-24")`</td>
-</tr>
-<tr>
-<td><strong>Data Analysis 2</strong></td>
-<td>`r dtfmt("2017-02-07")`</td>
-</tr>
-<tr>
-<td><strong>Data Analysis 3</strong></td>
-<td>`r dtfmt("2017-02-21")`</td>
-</tr>
-<tr>
-<td><strong>Data Analysis 4</strong></td>
-<td>`r dtfmt("2017-02-28")`</td>
-</tr>
-<tr>
-<td><strong>Paper Draft</strong></td>
-<td>`r dtfmt("2017-03-07")`</td>
-</tr>
+```{r echo = FALSE,results='asis'}
+map(
+  schedule[["research_project"]],
+  function(row) {
+  withTags(
+    tr(
+      td(tags$a(row[["name"]],
+           href = str_c("research_project.html#", row[["href"]]))
+         ),
+      td(time(format(ymd_hm(row[["date"]]), "%b %d %H:%M (%a)")),
+         datetime = format(ymd_hm(row[["date"]]), "%Y-%m-%dT%H:%M"))
+    )
+  )
+  }
+) %>% tagList()
+```
 </tbody>
 </table>
 
+# Assignments
+
+<table class="table table-stripped">
+<thead>
+<th>Assignment</th>
+<th>Due date </th>
+</thead>
+<tbody>
+```{r echo = FALSE,results='asis'}
+map2(
+  seq_along(schedule[["assignments"]]),
+  schedule[["assignments"]],
+  function(i, x) {
+    .date <- ymd_hm(x[["date"]])
+    tags$tr(
+      tags$td(tags$a(str_c("Assignment ", i),
+                     href = str_c("assignment-", i, ".html"))),
+      tags$td(tags$a(tags$time(format(.date, "%b %d %H:%M (%a)"),
+                               datetime = format(.date, "%Y-%m-%dT%H:%M:00")),
+                     href = x[["canvas"]]))
+    )
+  }
+) %>% tagList()
+```
+</tbody>
+</table>
 
 
 # Readings, Assignments, Lectures
@@ -73,178 +90,71 @@ Abbreviations used in the schedule:
 - *OpenIntro*: [OpenIntro Statistics, 3rd edition](https://www.openintro.org/stat/textbook.php?stat_book=os)
 - *RealStats*: Bailey, *Real Stats*
 
-## Week 1
-
-### Class (January 3rd)
-
-- *r4ds* Ch 1: Introduction
-- *r4ds* Ch 2: Explore -- Introduction
-- *QSS* Ch 1
-
-### Lab (January 7th)
-
-- [Data Camp Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
-- *r4ds* Ch 3: Data visualization
-- *r4ds* Ch 4: Workflow basics
-- Wickham, Hadley. 2010. "[A Layered Grammar of Graphics](http://vita.had.co.nz/papers/layered-grammar.html)." *Journal of Computational and Graphical Statistics*.
-- *r4ds* Ch 6: Workflow scripts
-
-Optional
-
-- [Data Camp ggplot 1](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1)
-- [Data Camp ggplot 2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-2)
-- [Data Camp ggplot 3](https://www.datacamp.com/courses/data-visualization-with-ggplot2-part-3)
-
-
-## Week 2
-
-### Class (January 10)
-
-- *r4ds* Ch 5: Data transformation
-- *r4ds* Ch 9: Wrangle: Introduction
-- *r4ds* Ch 10: Tibbles
-- *r4ds* Ch 11: Data import
-
-Optional
-
-- [Introduction to dplyr](https://cran.r-project.org/web/packages/dplyr/vignettes/introduction.html)
-- [Window functions and grouped mutate/filter](https://cran.r-project.org/web/packages/dplyr/vignettes/window-functions.html)
-- [Data Manipulation in R with dplyr](https://www.datacamp.com/courses/cleaning-data-in-r) 
-- [Data Camp: Importing Data in R I](https://www.datacamp.com/courses/importing-data-in-r-part-1) This covers importing flat files but uses base R, instead of the **readr** package
-- [Data Camp: Importing Data in R](https://www.datacamp.com/courses/importing-data-in-r-part-2) This covers importing data.
-- [tibble 1.0.0](https://blog.rstudio.org/2016/03/24/tibble-1-0-0/)
-- [readr 1.0.0](https://blog.rstudio.org/2016/08/05/readr-1-0-0/)
-- Swirl *Getting and Cleaning Data* (Manipulating data with dplyr; Grouping and chaining with dplyr)
-
-### Lab (January 13)
-
-- *r4ds* Ch 8: Workflow projects
-- *r4ds* Ch 7: EDA
-
-## Week 3
-
-### Class (January 17th)
-
-
-Assignment 1 due: use the [R template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1.R) and [Word document template](https://github.com/UW-POLS501/pols_501_wi17/raw/master/files/assignment1-template.docx) for your solutions.
-
-- *QSS* Ch 2: Causality
-- *r4ds* Ch 12: Tidy Data
-- Wickham, Hadley. 2014. "[Tidy Data](http://vita.had.co.nz/papers/layered-grammar.html)" *Journal of Statistical Software*.
-
-Optional
-
-- [Cleaning data in R](https://www.datacamp.com/courses/cleaning-data-in-r)
-- Swirl *Getting and Cleaning Data* (Tidying data with tidyr)
-
-### Lab (January 20th)
-
-- [WDI Data Analysis Example](wdi_data_analysis.html)
-- *r4ds* [Ch 13: Relational data](http://r4ds.had.co.nz/relational-data.html). *This is the important chapter* Know and understand this well. Merging datasets
-- *r4ds* [Ch 14: Strings](http://r4ds.had.co.nz/strings.html). You don't need to know all the details of regular expressions. But it is important to know they exist; if you need to search by a pattern---regular expressions are the way you do it. This is even useful when searching and replacing text in RStudio or other text editors.  
-- *r4ds* [Ch 15: Factors](http://r4ds.had.co.nz/factors.html) This is not long and is useful.
-- *r4ds* [Ch 16: Dates and times](http://r4ds.had.co.nz/dates-and-times.htm)
-- *r4ds* [Ch 27: R Markdown workflow](http://r4ds.had.co.nz/r-markdown.html)
-- *r4ds* [Ch 30: R Markdown workflow](http://r4ds.had.co.nz/r-markdown-workflow.html)
-
-Optional
-
-- [Two-table verbs](https://cran.r-project.org/web/packages/dplyr/vignettes/two-table.html)
-- Data Camp [Reporting with R markdown](https://www.datacamp.com/courses/reporting-with-r-markdown)
-- Data Camp [Joining Data in R with dplyr](https://www.datacamp.com/courses/joining-data-in-r-with-dplyr)
-- [Introduction to stringr](https://cran.r-project.org/web/packages/stringr/vignettes/stringr.html)
-- [Do more with dates and time in R with lubridate 1.3.0](https://cran.r-project.org/web/packages/lubridate/vignettes/lubridate.html)
-- [Regular-Expressions.info](http://www.regular-expressions.info/tutorial.html)
-- Swirl *Getting and Cleaning Data* (Dates and Times with lubridate)
-
-## Week 4
-
-### Class (January 24th)
-
-- *QSS* Ch 3: Measurement. There is nothing new in terms of programming, so the concepts are key. 
-- *r4ds* [Ch 17: Program: Introduction](http://r4ds.had.co.nz/program-intro.html) This is short. I
-- *r4ds* [Ch 18: Pipes](http://r4ds.had.co.nz/pipes.html)
-- *r4ds* [Ch 19: Functions](http://r4ds.had.co.nz/functions.html)
-
-Optional 
-
-- [Data Camp: Intermediate R](https://www.datacamp.com/courses/intermediate-r)
-- [Data Camp: Writing Functions in R](https://www.datacamp.com/courses/writing-functions-in-r)
-
-
-### Lab (January 27th)
-
-- *r4ds* Ch 20: Vectors
-- *r4ds* Ch 21: Iteration
-
-
-**Optional**
-
-- Jenny Bryan. [purrr tutorial](https://jennybc.github.io/purrr-tutorial/)
-
-
-## Week 5
-
-
-### Class (Jan 31st)
-
-- *QSS* Ch 4: Prediction
-- *OpenIntro* Ch 7: Introduction to linear regression
-- *Real Stats* Ch 3.1 "Bivariate Regression Model"
-- *r4ds* Ch 22: Model: introduction
-- *r4ds* Ch 23: Model basics
-- *r4ds* Ch 24: Model Building
-
-
-### Lab (Feb 3rd)
-
-
-## Week 6
-
-### Class (February 7th
-
-- *QSS* Ch 5: Discovery
-
-### Lab (February 10th)
-
-
-## Week 7
-
-### Class (Feb 14th)
-
-- *QSS* Ch 6: Probability
-- *OpenIntro* Ch 2: Probability
-- *OpenIntro* Ch 3: Distributions of Random Variables
-
-
-### Lab (Feb 17th)
-
-## Week 8
-
-### Class (Feb 21st)
-
-- *QSS* Ch 7: Uncertainty
-- *OpenIntro* Ch 4: Foundations for inference
-- *OpenIntro* Ch 5: Inference for numerical data
-- *OpenIntro* Ch 6: Inference for categorical data
-
-### Lab (Feb 24th)
-
-## Week 9
-
-### Class (February 28th)
-
-
-### Lab (March 3rd)
-
-
-## Week 10
-
-### Class (March 7th)
-
-- *r4ds* Ch 28: Graphics for communication
-
-### Lab (March 10th)
-
-
+```{r}
+render_week <- function(x) {
+  w <- x[["week"]]
+  classes <-  map(x[["classes"]], render_class)
+  hdr <- tags$h2(a(`data-toggle` = "collapse",
+                    href = str_c("#collapse", w),
+                    str_c("Week ", w)),
+                  id = str_c("week-", w),
+                  class = "panel-title")
+  div(class = "panel-group",
+      div(class = "panel panel-default",
+          div(class = "panel-heading", hdr),
+          div(id = str_c("collapse", w), class = "panel-collapse collapse",
+              classes)
+      )
+  )
+             
+}
+
+class_type <- function(x) {
+  if (.wday == 3) { # Tues
+    "Lecture"
+  } else if (.wday == 6) { # Friday
+    "Lab"
+  } else {
+    stop(format(.date, "%Y-%m-%d"), " is neither a Tuesday nor a Friday.",
+         call. = FALSE)
+  }
+}
+
+render_reading <- function(x) {
+  tags$li(HTML(commonmark::markdown_html(x)))
+}
+
+render_readings <- function(x) {
+  tags$ul(map(x, render_reading))
+}
+
+render_class <- function(x) {
+  .date <- ymd(x[["date"]])
+  .wday <- wday(.date)
+  .header <- h3(tags$time(format(.date, "%a, %b %d, %Y"),
+                          datetime = format(.date, "%Y-%m-%d")),
+                id = format(.date, "%Y-%m-%d"))
+  inclass <- if (!is.null(x[["inclass"]])) {
+    list(h4("In class", id = str_c("inclass-", format(.date, "%Y-%m-%d"))),
+         render_readings(x[["inclass"]]))
+  } else {
+    NULL
+  }
+  readings <- if (!is.null(x[["readings"]])) {
+    list(h4("Readings", id = str_c("readings-", format(.date, "%Y-%m-%d"))),
+         render_readings(x[["readings"]]))
+  } else {
+    NULL
+  }
+  extras <- if (!is.null(x[["extras"]])) {
+    list(h4("Additional Resources", id = str_c("extras-", format(.date, "%Y-%m-%d"))),
+         render_readings(x[["extras"]]))
+  } else {
+    NULL
+  }
+  tagList(.header, inclass, readings, extras)
+}
+
+tagList(map(schedule[["weeks"]], render_week))
+```
 
