@@ -1,0 +1,14 @@
+---
+title: "POLS 501: Assignment 4"
+date: February 1, 2017
+---
+
+Submit your assignment to Canvas. 
+Your submission should consist of two files: an R markdown file and the compiled HTML or PDF file produced by R markdown.
+
+Start with the R Markdown template for this assignment: [assignment4-template.Rmd](files/assignment4-template.Rmd).
+
+# Election and Conditional Cash Transfer Program in Mexico
+
+*QSS* Exercise 4.5.2 parts 1 and 2.
+

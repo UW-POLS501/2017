@@ -30,6 +30,8 @@ assignments:
       canvas: https://canvas.uw.edu/courses/1098109/assignments/3582603
     - date: "2017-02-01T16:30"
       canvas: https://canvas.uw.edu/courses/1098109/assignments/3582603
+    - date: "2017-02-07T16:30"
+      canvas: "https://canvas.uw.edu/courses/1098109/assignments/3594213"
 weeks:
 - week: 1
   classes:
@@ -135,14 +137,14 @@ weeks:
 
   - date: 2017-02-03
     readings:
-    - "*r4ds* Ch 22: Model: introduction"
-    - "*r4ds* Ch 23: Model basics"
+    - "*r4ds* [Ch 22: Model: introduction](http://r4ds.had.co.nz/model-intro.html)"
+    - "*r4ds* [Ch 23: Model basics](http://r4ds.had.co.nz/model-basics.html)"
 
 - week: 6
   classes:
   - date: 2017-02-07
     readings:
-    - "*QSS* Ch 5: Discovery"
+    - "*r4ds* [Ch 24: Model basics](http://r4ds.had.co.nz/model-building.html)"
   - date: 2017-02-10
 
 
