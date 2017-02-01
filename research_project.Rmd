@@ -48,7 +48,7 @@ Turn in a `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assignm
 
 This is to check-in on your progress.
 
-- What are your data sources? Cite the data appropriately using name or title of the dataset, authors, version, creation date, and persistent data identifier (e.g. DOI) if available or URL if one is not. See [Political Analysis guidelienes](https://academic.oup.com/pan/pages/Instructions_To_Authors) for data citation.
+- What are your data sources? Cite the data appropriately using name or title of the data set, authors, version, creation date, and persistent data identifier (e.g. DOI) if available or URL if one is not. See [Political Analysis guidelines](https://academic.oup.com/pan/pages/Instructions_To_Authors) for data citation.
 - What is the current status of your data acquisition and wrangling? What challenges have you encountered, and what challenges are you still having?
 
 Turn in a `.pdf` file via [Canvas]().
@@ -62,7 +62,7 @@ Turn in a `.pdf` file via [Canvas]().
 Some questions that should be answered:
 
 - What are the number of observations? What is the unit of analysis, what is the unit of observation?
-- How do the variables in your dataset relate to the variables in your theory? In other words, how are you operationalizing your concepts? Justify that operationalization, and acknowledge any shortcomings of it.
+- How do the variables in your data set relate to the variables in your theory? In other words, how are you operationalizing your concepts? Justify that operationalization, and acknowledge any shortcomings of it.
 - What was the sampling process for your sample of observations?
 - What is the number of observations for your data?
 - Are there any missing values in the variables of interest? 
@@ -195,7 +195,7 @@ These both store references and format citations and references according to spe
 
 All data used in the paper must be cited.
 Citations must include enough information for readers to find the original sources, and for those original sources to be consistently identified in the future.
-Data citations should appear in the the manuscript's reference list, contain the name or title of the dataset, the author(s), version, date of creation, and a persistent data identifier, such as a DOI, if one is available. 
+Data citations should appear in the the manuscript's reference list, contain the name or title of the data set, the author(s), version, date of creation, and a persistent data identifier, such as a DOI, if one is available. 
 If a persistent identifier is not available, include a URI if one is available.
 
 
