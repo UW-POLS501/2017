@@ -1,0 +1,128 @@
+---
+title: "POLS 501 Lab: k-means and regression"
+date: February 3, 2017
+author: Nora Webb Williams
+---
+
+Reviewing k-means and regression with R challenges along the way
+
+# A further look at k-means
+
+Adpating the QSSS code to use rio and download the data directly from github
+```{r message=FALSE}
+library("rio")
+library("tidyverse")
+library("modelr")
+```
+```{r}
+un <- import("https://raw.githubusercontent.com/kosukeimai/qss/master/MEASUREMENT/unvoting.csv")
+
+# Looking at the homework k-means example
+# Load the 1989 UN data
+year.1989 <- un %>%
+  filter(Year == 1989) %>%
+  select(idealpoint, PctAgreeUS)
+
+set.seed(4567)
+cluster.89 <- kmeans(year.1989, centers = 2, nstart = 5)
+
+## What exactly is IN the cluster.98 that we just made?
+# What is it?
+class(cluster.89)
+cluster.89
+summary(cluster.89)
+cluster.89$cluster
+
+# pull out the cluster assignments for each observation (country)
+# so we can plot them later
+year.1989 <- mutate(year.1989, 
+                    cluster_89 = factor(cluster.89$cluster))
+
+
+# pulling out the centers for plotting -- way 1
+cluster.89$centers
+center1.x <- cluster.89$centers[1,1]
+center1.y <- cluster.89$centers[1,2]
+center2.x <- cluster.89$centers[2,1]
+center2.y <- cluster.89$centers[2,2]
+
+# way 2 -- using broom function tidy()
+library("broom")
+
+tidy.89.cluster <- tidy(cluster.89)
+tidy.89.cluster
+
+## ggplotting the results
+ggplot() +
+  geom_point(data = year.1989,
+             aes(x = idealpoint, y = PctAgreeUS, color = cluster_89)) +
+  geom_point(data = tidy.89.cluster, aes(x = x1, y = x2)) +
+  labs(title = "1989 Clusters from k-means")
+
+## Alternative
+ggplot(year.1989) +
+  geom_point(aes(x= idealpoint, y = PctAgreeUS, color = cluster_89)) +
+  geom_point(aes(x = cluster.89$centers[1,1], y = cluster.89$centers[1,2]), 
+             size = 3) +
+  geom_point(aes(x = cluster.89$centers[2,1], y = cluster.89$centers[2,2]), 
+             size = 3) +
+  labs(title = "1989 Clusters from k-means")
+
+
+### Challenge time!
+### What if we do a linear regression of idealpoint and PctAgreeUS? PctAgreeUS is the DV.
+# What would the intercept be? What about the slope?
+
+reg1 <- lm(PctAgreeUS ~ idealpoint, data = year.1989)
+
+## what's in reg1?
+reg1
+reg1$coefficients
+# checking it out with broom functions:
+glance(reg1)
+tidy(reg1)
+augment(reg1) %>% head()
+
+# How would we interpret the coefficients?
+
+### plotting using grid
+
+
+grid <- year.1989 %>%
+  data_grid(idealpoint) %>%
+  add_predictions(reg1)
+head(grid)
+
+###
+ggplot() +
+  geom_point(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_line(data = grid, mapping = aes(x = idealpoint, y = pred),
+            colour = "red")
+
+### plotting the regression line using geom_smooth
+ggplot(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+
+## Compare this to the loess smooth line
+ggplot(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) + 
+  geom_smooth(method = "loess", se = FALSE, color = "red")
+
+######## Getting fancy!
+## What happens if we have two covariates? idealpoint and PctAgreeRU?
+year.1989.adj <- un %>%
+  filter(Year == 1989) %>%
+  select(idealpoint, PctAgreeUS, PctAgreeRUSSIA)
+
+reg2 <- lm(PctAgreeUS ~ idealpoint + PctAgreeRUSSIA, data = year.1989.adj)
+glance(reg2)
+tidy(reg2)
+tidy(reg1)
+
+# How would you plot the results from this regression?
+
+## Let's apply this regression stuff to your homework assignment! With R Markdown!!!
+```
+

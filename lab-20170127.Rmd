@@ -1,0 +1,59 @@
+---
+title: "Lab Challenge: Functions"
+author: Nora Webb Williams
+date: January 25, 2017
+---
+```{r }
+# Function Challenge
+
+## Create a new function, called my_function
+# Your function will take two numeric arguments
+# Name the first argument "a" and the second argument "b"
+# Your function should take the square root of a, then
+# multiply it by b to the 5th power.
+# Then have your function print out the following message:
+# "The solution is" followed by the calculated quantity.
+
+
+
+
+# Run your function for the following pair of values for a and b: 
+# 10, .5 (save the solution as result1)
+# 2.2, 1.1 (save the solution as result2)
+
+
+
+# Modify your function so it only prints two decimal places
+# Name your new function my_function2
+
+
+
+# Check that it worked with the same two test sets for a and b:
+
+
+####################################
+# Iteration challenge, with vectors
+
+# Create a vector, called values1, which contains the following numbers: 3, 7, 9, 4, 5, 1, 6
+# Create another vector, called values2, which contains the following numbers: 
+# 0.6, 0.4, 0.5, 0.1, 0.8, 1.4, 0.2
+
+
+
+## Run my_function2 using the two new vectors for a (values1) and b (values2).
+## Use a loop!
+
+
+# Try it again, this time after you remove the last number in values2. What happens?
+
+
+## Why is your last value what you might not expect?
+
+
+##############################################################
+## Extra challenge: revert back to your old values2. 
+## Instead of printing out the function's solution, save the numeric solution in
+## a new vector called "results", then print out the results vector.
+## Hint -- you may want to adjust the function and/or the loop!
+```
+

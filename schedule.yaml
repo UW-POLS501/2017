@@ -126,6 +126,8 @@ weeks:
       - "*r4ds* Ch 21: Iteration"
     extras:
       - "Jenny Bryan. [purrr tutorial](https://jennybc.github.io/purrr-tutorial/)"
+    inclass:
+    - "[Lab: Functions](lab-20170127.html)"
 
 - week: 5
   classes:
@@ -139,6 +141,8 @@ weeks:
     readings:
     - "*r4ds* [Ch 22: Model: introduction](http://r4ds.had.co.nz/model-intro.html)"
     - "*r4ds* [Ch 23: Model basics](http://r4ds.had.co.nz/model-basics.html)"
+    inclass:
+    - "[Lab: k-means and regression R challanges](lab-20170203.html)"
 
 - week: 6
   classes:

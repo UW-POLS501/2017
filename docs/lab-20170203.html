@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+<meta name="author" content="Nora Webb Williams" />
+
+
+<title>POLS 501 Lab: k-means and regression</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">POLS/CS&SS 501</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Syllabus</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+<li>
+  <a href="research_project.html">Project</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Assignments
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="assignment-1.html">Assignment 1</a>
+    </li>
+    <li>
+      <a href="assignment-2.html">Assignment 2</a>
+    </li>
+    <li>
+      <a href="assignment-3.html">Assignment 3</a>
+    </li>
+    <li>
+      <a href="assignment-4.html">Assignment 4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resources
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="help.html">Help with R</a>
+    </li>
+    <li>
+      <a href="data.html">Finding Data</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">POLS 501 Lab: k-means and regression</h1>
+<h4 class="author"><em>Nora Webb Williams</em></h4>
+<h4 class="date"><em>February 3, 2017</em></h4>
+
+</div>
+
+
+<p>Reviewing k-means and regression with R challenges along the way</p>
+<div id="a-further-look-at-k-means" class="section level1">
+<h1>A further look at k-means</h1>
+<p>Adpating the QSSS code to use rio and download the data directly from github</p>
+<pre class="r"><code>library(&quot;rio&quot;)
+library(&quot;tidyverse&quot;)
+library(&quot;modelr&quot;)</code></pre>
+<pre class="r"><code>un &lt;- import(&quot;https://raw.githubusercontent.com/kosukeimai/qss/master/MEASUREMENT/unvoting.csv&quot;)
+
+# Looking at the homework k-means example
+# Load the 1989 UN data
+year.1989 &lt;- un %&gt;%
+  filter(Year == 1989) %&gt;%
+  select(idealpoint, PctAgreeUS)
+
+set.seed(4567)
+cluster.89 &lt;- kmeans(year.1989, centers = 2, nstart = 5)
+
+## What exactly is IN the cluster.98 that we just made?
+# What is it?
+class(cluster.89)</code></pre>
+<pre><code>## [1] &quot;kmeans&quot;</code></pre>
+<pre class="r"><code>cluster.89</code></pre>
+<pre><code>## K-means clustering with 2 clusters of sizes 27, 131
+## 
+## Cluster means:
+##   idealpoint PctAgreeUS
+## 1  1.2642992 0.28448126
+## 2 -0.5449349 0.08232694
+## 
+## Clustering vector:
+##   [1] 1 1 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2
+##  [36] 1 1 1 1 1 1 1 1 1 2 2 1 2 2 1 1 2 2 1 2 2 2 2 2 2 1 1 1 1 1 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [106] 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 2 2 2 2 1 2 1 2 2 2 2
+## 
+## Within cluster sum of squares by cluster:
+## [1]  9.659519 23.845518
+##  (between_SS / total_SS =  68.9 %)
+## 
+## Available components:
+## 
+## [1] &quot;cluster&quot;      &quot;centers&quot;      &quot;totss&quot;        &quot;withinss&quot;    
+## [5] &quot;tot.withinss&quot; &quot;betweenss&quot;    &quot;size&quot;         &quot;iter&quot;        
+## [9] &quot;ifault&quot;</code></pre>
+<pre class="r"><code>summary(cluster.89)</code></pre>
+<pre><code>##              Length Class  Mode   
+## cluster      158    -none- numeric
+## centers        4    -none- numeric
+## totss          1    -none- numeric
+## withinss       2    -none- numeric
+## tot.withinss   1    -none- numeric
+## betweenss      1    -none- numeric
+## size           2    -none- numeric
+## iter           1    -none- numeric
+## ifault         1    -none- numeric</code></pre>
+<pre class="r"><code>cluster.89$cluster</code></pre>
+<pre><code>##   [1] 1 1 2 2 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 1 2 2
+##  [36] 1 1 1 1 1 1 1 1 1 2 2 1 2 2 1 1 2 2 1 2 2 2 2 2 2 1 1 1 1 1 2 2 2 2 2
+##  [71] 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+## [106] 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 1 2 2 2 2 2 2 2 2 2 2 2 1 2 2 2 2 2 2
+## [141] 2 2 2 2 2 2 2 2 2 2 2 1 2 1 2 2 2 2</code></pre>
+<pre class="r"><code># pull out the cluster assignments for each observation (country)
+# so we can plot them later
+year.1989 &lt;- mutate(year.1989, 
+                    cluster_89 = factor(cluster.89$cluster))
+
+
+# pulling out the centers for plotting -- way 1
+cluster.89$centers</code></pre>
+<pre><code>##   idealpoint PctAgreeUS
+## 1  1.2642992 0.28448126
+## 2 -0.5449349 0.08232694</code></pre>
+<pre class="r"><code>center1.x &lt;- cluster.89$centers[1,1]
+center1.y &lt;- cluster.89$centers[1,2]
+center2.x &lt;- cluster.89$centers[2,1]
+center2.y &lt;- cluster.89$centers[2,2]
+
+# way 2 -- using broom function tidy()
+library(&quot;broom&quot;)
+
+tidy.89.cluster &lt;- tidy(cluster.89)
+tidy.89.cluster</code></pre>
+<pre><code>##           x1         x2 size  withinss cluster
+## 1  1.2642992 0.28448126   27  9.659519       1
+## 2 -0.5449349 0.08232694  131 23.845518       2</code></pre>
+<pre class="r"><code>## ggplotting the results
+ggplot() +
+  geom_point(data = year.1989,
+             aes(x = idealpoint, y = PctAgreeUS, color = cluster_89)) +
+  geom_point(data = tidy.89.cluster, aes(x = x1, y = x2)) +
+  labs(title = &quot;1989 Clusters from k-means&quot;)</code></pre>
+<p><img src="lab-20170203_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>## Alternative
+ggplot(year.1989) +
+  geom_point(aes(x= idealpoint, y = PctAgreeUS, color = cluster_89)) +
+  geom_point(aes(x = cluster.89$centers[1,1], y = cluster.89$centers[1,2]), 
+             size = 3) +
+  geom_point(aes(x = cluster.89$centers[2,1], y = cluster.89$centers[2,2]), 
+             size = 3) +
+  labs(title = &quot;1989 Clusters from k-means&quot;)</code></pre>
+<p><img src="lab-20170203_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<pre class="r"><code>### Challenge time!
+### What if we do a linear regression of idealpoint and PctAgreeUS? PctAgreeUS is the DV.
+# What would the intercept be? What about the slope?
+
+reg1 &lt;- lm(PctAgreeUS ~ idealpoint, data = year.1989)
+
+## what&#39;s in reg1?
+reg1</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = PctAgreeUS ~ idealpoint, data = year.1989)
+## 
+## Coefficients:
+## (Intercept)   idealpoint  
+##      0.1422       0.1076</code></pre>
+<pre class="r"><code>reg1$coefficients</code></pre>
+<pre><code>## (Intercept)  idealpoint 
+##   0.1422364   0.1075837</code></pre>
+<pre class="r"><code># checking it out with broom functions:
+glance(reg1)</code></pre>
+<pre><code>##   r.squared adj.r.squared      sigma statistic      p.value df  logLik
+## 1 0.6857908     0.6837766 0.06000191  340.4844 4.660297e-41  2 221.328
+##         AIC       BIC  deviance df.residual
+## 1 -436.6559 -427.4681 0.5616357         156</code></pre>
+<pre class="r"><code>tidy(reg1)</code></pre>
+<pre><code>##          term  estimate   std.error statistic      p.value
+## 1 (Intercept) 0.1422364 0.004967469  28.63359 5.403816e-64
+## 2  idealpoint 0.1075837 0.005830393  18.45222 4.660297e-41</code></pre>
+<pre class="r"><code>augment(reg1) %&gt;% head()</code></pre>
+<pre><code>##   PctAgreeUS  idealpoint    .fitted     .se.fit       .resid        .hat
+## 1 1.00000000  2.96213800  0.4609142 0.019246371  0.539085790 0.102888677
+## 2 0.26315790  1.35558900  0.2880757 0.010434141 -0.024917825 0.030240100
+## 3 0.09821429 -0.04779039  0.1370950 0.004897690 -0.038880689 0.006662732
+## 4 0.03508772 -1.54220800 -0.0236800 0.008989237  0.058767716 0.022444788
+## 5 0.09523810 -0.34502470  0.1051174 0.004815816 -0.009879312 0.006441836
+## 6 0.09615385 -0.02895100  0.1391218 0.004923433 -0.042967940 0.006732957
+##       .sigma      .cooksd .std.resid
+## 1 0.03915990 5.159772e+00  9.4857057
+## 2 0.06016083 2.772777e-03 -0.4217091
+## 3 0.06011354 1.417642e-03 -0.6501604
+## 4 0.06000553 1.126550e-02  0.9906109
+## 5 0.06018989 8.845378e-05 -0.1651829
+## 6 0.06009546 1.749858e-03 -0.7185326</code></pre>
+<pre class="r"><code># How would we interpret the coefficients?
+
+### plotting using grid
+
+
+grid &lt;- year.1989 %&gt;%
+  data_grid(idealpoint) %&gt;%
+  add_predictions(reg1)
+head(grid)</code></pre>
+<pre><code>## # A tibble: 6 × 2
+##   idealpoint         pred
+##        &lt;dbl&gt;        &lt;dbl&gt;
+## 1  -1.661769 -0.036542810
+## 2  -1.542208 -0.023679996
+## 3  -1.481247 -0.017121586
+## 4  -1.475191 -0.016470059
+## 5  -1.462281 -0.015081153
+## 6  -1.374753 -0.005664567</code></pre>
+<pre class="r"><code>###
+ggplot() +
+  geom_point(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_line(data = grid, mapping = aes(x = idealpoint, y = pred),
+            colour = &quot;red&quot;)</code></pre>
+<p><img src="lab-20170203_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<pre class="r"><code>### plotting the regression line using geom_smooth
+ggplot(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE)</code></pre>
+<p><img src="lab-20170203_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
+<pre class="r"><code>## Compare this to the loess smooth line
+ggplot(data = year.1989, mapping = aes(x = idealpoint, y = PctAgreeUS)) +
+  geom_point() +
+  geom_smooth(method = &quot;lm&quot;, se = FALSE) + 
+  geom_smooth(method = &quot;loess&quot;, se = FALSE, color = &quot;red&quot;)</code></pre>
+<p><img src="lab-20170203_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
+<pre class="r"><code>######## Getting fancy!
+## What happens if we have two covariates? idealpoint and PctAgreeRU?
+year.1989.adj &lt;- un %&gt;%
+  filter(Year == 1989) %&gt;%
+  select(idealpoint, PctAgreeUS, PctAgreeRUSSIA)
+
+reg2 &lt;- lm(PctAgreeUS ~ idealpoint + PctAgreeRUSSIA, data = year.1989.adj)
+glance(reg2)</code></pre>
+<pre><code>##   r.squared adj.r.squared      sigma statistic      p.value df   logLik
+## 1 0.8038852     0.8013546 0.04755621  317.6766 1.477616e-55  3 258.5653
+##         AIC       BIC deviance df.residual
+## 1 -509.1306 -496.8802 0.350547         155</code></pre>
+<pre class="r"><code>tidy(reg2)</code></pre>
+<pre><code>##             term     estimate  std.error  statistic      p.value
+## 1    (Intercept)  0.595594946 0.04709119 12.6476928 1.219055e-25
+## 2     idealpoint  0.003215357 0.01174983  0.2736515 7.847168e-01
+## 3 PctAgreeRUSSIA -0.548072203 0.05672997 -9.6610705 1.409879e-17</code></pre>
+<pre class="r"><code>tidy(reg1)</code></pre>
+<pre><code>##          term  estimate   std.error statistic      p.value
+## 1 (Intercept) 0.1422364 0.004967469  28.63359 5.403816e-64
+## 2  idealpoint 0.1075837 0.005830393  18.45222 4.660297e-41</code></pre>
+<pre class="r"><code># How would you plot the results from this regression?
+
+## Let&#39;s apply this regression stuff to your homework assignment! With R Markdown!!!</code></pre>
+</div>
+
+<footer class="footer" id="copyright">
+  <div class="container">
+      <p class="text-muted">
+          © Jeffrey Arnold, 2016, <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+      </p>
+  </div>
+</footer>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
