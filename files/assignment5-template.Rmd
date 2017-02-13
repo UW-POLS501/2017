@@ -1,0 +1,103 @@
+---
+title: "Assignment 4"
+author: "Jeffrey Arnold"
+date: "2/7/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+For help with R Markdown see:
+
+- [R for Data Science chapter](http://r4ds.had.co.nz/r-markdown.html)
+- Click on the menu `Help > Markdown Quick Reference` for Markdown syntax
+- [R Markdown Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/) and
+  [R Markdown Reference Guide](https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf); available via the menu `Help > Cheatsheets` in RStudio.
+- [RStudio R Markdown site](http://rmarkdown.rstudio.com/) for more detailed info
+
+
+## Prerequisites
+
+Load any packages that you use here:
+```{r message=FALSE}
+library("tidyverse")
+library("modelr")
+library("broom")
+library("stringr")
+```
+
+
+## Election and Conditional Cash Transfer Program in Mexico
+
+This problem is from *QSS*: Exercise 4.5.2, parts 1 and 2
+
+The data for this problem is the
+```{r}
+QSS_GITHUB_URL <- "https://raw.githubusercontent.com/kosukeimai/qss/master/"
+progresa_url <- str_c(QSS_GITHUB_URL, "PREDICTION/progresa.csv")
+
+col_types <- cols(
+  .default = col_double(),
+  treatment = col_integer(),
+  pri1994 = col_integer(),
+  pan1994 = col_integer(),
+  prd1994 = col_integer(),
+  votos1994 = col_integer(),
+  pobtot1994 = col_integer(),
+  villages = col_integer()
+)
+progresa <- read_csv(progresa_url, col_types = col_types)
+```
+
+### Part 3
+
+Answer here
+
+### Part 4
+
+Answer here
+
+### Part 5
+
+### Part 6
+
+### Part 7
+
+## Government Transfer and Poverty Reduction in Brazil
+
+```{r}
+transfer_url <- str_c(QSS_GITHUB_URL, "PREDICTION/transfer.csv")
+transfer <- read_csv(transfer_url,
+                     # Avoid message about column 1 missing a name
+                     col_names = c("X1", "state", "region", "literate91", 
+                                   "educ91", "poverty91", "poverty80", "educ80", 
+                                   "pop82"),
+                     skip = 1,
+                     col_types = cols(
+                        X1 = col_integer(),
+                        state = col_character(),
+                        region = col_character(),
+                        literate91 = col_double(),
+                        educ91 = col_double(),
+                        poverty91 = col_double(),
+                        poverty80 = col_double(),
+                        educ80 = col_double(),
+                        pop82 = col_integer()
+                      ))
+```
+
+### Part 1
+
+### Part 2
+
+### Part 3
+
+### Part 4
+
+### Part 5
+
+### Part 6
+
+### Part 7

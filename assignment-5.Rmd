@@ -1,0 +1,17 @@
+---
+title: "POLS 501: Assignment 5"
+date: February 13, 2017
+---
+
+Submit your assignment to Canvas.
+Your submission should consist of two files: an R markdown file and the compiled HTML or PDF file produced by R markdown.
+
+Your write-up should look similar to  [assignment5-template.Rmd](files/assignment5-template.Rmd).
+
+# Election and Conditional Cash Transfer Program in Mexico
+
+*QSS* Exercise 4.5.2 parts 3 to end.
+
+# Government Transfer and Poverty Reduction in Brazil
+
+*QSS* Exercise 4.5.3 all parts
