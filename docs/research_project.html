@@ -396,10 +396,30 @@ div.tocify {
 <p>For this assignment both a document and reproducible code will be turned in.</p>
 <p>Submit by either sharing a Dropbox or Google Drive folder, or submitting a <code>.zip</code> file to <a href="https://canvas.uw.edu/courses/1098109/assignments/3590026">Canvas</a>. In your submission you must include the document and any code and data needed to generate the results in that document.</p>
 </div>
-<div id="data-analysis-3-regression-and-prediction" class="section level1">
+<div id="data-analysis-3" class="section level1">
 <h1>Data Analysis 3: Regression and Prediction</h1>
-<p><em>DRAFT</em></p>
-<p>Addressing threats to validity through (1) careful subsetting, or (2) linear regression, or a design based strategy.</p>
+<p>Address any issues with data from data analysis two.</p>
+<p>For all explanatory variables of interest, characterize the unconditional relationship between it and the outcome variable(s) of interest. Use visual methods and linear regression.</p>
+<p>If your analysis has a causal question:</p>
+<ul>
+<li>What is your identification strategy: randomization, regression discontinuity, before-and-after, diff-in-diff, or selection on observables? In general, consider how you are generating the counterfactual. Implement that method.</li>
+<li>If your identification strategy is selection on observables: What variables are possible confounders? Do you have observable measures for them? Think of at least one possible confounder that you don’t have a measure for.</li>
+<li><p>Account for these confounding variables in two ways:</p></li>
+<li>dividing your regression</li>
+<li><p>controlling for them in the regression</p></li>
+</ul>
+<p>If your analysis is a predictive question:</p>
+<ul>
+<li><p>Compare the model fits of the following models using adjusted R squared or cross-validation.</p></li>
+<li>reference model(s): no variables, all variables other than the variable of interest</li>
+<li>a model using only the explanatory variable of interest</li>
+<li><p>a model using all variables</p></li>
+</ul>
+<p>The following were suggestions for answering the research question. If there is other quantitative analysis that you think better answers your research question, do it! All methods are in service of answering the question, not vice versa.</p>
+<p>For this assingment, you should not be worrying about uncertainty. Focus on using methods that match the question you are answering. In the next assignment(s) you will be asked to consider uncertainty in your analysis due to sampling.</p>
+<p>Submission instructions: submit a <strong>zip</strong> file of the directory containing <strong>all</strong> your code and data to reproduce your analysis. Follow the submission templates.</p>
+<p><strong>Note</strong>: You must submit a zip file even if you shared a Dropbox folder. This is to provide a snapshot of the project at the time of submission that the instructors can comment on. The reason for requiring a snapshot is a worry about further work after submission, not due to it affecting the grade, but because further work by the student may break previous working code and it would be too much work for you to ensure that the code from this project continued to work as you continue to work on the project.</p>
+<p><strong>Submissions must have code that runs. If the analysis is not reproducible it will not be accepted.</strong></p>
 </div>
 <div id="data-analysis-4" class="section level1">
 <h1>Data Analysis 4: Hypothesis Testing</h1>

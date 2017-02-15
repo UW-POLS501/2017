@@ -3,10 +3,11 @@ title: "POLS 501: Assignment 6"
 date: February 14, 2017
 ---
 
-Submit your assignment to Canvas.
-Your submission should consist of two files: an R markdown file and the compiled HTML or PDF file produced by R markdown.
+Submit your assignment via Canvas. Your submission should consist of two files: an R markdown file and the compiled HTML or PDF file produced by R markdown.
 
-Start your assignment using this [template](files/assignment6.Rmd]
+Answer **ONE** of the following two questions.
+
+Start your assignment using this [template](files/assignment6.Rmd).
 
 # The Mathematics of Enigma
 
