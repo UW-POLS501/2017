@@ -20,10 +20,10 @@ navbar:
         href: "assignment-3.html"
       - text: "Assignment 4"
         href: "assignment-4.html"
-    #  - text: "Assignment 5"
-    #    href: "assignment-5.html"
-     # - text: "Assignment 6"
-     #    href: "assignment-6.html"
+      - text: "Assignment 5"
+        href: "assignment-5.html"
+      - text: "Assignment 6"
+        href: "assignment-6.html"
      # - text: "Assignment 7"
      #    href: "assignment-7.html"
      # - text: "Assignment 8"
@@ -53,4 +53,3 @@ output:
       in_header: include/in_header.html
       after_body: include/after_body.html
       before_body: include/before_body.html
-

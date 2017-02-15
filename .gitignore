@@ -5,3 +5,5 @@
 docs/bib/
 docs/README.html
 /data/*
+/*_cache/
+/*_files/

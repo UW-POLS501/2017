@@ -32,8 +32,10 @@ assignments:
       canvas: https://canvas.uw.edu/courses/1098109/assignments/3582603
     - date: "2017-02-07T16:30"
       canvas: "https://canvas.uw.edu/courses/1098109/assignments/3594213"
-    - date: "2017-02-04T16:30"
-      canvas: "https://canvas.uw.edu/courses/1098109/assignments/3605117"      
+    - date: "2017-02-14T16:30"
+      canvas: "https://canvas.uw.edu/courses/1098109/assignments/3605117"
+    - date: "2017-02-21T16:30"
+      canvas: "https://canvas.uw.edu/courses/1098109/assignments/"
 weeks:
 - week: 1
   classes:
@@ -161,6 +163,8 @@ weeks:
       - "*QSS* Ch 6: Probability"
       - "*OpenIntro* Ch 2: Probability"
       - "*OpenIntro* Ch 3: Distributions of Random Variables"
+    inclass:
+      - "[EDA k-means and t-SNE example: European parties](kmeans_ches_example.html)"
   - date: 2017-02-17
 
 - week: 8

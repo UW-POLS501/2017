@@ -1,7 +1,7 @@
 ---
-title: "Assignment 4"
+title: "Assignment 5"
 author: "Jeffrey Arnold"
-date: "2/7/2017"
+date: "2/13/2017"
 output: html_document
 ---
 
@@ -71,8 +71,8 @@ Answer here
 transfer_url <- str_c(QSS_GITHUB_URL, "PREDICTION/transfer.csv")
 transfer <- read_csv(transfer_url,
                      # Avoid message about column 1 missing a name
-                     col_names = c("X1", "state", "region", "literate91", 
-                                   "educ91", "poverty91", "poverty80", "educ80", 
+                     col_names = c("X1", "state", "region", "literate91",
+                                   "educ91", "poverty91", "poverty80", "educ80",
                                    "pop82"),
                      skip = 1,
                      col_types = cols(

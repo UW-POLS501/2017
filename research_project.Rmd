@@ -80,8 +80,6 @@ In your submission you must include the document and any code and data needed to
 
 # Data Analysis 3: Regression and Prediction
 
-*DRAFT*
-
 Addressing threats to validity through (1) careful subsetting, or (2) linear regression, or a design based strategy.
 
 

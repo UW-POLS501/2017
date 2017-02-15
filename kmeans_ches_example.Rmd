@@ -1,0 +1,130 @@
+---
+title: EDA Example with k-means and t-SNE
+---
+```{r, include=FALSE}
+set.seed(12352)
+knitr::opts_chunk$set(cache = TRUE, autodep = TRUE)
+```
+
+
+An EDA example applying the [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) and [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding) dimension reduction techniques to the 2014 [Chapel Hill Expert Survey](http://chesdata.eu/) data on surveys on the party positioning of European political parties on integration, ideology and policy issues.
+
+Load the necessary pacakges
+```{r}
+library("tidyverse")
+library("rio")
+library("Rtsne")
+```
+
+Load the CHES data
+```{r}
+dataCH <- import("data/2014_CHES.csv")
+```
+
+For the cluster and t-SNE algorithms we want to keep only those numeric variables
+related to party positioning (`vars`) and some party id variables:
+```{r}
+vars <- c("eu_position", "eu_dissent", "eu_benefit", "eu_ep", "eu_intmark", "eu_cohesion",
+  "eu_foreign", "eu_turkey", "eu_budgets", "lrgen", "lrecon", "galtan",
+  "spendvtax", "deregulation", "redistribution", "econ_interven",
+  "civlib_laworder", "sociallifestyle", "religious_principle",
+  "immigrate_policy", "multiculturalism", "urban_rural", "environment",
+  "regions", "international_security", "ethnic_minorities", "nationalism"
+)
+
+dataCH_vars <- dataCH %>% select(party_id, cname, party_name, one_of(vars)) %>%
+  ungroup() %>%
+  drop_na()
+```
+
+## k-Means
+
+First consider the k-Means algorithm
+
+We could estimate it for a given set of clusters, e.g. `k = 4`.
+```{r}
+centers <- 4
+kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
+       centers = centers, nstart = 5)
+```
+
+But let's be a little more thorough about this.
+We will run k-means means for cluster sizes of 4 to 10.
+Instead of a for loop, I'll use the `map` functional, which will run
+`kmeans` for each value of centers, and return a list of `kmeans` object.
+```{r}
+ches_kmeans <- function(k) {
+  kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
+         centers = k, nstart = 5)
+         
+}
+centers <- 2:10
+mod_kmeans <- map(centers, ches_kmeans)
+```
+This returns a `list` of the same length as `centers`:
+```{r}
+class(mod_kmeans)
+```
+in which each element is a `kmeans` object,
+```{r}
+map_chr(mod_kmeans, class)
+```
+For example, the first object is 
+```{r}
+str(mod_kmeans[[1]])
+```
+
+I will compare the different clustering algorithms by the between sum of squares divided by total sum of squares.
+<!-- TODO: equation -->
+```{r}
+kmeans_ss <- tibble(ncluster = seq_along(mod_kmeans),
+                    ss = map_dbl(mod_kmeans, function(x) x$betweenss / x$totss))
+kmeans_ss %>%
+  ggplot(aes(x = ncluster, y = ss)) +
+  geom_point() + geom_line() +
+  scale_x_continuous(breaks = unique(kmeans_ss$ncluster))
+```
+Generally in clustering and other dimension reduction algorithms, a good 
+choice for the number of clustering or dimensions is the "elbow" of the curve,
+where the initial sleep improvment in performance starts to level off.
+In this case, five clusters seems to be a good choice.
+
+To better understand the composition and meaning of these clusters I'll print the parties in each cluster:
+```{r}
+augment(mod_kmeans[[4]], dataCH_vars) %>%
+  group_by(.cluster) %>%
+  summarise(parties = str_c(party_name, " (", cname, ")", collapse = ", ")) %>%
+  knitr::kable()
+```
+
+A visual method to hep understand multidimensional data is a [parallel coordinates plot](https://en.wikipedia.org/wiki/Parallel_coordinates).
+The function `ggparcoord` in the package **GGally** can be used to produce them. In the plot, each line represents an observation, and the lines are colored by their cluster from the previous k-means results.
+```{r}
+require("GGally")
+ggparcoord(augment(mod_kmeans[[4]], dataCH_vars),
+           columns = vars, groupColumn = ".cluster",
+           order = "anyClass", alphaLines = 0.3) +
+  geom_line() +
+  coord_flip()
+```
+
+
+The t-SNE algorithm is a [relatively new](https://lvdmaaten.github.io/tsne/)  method which works well for visualizing high-dimensional data.
+
+```{r}
+library("Rtsne")
+mod_tsne <- Rtsne(select(select_if(dataCH_vars, is.numeric), -party_id) %>%
+                    mutate_all(scale),
+                  dims = 2,
+                  perplexity = 30)
+```
+
+I'll plot the parties on the t-SNE 2-dimensions, coloring them by their CHES left-right location in order to help interpretation:
+```{r}
+library("viridis")
+bind_cols(dataCH_vars,
+          as_tibble(as.data.frame(mod_tsne$Y))) %>%
+  ggplot(aes(x = V1, y = V2, colour = lrgen, label = party_name)) +
+  geom_text(alpha = 1)
+```
+

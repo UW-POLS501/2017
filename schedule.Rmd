@@ -2,6 +2,7 @@
 title: Schedule
 ---
 
+
 ```{r include=FALSE, results='hide', message = FALSE}
 library("tidyverse")
 library("lubridate")
@@ -81,6 +82,7 @@ map2(
 </table>
 
 
+
 # Readings, Assignments, Lectures
 
 Abbreviations used in the schedule:
@@ -106,7 +108,7 @@ render_week <- function(x) {
               classes)
       )
   )
-             
+
 }
 
 class_type <- function(x) {
@@ -157,4 +159,3 @@ render_class <- function(x) {
 
 tagList(map(schedule[["weeks"]], render_week))
 ```
-
