@@ -9,16 +9,20 @@ Answer **ONE** of the following two questions.
 
 Start your assignment using this [template](files/assignment6.Rmd).
 
+```{r include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, autodep=TRUE)
+library("tidyverse")
+```
+
 # The Mathematics of Enigma
 
 *QSS*: Exercise 6.6.1
-
 
 When calculating factorials and combinations using the functions `lfactorial` and
 `lchoose` which calculate the natural logarithm of the factorial ($\log(x!)$) and
 binomial coefficient,
 $$
-\log \choose{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
+\log \binom{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
 $$
 Work with the logarithms of factorials or binomial coefficients since these numbers
 get large very quickly, and can result in `Inf` in intermediate calculations.
@@ -26,12 +30,15 @@ For example,
 ```{r}
 factorial(1000) / (factorial(998) * factorial(2))
 ```
-doesn't work since `factorial(1000) = Inf`, but can be calculated using log factorials,
+doesn't work since 
+```{r}
+factorial(1000)
+```
+But this can be calculated using log factorials,
 ```{r}
 exp(lfactorial(1000) - lfactorial(998) - lfactorial(2))
 ```
-Even better is to use `lchoose` or `choose` in R, which handle these sorts of numerical issues
-in the code,
+Even better is to use `lchoose` or `choose` in R, which are more robust since they were written to handle these sorts of numerical issues,
 ```{r}
 exp(lchoose(1000, 2))
 choose(1000, 2)

@@ -353,16 +353,20 @@ div.tocify {
 <h1>The Mathematics of Enigma</h1>
 <p><em>QSS</em>: Exercise 6.6.1</p>
 <p>When calculating factorials and combinations using the functions <code>lfactorial</code> and <code>lchoose</code> which calculate the natural logarithm of the factorial (<span class="math inline">\(\log(x!)\)</span>) and binomial coefficient, <span class="math display">\[
-\log \choose{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
+\log \binom{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
 \]</span> Work with the logarithms of factorials or binomial coefficients since these numbers get large very quickly, and can result in <code>Inf</code> in intermediate calculations. For example,</p>
 <pre class="r"><code>factorial(1000) / (factorial(998) * factorial(2))</code></pre>
 <pre><code>## Warning in factorial(1000): value out of range in &#39;gammafn&#39;</code></pre>
 <pre><code>## Warning in factorial(998): value out of range in &#39;gammafn&#39;</code></pre>
 <pre><code>## [1] NaN</code></pre>
-<p>doesn’t work since <code>factorial(1000) = Inf</code>, but can be calculated using log factorials,</p>
+<p>doesn’t work since</p>
+<pre class="r"><code>factorial(1000)</code></pre>
+<pre><code>## Warning in factorial(1000): value out of range in &#39;gammafn&#39;</code></pre>
+<pre><code>## [1] Inf</code></pre>
+<p>But this can be calculated using log factorials,</p>
 <pre class="r"><code>exp(lfactorial(1000) - lfactorial(998) - lfactorial(2))</code></pre>
 <pre><code>## [1] 499500</code></pre>
-<p>Even better is to use <code>lchoose</code> or <code>choose</code> in R, which handle these sorts of numerical issues in the code,</p>
+<p>Even better is to use <code>lchoose</code> or <code>choose</code> in R, which are more robust since they were written to handle these sorts of numerical issues,</p>
 <pre class="r"><code>exp(lchoose(1000, 2))</code></pre>
 <pre><code>## [1] 499500</code></pre>
 <pre class="r"><code>choose(1000, 2)</code></pre>
