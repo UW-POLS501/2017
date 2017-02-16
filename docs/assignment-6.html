@@ -352,6 +352,39 @@ div.tocify {
 <div id="the-mathematics-of-enigma" class="section level1">
 <h1>The Mathematics of Enigma</h1>
 <p><em>QSS</em>: Exercise 6.6.1</p>
+<p>When calculating factorials and combinations using the functions <code>lfactorial</code> and <code>lchoose</code> which calculate the natural logarithm of the factorial (<span class="math inline">\(\log(x!)\)</span>) and binomial coefficient, <span class="math display">\[
+\log \choose{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
+\]</span> Work with the logarithms of factorials or binomial coefficients since these numbers get large very quickly, and can result in <code>Inf</code> in intermediate calculations. For example,</p>
+<pre class="r"><code>factorial(1000) / (factorial(998) * factorial(2))</code></pre>
+<pre><code>## Warning in factorial(1000): value out of range in &#39;gammafn&#39;</code></pre>
+<pre><code>## Warning in factorial(998): value out of range in &#39;gammafn&#39;</code></pre>
+<pre><code>## [1] NaN</code></pre>
+<p>doesn’t work since <code>factorial(1000) = Inf</code>, but can be calculated using log factorials,</p>
+<pre class="r"><code>exp(lfactorial(1000) - lfactorial(998) - lfactorial(2))</code></pre>
+<pre><code>## [1] 499500</code></pre>
+<p>Even better is to use <code>lchoose</code> or <code>choose</code> in R, which handle these sorts of numerical issues in the code,</p>
+<pre class="r"><code>exp(lchoose(1000, 2))</code></pre>
+<pre><code>## [1] 499500</code></pre>
+<pre class="r"><code>choose(1000, 2)</code></pre>
+<pre><code>## [1] 499500</code></pre>
+<p>This is a reminder. A good rule of thumb if you don’t want to remember too much numerical methods is to use logarithms whenever you are using really big or really small numbers. Also, if you ever get <code>Inf</code> in a calculation, switch to the log scale.</p>
+<p>For part 5: an alternate approach is to return a 13 x 2 data frame. Then in part 6, expand it to a 52 x 2 data frame that maps all upper and lower case letters to their encoded value. Then join this data frame to a data frame with one column with in which each row is a letter of the method. …</p>
+<p>For part 6: the <strong>stringr</strong> function equivalents are</p>
+<ul>
+<li><code>str_replace</code> and <code>str_replace_all</code> to replace patterns</li>
+<li><code>str_to_upper</code> and <code>str_to_lower</code></li>
+<li><code>str_split(x, &quot;&quot;)[[1]]</code> will split a length one character vector with <code>n</code> characters into a character vector of length <code>n</code> in which each element is a character.</li>
+</ul>
+<pre class="r"><code>library(&quot;stringr&quot;)
+letters</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot;
+## [18] &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
+<pre class="r"><code>alphabet &lt;- str_c(letters, collapse = &quot;&quot;)
+alphabet</code></pre>
+<pre><code>## [1] &quot;abcdefghijklmnopqrstuvwxyz&quot;</code></pre>
+<pre class="r"><code>str_split(alphabet, &quot;&quot;)[[1]]</code></pre>
+<pre><code>##  [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot; &quot;g&quot; &quot;h&quot; &quot;i&quot; &quot;j&quot; &quot;k&quot; &quot;l&quot; &quot;m&quot; &quot;n&quot; &quot;o&quot; &quot;p&quot; &quot;q&quot;
+## [18] &quot;r&quot; &quot;s&quot; &quot;t&quot; &quot;u&quot; &quot;v&quot; &quot;w&quot; &quot;x&quot; &quot;y&quot; &quot;z&quot;</code></pre>
 </div>
 <div id="election-fraud-in-russia" class="section level1">
 <h1>Election Fraud in Russia</h1>

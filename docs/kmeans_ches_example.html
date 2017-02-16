@@ -345,10 +345,21 @@ div.tocify {
 
 
 <p>An EDA example applying the <a href="https://en.wikipedia.org/wiki/K-means_clustering">k-means clustering</a> and <a href="https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding">t-SNE</a> dimension reduction techniques to the 2014 <a href="http://chesdata.eu/">Chapel Hill Expert Survey</a> data on surveys on the party positioning of European political parties on integration, ideology and policy issues.</p>
-<p>Load the necessary pacakges</p>
-<pre class="r"><code>library(&quot;tidyverse&quot;)
-library(&quot;rio&quot;)
-library(&quot;Rtsne&quot;)</code></pre>
+<p>Load the necessary packages</p>
+<pre class="r"><code>library(&quot;tidyverse&quot;)</code></pre>
+<pre><code>## Loading tidyverse: ggplot2
+## Loading tidyverse: tibble
+## Loading tidyverse: tidyr
+## Loading tidyverse: readr
+## Loading tidyverse: purrr
+## Loading tidyverse: dplyr</code></pre>
+<pre><code>## Conflicts with tidy packages ----------------------------------------------</code></pre>
+<pre><code>## filter(): dplyr, stats
+## lag():    dplyr, stats</code></pre>
+<pre class="r"><code>library(&quot;rio&quot;)
+library(&quot;broom&quot;)
+library(&quot;Rtsne&quot;)
+library(&quot;stringr&quot;)</code></pre>
 <p>Load the CHES data</p>
 <pre class="r"><code>dataCH &lt;- import(&quot;data/2014_CHES.csv&quot;)</code></pre>
 <p>For the cluster and t-SNE algorithms we want to keep only those numeric variables related to party positioning (<code>vars</code>) and some party id variables:</p>
@@ -370,74 +381,74 @@ dataCH_vars &lt;- dataCH %&gt;% select(party_id, cname, party_name, one_of(vars)
 <pre class="r"><code>centers &lt;- 4
 kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
        centers = centers, nstart = 5)</code></pre>
-<pre><code>## K-means clustering with 4 clusters of sizes 44, 57, 78, 80
+<pre><code>## K-means clustering with 4 clusters of sizes 44, 57, 80, 78
 ## 
 ## Cluster means:
 ##   eu_position eu_dissent eu_benefit    eu_ep eu_intmark eu_cohesion
 ## 1    2.389194   1.996863   2.568869 2.968393   2.908017    3.705185
 ## 2    4.153943   2.773070   1.962211 4.958948   3.727671    5.204085
-## 3    6.047056   2.536206   1.180205 5.610004   5.910560    6.029702
-## 4    5.493400   2.593822   1.371643 5.071292   5.868365    5.882745
+## 3    5.493400   2.593822   1.371643 5.071292   5.868365    5.882745
+## 4    6.047056   2.536206   1.180205 5.610004   5.910560    6.029702
 ##   eu_foreign eu_turkey eu_budgets    lrgen   lrecon   galtan spendvtax
 ## 1   2.688768  1.948783   1.893197 7.911157 5.264667 8.693264  5.321761
 ## 2   3.571175  4.250593   2.587423 2.226722 1.982705 2.530869  2.220373
-## 3   5.729606  4.652448   4.694968 4.922581 5.360985 3.382431  5.191990
-## 4   5.354125  3.745708   4.336003 6.482457 6.431360 6.632375  6.198679
+## 3   5.354125  3.745708   4.336003 6.482457 6.431360 6.632375  6.198679
+## 4   5.729606  4.652448   4.694968 4.922581 5.360985 3.382431  5.191990
 ##   deregulation redistribution econ_interven civlib_laworder
 ## 1     4.501117       4.872223      4.679315        8.517753
 ## 2     1.978634       1.807453      1.889916        2.513582
-## 3     5.686451       4.852671      5.312217        4.058898
-## 4     6.355401       6.105061      6.117006        6.274532
+## 3     6.355401       6.105061      6.117006        6.274532
+## 4     5.686451       4.852671      5.312217        4.058898
 ##   sociallifestyle religious_principle immigrate_policy multiculturalism
 ## 1        8.447102            6.817141         8.521878         8.804171
 ## 2        1.964417            1.529283         2.723642         2.898950
-## 3        2.916684            2.893607         4.250413         3.990154
-## 4        6.224240            6.362533         6.220881         6.429315
+## 3        6.224240            6.362533         6.220881         6.429315
+## 4        2.916684            2.893607         4.250413         3.990154
 ##   urban_rural environment  regions international_security
 ## 1    6.499703    6.899471 5.274688               6.159152
 ## 2    3.651410    2.909611 4.080733               7.004876
-## 3    3.745920    5.095516 4.488529               4.166040
-## 4    5.572410    6.199997 4.537436               3.762982
+## 3    5.572410    6.199997 4.537436               3.762982
+## 4    3.745920    5.095516 4.488529               4.166040
 ##   ethnic_minorities nationalism
 ## 1          8.540225    8.894804
 ## 2          2.290810    3.478023
-## 3          3.685077    3.816403
-## 4          5.838546    6.394414
+## 3          5.838546    6.394414
+## 4          3.685077    3.816403
 ## 
 ## Clustering vector:
 ##   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18 
-##   2   2   2   2   3   3   3   4   4   3   1   2   1   3   3   4   2   4 
+##   2   2   2   2   4   4   4   3   3   4   1   2   1   4   4   3   2   3 
 ##  19  20  21  22  23  24  25  26  27  28  29  30  31  33  34  35  36  37 
-##   2   1   2   3   4   3   3   2   2   4   1   1   2   3   4   2   2   1 
+##   2   1   2   4   3   4   4   2   2   3   1   1   2   4   3   2   2   1 
 ##  38  39  40  41  42  43  44  45  47  48  49  50  51  52  53  54  55  56 
-##   1   3   2   1   3   4   2   4   3   2   2   4   2   3   2   2   3   2 
+##   1   4   2   1   4   3   2   3   4   2   2   3   2   4   2   2   4   2 
 ##  57  58  59  60  61  62  63  64  65  66  67  68  69  70  71  72  73  74 
-##   3   3   2   4   1   1   4   4   4   4   2   2   4   4   3   2   2   2 
+##   4   4   2   3   1   1   3   3   3   3   2   2   3   3   4   2   2   2 
 ##  75  76  77  78  79  80  81  82  83  84  85  86  88  89  90  91  92  93 
-##   2   2   1   4   4   4   3   2   4   1   2   4   4   4   3   4   3   2 
+##   2   2   1   3   3   3   4   2   3   1   2   3   3   3   4   3   4   2 
 ##  94  95  96  97  98  99 100 101 102 103 104 105 106 107 108 109 110 111 
-##   1   2   4   1   2   3   4   3   3   3   2   2   1   2   4   3   4   2 
+##   1   2   3   1   2   4   3   4   4   4   2   2   1   2   3   4   3   2 
 ## 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 
-##   4   2   4   1   2   3   1   1   3   4   4   2   1   3   3   1   2   2 
+##   3   2   3   1   2   4   1   1   4   3   3   2   1   4   4   1   2   2 
 ## 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 
-##   3   3   3   4   2   1   3   2   3   3   3   1   1   3   4   3   1   1 
+##   4   4   4   3   2   1   4   2   4   4   4   1   1   4   3   4   1   1 
 ## 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 
-##   3   3   4   2   4   3   4   3   1   4   4   3   3   3   3   4   3   1 
+##   4   4   3   2   3   4   3   4   1   3   3   4   4   4   4   3   4   1 
 ## 166 167 168 169 170 171 173 174 175 176 177 178 179 180 181 182 183 184 
-##   1   2   3   3   2   4   3   3   4   4   3   4   4   4   1   3   3   1 
+##   1   2   4   4   2   3   4   4   3   3   4   3   3   3   1   4   4   1 
 ## 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 
-##   3   3   1   4   3   1   4   1   4   4   4   4   3   4   1   4   4   4 
+##   4   4   1   3   4   1   3   1   3   3   3   3   4   3   1   3   3   3 
 ## 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 
-##   4   4   4   1   3   3   4   4   4   4   3   4   4   3   3   2   3   3 
+##   3   3   3   1   4   4   3   3   3   3   4   3   3   4   4   2   4   4 
 ## 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 238 239 
-##   4   3   1   3   3   3   1   1   2   1   2   4   2   1   2   3   4   2 
+##   3   4   1   4   4   4   1   1   2   1   2   3   2   1   2   4   3   2 
 ## 240 241 242 244 245 246 247 248 249 250 251 252 254 255 256 257 258 259 
-##   1   4   3   1   2   4   4   2   3   4   1   1   4   3   4   4   3   3 
+##   1   3   4   1   2   3   3   2   4   3   1   1   3   4   3   3   4   4 
 ## 260 263 264 265 266 267 268 
-##   3   4   4   2   4   4   3 
+##   4   3   3   2   3   3   4 
 ## 
 ## Within cluster sum of squares by cluster:
-## [1] 2160.417 2809.867 3342.377 3422.399
+## [1] 2160.417 2809.867 3422.399 3342.377
 ##  (between_SS / total_SS =  59.4 %)
 ## 
 ## Available components:
@@ -449,7 +460,7 @@ kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
 <pre class="r"><code>ches_kmeans &lt;- function(k) {
   kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
          centers = k, nstart = 5)
-         
+
 }
 centers &lt;- 2:10
 mod_kmeans &lt;- map(centers, ches_kmeans)</code></pre>
@@ -500,19 +511,19 @@ kmeans_ss %&gt;%
 <tbody>
 <tr class="odd">
 <td align="left">1</td>
-<td align="left">KF (den), CDU (ger), CSU (ger), ND (gre), PP (spa), CiU (spa), UMP (fra), FF (ire), FG (ire), UDC (it), FI (it), SVP (it), CD (it), NCD (it), CDA (net), CU (net), CONS (uk), PP (por), MPT (por), OVP (aus), KESK (fin), KD (fin), KDU-CSL (cze), LKS (lat), ZZS (lat), NSL (lat), LRA (lat), TS-LKD (lith), LVZS (lith), LLRA (lith), TT (lith), PiS (pol), PSL (pol), PR (pol), PSD (rom), PC (rom), UNPR (rom), Smer-SD (slo), SMK-MKP (slo), KDH (slo), OLaNO (slo), NOVA (slo), Siet (slo), SDS (sle), SLS (sle), NSI (sle), HDZ (cro), HSS (cro), HDSSB (cro), AKP (tur), KrF (nor), CVP/PVC (swi), EVP/PEV (swi), BDP (swi), CSV (lux), EVROKO (cyp), DIKO (cyp), EDEK (cyp)</td>
+<td align="left">KF (den), CDU (ger), CSU (ger), ND (gre), PP (spa), CiU (spa), CC (spa), UMP (fra), NC (fra), AC (fra), FF (ire), FG (ire), UDC (it), FI (it), SVP (it), CD (it), NCD (it), CDA (net), CU (net), CONS (uk), PP (por), MPT (por), OVP (aus), KESK (fin), KD (fin), KDU-CSL (cze), LKS (lat), ZZS (lat), NSL (lat), LRA (lat), TS-LKD (lith), LVZS (lith), LLRA (lith), TT (lith), PSL (pol), PR (pol), PSD (rom), PC (rom), UNPR (rom), Smer-SD (slo), SMK-MKP (slo), KDH (slo), OLaNO (slo), NOVA (slo), Siet (slo), SDS (sle), SLS (sle), NSI (sle), HDZ (cro), HSS (cro), AKP (tur), KrF (nor), CVP/PVC (swi), EVP/PEV (swi), BDP (swi), CSV (lux), EVROKO (cyp), DIKO (cyp), EDEK (cyp)</td>
 </tr>
 <tr class="even">
 <td align="left">2</td>
-<td align="left">PS (bel), ECOLO (bel), Groen (bel), PVDA (bel), SF (den), EL (den), FolkB (den), Linke (ger), Piraten (ger), SYRIZA (gre), KKE (gre), IU (spa), BNG (spa), ICV (spa), Amaiur (spa), Podemos (spa), PCF (fra), EELV (fra), PG (fra), Ens (fra), GP (ire), SF (ire), SP (ire), PBPA (ire), RC (it), SEL (it), M5S (it), SP (net), PvdD (net), GREEN (uk), CDU (por), BE (por), GRUNE (aus), VAS (fin), V (swe), MP (swe), FI (swe), KSCM (cze), ZL (sle), HL-SR (cro), ORaH (cro), HDP (tur), SV (nor), SP/PS (swi), GPS/PES (swi), AKEL (cyp)</td>
+<td align="left">MR (bel), VLD (bel), CD&amp;V (bel), N-VA (bel), V (den), LA (den), FDP (ger), C’s (spa), MODEM (fra), PRV (fra), SC (it), VVD (net), PSD (por), NEOS (aus), KOK (fin), RKP/SFP (fin), C (swe), FP (swe), M (swe), KD (swe), SDS (bul), DSB (bul), GERB (bul), DBG (bul), ODS (cze), TOP09 (cze), ANO2011 (cze), SVOBODNI (cze), IRL (est), ER (est), EVE (est), V (lat), LRLS (lith), PO (pol), PDL (rom), PNL (rom), UDMR (rom), PMP (rom), PLR (rom), SDKU-DS (slo), SaS (slo), MH (slo), HSLS (cro), H (nor), FDP/PLR (swi), PN (mal), DP (lux), DISY (cyp)</td>
 </tr>
 <tr class="odd">
 <td align="left">3</td>
-<td align="left">MR (bel), VLD (bel), CD&amp;V (bel), N-VA (bel), V (den), LA (den), FDP (ger), CC (spa), C’s (spa), MODEM (fra), NC (fra), PRV (fra), AC (fra), SC (it), VVD (net), PSD (por), NEOS (aus), KOK (fin), RKP/SFP (fin), C (swe), FP (swe), M (swe), KD (swe), SDS (bul), DSB (bul), GERB (bul), DBG (bul), ODS (cze), TOP09 (cze), ANO2011 (cze), SVOBODNI (cze), IRL (est), ER (est), EVE (est), V (lat), LRLS (lith), PO (pol), PDL (rom), PNL (rom), UDMR (rom), PMP (rom), PLR (rom), SDKU-DS (slo), SaS (slo), MH (slo), HSLS (cro), H (nor), FDP/PLR (swi), PN (mal), DP (lux), DISY (cyp)</td>
+<td align="left">PS (bel), ECOLO (bel), Groen (bel), PVDA (bel), SF (den), EL (den), FolkB (den), Linke (ger), Piraten (ger), SYRIZA (gre), KKE (gre), IU (spa), BNG (spa), ICV (spa), Amaiur (spa), Podemos (spa), PCF (fra), EELV (fra), PG (fra), Ens (fra), GP (ire), SF (ire), SP (ire), PBPA (ire), RC (it), SEL (it), M5S (it), SP (net), PvdD (net), GREEN (uk), CDU (por), BE (por), GRUNE (aus), VAS (fin), V (swe), MP (swe), FI (swe), KSCM (cze), ZL (sle), HL-SR (cro), ORaH (cro), HDP (tur), SV (nor), SP/PS (swi), GPS/PES (swi), AKEL (cyp)</td>
 </tr>
 <tr class="even">
 <td align="left">4</td>
-<td align="left">VB (bel), PP (bel), DF (den), NPD (ger), AfD (ger), LAOS (gre), ANEL (gre), XA (gre), FN (fra), MPF (fra), LN (it), Fdl (it), SGP (net), PVV (net), UKIP (uk), FPO (aus), BZO (aus), TeamStronach (aus), PS (fin), SD (swe), VMRO-BND (bul), ATAKA (bul), NFSB (bul), BBT (bul), USVIT (cze), Fidesz (hun), JOBBIK (hun), DK (lith), KNP (pol), SP (pol), PP-DD (rom), SNS (slo), HSP (cro), HSP-AS (cro), MHP (tur), Sp (nor), SVP/UDC (swi), EDU/UDF (swi), LdT (swi)</td>
+<td align="left">VB (bel), PP (bel), DF (den), NPD (ger), AfD (ger), LAOS (gre), ANEL (gre), XA (gre), FN (fra), MPF (fra), LN (it), Fdl (it), SGP (net), PVV (net), UKIP (uk), FPO (aus), BZO (aus), TeamStronach (aus), PS (fin), SD (swe), VMRO-BND (bul), ATAKA (bul), NFSB (bul), BBT (bul), USVIT (cze), Fidesz (hun), JOBBIK (hun), DK (lith), PiS (pol), KNP (pol), SP (pol), PP-DD (rom), SNS (slo), HDSSB (cro), HSP (cro), HSP-AS (cro), MHP (tur), Sp (nor), SVP/UDC (swi), EDU/UDF (swi), LdT (swi)</td>
 </tr>
 <tr class="odd">
 <td align="left">5</td>
@@ -521,8 +532,14 @@ kmeans_ss %&gt;%
 </tbody>
 </table>
 <p>A visual method to hep understand multidimensional data is a <a href="https://en.wikipedia.org/wiki/Parallel_coordinates">parallel coordinates plot</a>. The function <code>ggparcoord</code> in the package <strong>GGally</strong> can be used to produce them. In the plot, each line represents an observation, and the lines are colored by their cluster from the previous k-means results.</p>
-<pre class="r"><code>require(&quot;GGally&quot;)
-ggparcoord(augment(mod_kmeans[[4]], dataCH_vars),
+<pre class="r"><code>require(&quot;GGally&quot;)</code></pre>
+<pre><code>## Loading required package: GGally</code></pre>
+<pre><code>## 
+## Attaching package: &#39;GGally&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     nasa</code></pre>
+<pre class="r"><code>ggparcoord(augment(mod_kmeans[[4]], dataCH_vars),
            columns = vars, groupColumn = &quot;.cluster&quot;,
            order = &quot;anyClass&quot;, alphaLines = 0.3) +
   geom_line() +

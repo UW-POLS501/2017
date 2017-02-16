@@ -9,11 +9,13 @@ knitr::opts_chunk$set(cache = TRUE, autodep = TRUE)
 
 An EDA example applying the [k-means clustering](https://en.wikipedia.org/wiki/K-means_clustering) and [t-SNE](https://en.wikipedia.org/wiki/T-distributed_stochastic_neighbor_embedding) dimension reduction techniques to the 2014 [Chapel Hill Expert Survey](http://chesdata.eu/) data on surveys on the party positioning of European political parties on integration, ideology and policy issues.
 
-Load the necessary pacakges
-```{r}
+Load the necessary packages
+```{r cache=FALSE}
 library("tidyverse")
 library("rio")
+library("broom")
 library("Rtsne")
+library("stringr")
 ```
 
 Load the CHES data
@@ -56,7 +58,7 @@ Instead of a for loop, I'll use the `map` functional, which will run
 ches_kmeans <- function(k) {
   kmeans(select(dataCH_vars, -party_name, -cname, -party_id),
          centers = k, nstart = 5)
-         
+
 }
 centers <- 2:10
 mod_kmeans <- map(centers, ches_kmeans)
@@ -69,7 +71,7 @@ in which each element is a `kmeans` object,
 ```{r}
 map_chr(mod_kmeans, class)
 ```
-For example, the first object is 
+For example, the first object is
 ```{r}
 str(mod_kmeans[[1]])
 ```
@@ -84,7 +86,7 @@ kmeans_ss %>%
   geom_point() + geom_line() +
   scale_x_continuous(breaks = unique(kmeans_ss$ncluster))
 ```
-Generally in clustering and other dimension reduction algorithms, a good 
+Generally in clustering and other dimension reduction algorithms, a good
 choice for the number of clustering or dimensions is the "elbow" of the curve,
 where the initial sleep improvment in performance starts to level off.
 In this case, five clusters seems to be a good choice.
@@ -127,4 +129,3 @@ bind_cols(dataCH_vars,
   ggplot(aes(x = V1, y = V2, colour = lrgen, label = party_name)) +
   geom_text(alpha = 1)
 ```
-

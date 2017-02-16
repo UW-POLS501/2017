@@ -13,6 +13,54 @@ Start your assignment using this [template](files/assignment6.Rmd).
 
 *QSS*: Exercise 6.6.1
 
+
+When calculating factorials and combinations using the functions `lfactorial` and
+`lchoose` which calculate the natural logarithm of the factorial ($\log(x!)$) and
+binomial coefficient,
+$$
+\log \choose{n}{k} = \log (n!) - \log(k!) - \log ((n - k)!)
+$$
+Work with the logarithms of factorials or binomial coefficients since these numbers
+get large very quickly, and can result in `Inf` in intermediate calculations.
+For example,
+```{r}
+factorial(1000) / (factorial(998) * factorial(2))
+```
+doesn't work since `factorial(1000) = Inf`, but can be calculated using log factorials,
+```{r}
+exp(lfactorial(1000) - lfactorial(998) - lfactorial(2))
+```
+Even better is to use `lchoose` or `choose` in R, which handle these sorts of numerical issues
+in the code,
+```{r}
+exp(lchoose(1000, 2))
+choose(1000, 2)
+```
+This is a reminder. A good rule of thumb if you don't want to remember too much numerical methods
+is to use logarithms whenever you are using really big or really small numbers.
+Also, if you ever get `Inf` in a calculation, switch to the log scale.
+
+For part 5: an alternate approach is to return a 13 x 2 data frame.
+Then in part 6, expand it to a 52 x 2 data frame that maps all upper and lower
+case letters to their encoded value.
+Then join this data frame to a data frame with one column with in which each row is
+a letter of the method. ...
+
+For part 6: the **stringr** function equivalents are
+
+- `str_replace` and `str_replace_all` to replace patterns
+- `str_to_upper` and `str_to_lower`
+- `str_split(x, "")[[1]]` will split a length one character vector with `n` characters into a
+   character vector of length `n` in which each element is a character.
+
+```{r}
+library("stringr")
+letters
+alphabet <- str_c(letters, collapse = "")
+alphabet
+str_split(alphabet, "")[[1]]
+```
+
 # Election Fraud in Russia
 
 *QSS* Exercise 6.6.3
