@@ -1,0 +1,42 @@
+---
+title: "Assignment 7"
+author: "Firstname Lastname"
+date: "2/21/2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Prerequisites
+
+Load any packages that you use here:
+```{r message=FALSE}
+library("tidyverse")
+SS_GITHUB_URL <- "https://raw.githubusercontent.com/kosukeimai/qss/master/"
+```
+
+## The Mathematics of Enigma
+
+*QSS*: Exercise 6.6.1
+
+```{r}
+chinawomen <- read_csv(paste0(QSS_GITHUB_URL, "UNCERTAINTY/chinawomen.csv"))
+```
+
+### Part 1
+
+...
+
+## Election Fraud in Russia
+
+*QSS*: Exercise 6.6.3
+
+```{r}
+nazis <- read_csv(paste0(QSS_GITHUB_URL, "UNCERTAINTY/nazis.csv"))
+```
+
+### Part 1
+
+...

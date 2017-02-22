@@ -541,7 +541,9 @@ glimpse(wdi_series)</code></pre>
 <p>Okay, now you’re back and you have some idea of what a character encoding is: it is a mapping from a number to the character (glyph) to display. There are lots of them. The world has more or less settled on one called <a href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>, but there are still many files of different encodings floating around. This appears to be one of them. By default, <code>read_csv</code> reads the data using UTF-8, and the <code>locale</code> argument controls several settings, including the encoding to use. So, to load this data, I need to figure out two things (1) what encoding the data is in, and (2) how to use <code>locale()</code></p>
 <p>There is no perfect way to tell the character encoding of a file. When reading a file, a program can tell its <em>not</em> a certain encoding if it encounters a byte pattern that isn’t used by that encoding. But there’s no sure way to tell if it is a certain encoding. The way this is “solved” is using an algorithm that guesses the encoding using some hueristics. The <strong>readr</strong> package includes the function <code>guess_encoding</code>:</p>
 <pre class="r"><code>guess_encoding(wdi(&quot;Series&quot;))</code></pre>
-<pre><code>##     encoding confidence
+<pre><code>## # A tibble: 2 × 2
+##     encoding confidence
+##        &lt;chr&gt;      &lt;dbl&gt;
 ## 1 ISO-8859-1       0.72
 ## 2 ISO-8859-2       0.22</code></pre>
 <p>It guesses it is either <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-1">ISO-8859-1</a> (Latin1) or <a href="https://en.wikipedia.org/wiki/ISO/IEC_8859-2">ISO-8859-2</a> (Latin2) After reading the Wikipodia pages on them, we know these are encodings that also include the accented Latin letters and other letters used in European languages that use the Latin alphabet.</p>
@@ -585,7 +587,9 @@ wdi_series &lt;- read_csv(wdi(&quot;Series&quot;), locale = locale_latin1)</code
 <p>They should read “Republic of Côte d’Ivoire”, “Curaçao”, and “Democratic Republicn of São Tomé and Principé”), but instead they have symbols like <code>\xf4</code>. A leading <code>\x</code> usually refers to a <a href="https://en.wikipedia.org/wiki/Hexadecimal">hexadecimal number</a>. In this case it is the hexadecimal number of the character which the encoding can’t recognize. Often, googling for these hexadecimal numbers will let you figure out what it should be, and perhaps the encoding (you probably aren’t the first person to encounter that problem). Other ways in which encoding problems are indicated (not in R) could be with a leading <code>\u</code> for a unicode character, or the use of the symbol � or the empty box (for missing emoji).</p>
 <p>To figure out what the encoding is, I’ll again use <code>guess_encoding</code>:</p>
 <pre class="r"><code>guess_encoding(wdi(&quot;Country&quot;))</code></pre>
-<pre><code>##       encoding confidence
+<pre><code>## # A tibble: 2 × 2
+##       encoding confidence
+##          &lt;chr&gt;      &lt;dbl&gt;
 ## 1 windows-1252       0.56
 ## 2 windows-1250       0.22</code></pre>
 <p>This file is guessed to be <a href="https://en.wikipedia.org/wiki/Windows-1252">Windows-1252</a> (sometimes called CP-1252 where CP stands for “code point”). But that is different than the previous file, which was encoded as ISO-1859-1.</p>
@@ -595,29 +599,41 @@ wdi_series &lt;- read_csv(wdi(&quot;Series&quot;), locale = locale_latin1)</code
   print(guess_encoding(filename))
 }</code></pre>
 <pre><code>## data/WDI/WDI_Country.csv 
+## # A tibble: 2 × 2
 ##       encoding confidence
+##          &lt;chr&gt;      &lt;dbl&gt;
 ## 1 windows-1252       0.56
 ## 2 windows-1250       0.22
 ## data/WDI/WDI_CS_Notes.csv 
+## # A tibble: 2 × 2
 ##       encoding confidence
+##          &lt;chr&gt;      &lt;dbl&gt;
 ## 1 windows-1252       0.50
 ## 2 windows-1250       0.22
 ## data/WDI/WDI_Data.csv 
 ##   encoding confidence
 ## 1    ASCII          1
 ## data/WDI/WDI_Description.csv 
+## # A tibble: 2 × 2
 ##     encoding confidence
+##        &lt;chr&gt;      &lt;dbl&gt;
 ## 1 ISO-8859-1       0.71
 ## 2 ISO-8859-2       0.23
 ## data/WDI/WDI_Footnotes.csv 
+## # A tibble: 1 × 2
 ##     encoding confidence
+##        &lt;chr&gt;      &lt;dbl&gt;
 ## 1 ISO-8859-1       0.46
 ## data/WDI/WDI_Series.csv 
+## # A tibble: 2 × 2
 ##     encoding confidence
+##        &lt;chr&gt;      &lt;dbl&gt;
 ## 1 ISO-8859-1       0.72
 ## 2 ISO-8859-2       0.22
 ## data/WDI/WDI_ST_Notes.csv 
+## # A tibble: 1 × 2
 ##     encoding confidence
+##        &lt;chr&gt;      &lt;dbl&gt;
 ## 1 ISO-8859-1       0.75</code></pre>
 <p>Bug after reading through the Wikpedia page and some additional Googling, I learn that Windows-1252 is a <em>superset</em> of ISO-1859-1. This means that we lose nothing by specifying Windows-1252, and a few files must use one of the characters that appears in Windows-1252 and not ISO-1859-1. So I can set the encoding to <code>Windows-1252</code> for all the CSV files.</p>
 <p>This may seem terribly complicated, and I don’t envy the engineers who have had to figure out and maintain all this. But, what you just learned will cover 99% of all your encoding issues as long as you are working with English or Western European language texts.</p>
@@ -1232,17 +1248,17 @@ vdem_file &lt;- file.path(vdem_dir, &quot;V-Dem-DS-CY-v6.2.csv&quot;)</code></pr
 ## )</code></pre>
 <pre><code>## See spec(...) for full column specifications.</code></pre>
 <pre><code>## Warning: 4015 parsing failures.
-##  row           col               expected           actual
-## 1014 v2clrgwkch_15 no trailing characters .142857149243355
-## 1015 v2clrgwkch_15 no trailing characters .142857149243355
-## 1016 v2clrgwkch_15 no trailing characters .142857149243355
-## 1017 v2clrgwkch_15 no trailing characters .142857149243355
-## 1018 v2clrgwkch_15 no trailing characters .142857149243355
-## .... ............. ...................... ................
+##  row           col               expected           actual                                                    file
+## 1014 v2clrgwkch_15 no trailing characters .142857149243355 &#39;data/Country_Year_V-Dem_CSV_v6.2/V-Dem-DS-CY-v6.2.csv&#39;
+## 1015 v2clrgwkch_15 no trailing characters .142857149243355 &#39;data/Country_Year_V-Dem_CSV_v6.2/V-Dem-DS-CY-v6.2.csv&#39;
+## 1016 v2clrgwkch_15 no trailing characters .142857149243355 &#39;data/Country_Year_V-Dem_CSV_v6.2/V-Dem-DS-CY-v6.2.csv&#39;
+## 1017 v2clrgwkch_15 no trailing characters .142857149243355 &#39;data/Country_Year_V-Dem_CSV_v6.2/V-Dem-DS-CY-v6.2.csv&#39;
+## 1018 v2clrgwkch_15 no trailing characters .142857149243355 &#39;data/Country_Year_V-Dem_CSV_v6.2/V-Dem-DS-CY-v6.2.csv&#39;
+## .... ............. ...................... ................ .......................................................
 ## See problems(...) for more details.</code></pre>
 <p>with <code>read_csv</code> there are a lot of parsing errors. The trailing characters is likely because the</p>
 <pre class="r"><code>problems(vdem)</code></pre>
-<pre><code>## # A tibble: 4,015 × 4
+<pre><code>## # A tibble: 4,015 × 5
 ##      row           col               expected           actual
 ##    &lt;int&gt;         &lt;chr&gt;                  &lt;chr&gt;            &lt;chr&gt;
 ## 1   1014 v2clrgwkch_15 no trailing characters .142857149243355
@@ -1255,7 +1271,7 @@ vdem_file &lt;- file.path(vdem_dir, &quot;V-Dem-DS-CY-v6.2.csv&quot;)</code></pr
 ## 8   1021 v2clrgwkch_15 no trailing characters .142857149243355
 ## 9   1022 v2clrgwkch_15 no trailing characters .111111111938953
 ## 10  1023 v2clrgwkch_15 no trailing characters .111111111938953
-## # ... with 4,005 more rows</code></pre>
+## # ... with 4,005 more rows, and 1 more variables: file &lt;chr&gt;</code></pre>
 <p>What are the primary VDEM indices? Subset the data to include only those indices and country and year identifiers.</p>
 <p>Merge the VDEM and WDI data. What does VDEM use as its country-level indicator? What does the WDI use? Note: The <strong>countrycode</strong> package may be useful here.</p>
 </div>

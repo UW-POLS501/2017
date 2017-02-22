@@ -1,0 +1,22 @@
+---
+title: "POLS 501: Assignment 7"
+date: February 21, 2017
+---
+
+Submit your assignment via Canvas. Your submission should consist of two files: an R markdown file and the compiled HTML or PDF file produced by R markdown.
+
+Start your assignment using this [template](files/assignment7.Rmd).
+
+```{r include=FALSE}
+knitr::opts_chunk$set(cache=TRUE, autodep=TRUE)
+```
+
+# Sex Ratio and the Price of Agricultural Crops in China
+
+*QSS*: Exercise 7.5.1
+
+
+# Analysis of the 1932 German Election during the Weimar Republic
+
+
+*QSS* Exercise 7.5.2  
