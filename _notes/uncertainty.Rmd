@@ -1,0 +1,139 @@
+# Uncertainty
+
+
+## Estimation
+
+### Unbiasedness and Consistency
+
+
+*Simple random sampling* and sampling distributions
+
+How good is an estimate?
+
+$$
+\text{estimation error} = \text{estimate} - \text{truth} = \bar{X}_n - p
+$$
+
+Need to look at the sampling distribution of the estimator
+$$
+bias = E(\text{estimation error}} = E(\text{estimate} - \text{truth}) = E(\bar{X}_n) - p = p - p = 0
+$$
+
+- **unbiased**: expectation equals parameter
+- **consistent**: converges to the parameter as the sample size increases
+
+Difference in means estimator is both an unbiased estimator of the SATE and PATE
+
+
+### Standard error
+
+Then discuss the **variance** and  **RMSE** of an estimator
+
+- Standard error of the mean
+- Standard error of the sample proportion
+- Standard error of the difference in means
+
+
+### Confidence Interval
+
+Problem: we want to know the sampling distribution of the distribution, but we don't know the population parameters
+
+But we can approximate the sampling distribution of the estimator.
+The CLT helps.
+
+$$
+\bar{X}_n \approx N(E(X), \frac{V(X)}{n})
+$$
+
+Sampling distribution with plug-in standard deviation
+
+**Confidence interval and coverage rates**
+
+
+### Margin of Error and Sample Size Calculation in Polls
+
+- Proportion standard error
+- Margin of error formula
+- Sample size calculation
+
+**NOTE** Note about the bias in polls and how coverage rate and standard error differs from the **actual** uncertainty
+of the polls
+
+### Analysis of Randomized Controlled Trials
+
+- Mean CI for each group
+- CI for the **difference** of groups
+
+
+### Analysis based on Student's t Distribution
+
+- Motivate the problem with simulations
+- Formula for Student's t
+
+## Hypothesis Testing
+
+
+### Lady Tasting Tea Experiment
+
+
+### General Framework
+
+Statistical hypothesis testing is *proof by contradiction*.
+
+
+- Table of Type I and Type II Errors
+- Test statistic and sampling distribution
+
+If insignificant "fail to reject the null hypothesis"  or "retain the null hypothesis"
+
+"Statistical hypothesis testing" provides "empirical support" for scientific theories.
+
+- **Fisher's exact test**
+- One sample tests
+
+    - mean
+    - proportion
+
+- Two sample tests
+    - difference of means
+    - difference of proportions
+
+### Pitfalls of Hypothesis Testing
+
+Multiple testing problem
+
+### Power Analysis
+
+- `power.t.test`
+- `power.prop.test`
+
+
+## Linear Regression Model with uncertainty
+
+### Linear Regression as a Generative Model
+
+- Linear regression population equation
+- conditional expectation
+
+### Unbiasedness of Estimated Coefficients
+
+- Omitted Variable Bias
+- Law of iterated Expectation
+
+### Standard Errors of Estimated Coefficients
+
+- Homoskedastic errors
+- Law of total variance
+- standard error of $\hat{\beta}$
+
+### Inference about coefficients
+
+- Confidence intervals
+- Hypothesis testing
+
+
+### Inference about predictions
+
+- Standard error of $\hat{Y}$
+- Confidence interval of $\hat{Y}$
+- Standard error of the difference in $Y$

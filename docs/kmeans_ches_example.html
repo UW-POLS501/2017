@@ -526,8 +526,14 @@ kmeans_ss %&gt;%
 </tbody>
 </table>
 <p>A visual method to hep understand multidimensional data is a <a href="https://en.wikipedia.org/wiki/Parallel_coordinates">parallel coordinates plot</a>. The function <code>ggparcoord</code> in the package <strong>GGally</strong> can be used to produce them. In the plot, each line represents an observation, and the lines are colored by their cluster from the previous k-means results.</p>
-<pre class="r"><code>require(&quot;GGally&quot;)
-ggparcoord(augment(mod_kmeans[[4]], dataCH_vars),
+<pre class="r"><code>require(&quot;GGally&quot;)</code></pre>
+<pre><code>## Loading required package: GGally</code></pre>
+<pre><code>## 
+## Attaching package: &#39;GGally&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:dplyr&#39;:
+## 
+##     nasa</code></pre>
+<pre class="r"><code>ggparcoord(augment(mod_kmeans[[4]], dataCH_vars),
            columns = vars, groupColumn = &quot;.cluster&quot;,
            order = &quot;anyClass&quot;, alphaLines = 0.3) +
   geom_line() +

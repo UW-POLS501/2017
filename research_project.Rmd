@@ -8,7 +8,7 @@ See the [schedule](schedule.html) for due dates.
 # Draft Proposal   {#draft-proposal}
 
 In one to two paragraphs propose a research project for this course.
-State your research question. 
+State your research question.
 Describe what data you will be using to address that question.
 If you were in POLS 500, will this be a continuation of your POLS 500 final project?
 
@@ -21,23 +21,23 @@ Turn in as a `.pdf` file via [Canvas](https://canvas.uw.edu/courses/1098109/assi
 # Research Proposal    {#proposal}
 
 In one to two paragraphs propose a research project for this course.
-State your research question. 
+State your research question.
 Describe what data you will be using to address that question.
 
 1. Address any comments from the first proposal.
-2. What is your research question or puzzle? 
+2. What is your research question or puzzle?
 3. Is the research question descriptive, causal, or predictive?
 4. What is the outcome variable of interest? What are the explanatory variables?
-5. What data will you be using? What is the location of the data (include links to the data). 
+5. What data will you be using? What is the location of the data (include links to the data).
    Will your data be coming from one of many sources?
-   What format(s) are the data in? 
+   What format(s) are the data in?
    How do you intend to operationalize the concepts in your question with the data
    at hand?
 6. What issues are you having or expect to have in getting and cleaning this data?
 
-Try to answer these questions as best as possible. 
+Try to answer these questions as best as possible.
 If you don't know, state it; we'll discuss it.
-If you are having problems describe them; that's why item 6 is there. 
+If you are having problems describe them; that's why item 6 is there.
 Research projects are an iterative and stochastic process; the purpose of these
 assignments is to focus you on certain parts, find the problems and overcome them.
 
@@ -65,7 +65,7 @@ Some questions that should be answered:
 - How do the variables in your data set relate to the variables in your theory? In other words, how are you operationalizing your concepts? Justify that operationalization, and acknowledge any shortcomings of it.
 - What was the sampling process for your sample of observations?
 - What is the number of observations for your data?
-- Are there any missing values in the variables of interest? 
+- Are there any missing values in the variables of interest?
 - Are there any outliers in the variables of interest?
 - Provide a summary statistic table in the format common to social science journals: non-missing observations, mean, standard deviation, min max. Find a recent journal article for how these are formatted.
 - For *at least* the outcome variable(s) and the covariates of interest, visualize their distributions using the appropriate data visualization methods.
@@ -82,7 +82,7 @@ In your submission you must include the document and any code and data needed to
 
 Address any comments from [Data Analys 2](#data-analysis2).
 
-For all explanatory variables of interest, characterize the unconditional 
+For all explanatory variables of interest, characterize the unconditional
 relationship between it and the outcome variable(s) of interest.
 Use visual methods and linear regression.
 
@@ -96,9 +96,9 @@ If your analysis has a causal question:
   at least one possible confounder that you don't have a measure for.
 - Account for these confounding variables in two ways:
 
-  - dividing your regression 
+  - dividing your regression
   - controlling for them in the regression
-  
+
 If your analysis is a predictive question:
 
 - Compare the model fits of the following models using adjusted R squared or cross-validation.
@@ -113,11 +113,11 @@ If there is other quantitative analysis that you think better answers your resea
 All methods are in service of answering the question, not vice versa.
 
 For this assingment, you should not be worrying about uncertainty.
-Focus on using methods that match the question you are answering. 
-In the next assignment(s) you will be asked to consider uncertainty in your 
+Focus on using methods that match the question you are answering.
+In the next assignment(s) you will be asked to consider uncertainty in your
 analysis due to sampling.
 
-Submission instructions: submit a **zip** file of the directory containing **all** your code and data to reproduce your analysis. Follow the submission 
+Submission instructions: submit a **zip** file of the directory containing **all** your code and data to reproduce your analysis. Follow the submission
 templates.
 
 **Note**: You must submit a zip file even if you shared a Dropbox folder.
@@ -129,15 +129,16 @@ The reason for requiring a snapshot is a worry about further work after submissi
 
 # Data Analysis 4: Hypothesis Testing   {#data-analysis-4}
 
-*DRAFT*
+Address theoretical, data, and methodological issues from the previous data analysis assignments.
 
-Addressing uncertainty: confidence intervals, hypothesis testing, and cross-validation.
+In addition, consider the uncertainty of your results using confidence intervals, p-values, and cross-validation.
+
+Write up your analysis in a readable document. This can either be a R markdown file or a Word, LaTeX, or PDF file with a separate R script to produce the results. Whatever your preferred method, it must be clear to the reader where to look for your analysis, and the analysis must be written for an outsider reader to understand.
 
 
-# Draft Paper    {#draft}
+**Note**: Upload a zip file of your entire project directory as a zip file to canvas.  This should include all code and data necessary to reproduce your results, and should follow the project template guidelines.
 
-The draft should be in the same format as the final paper.
-
+Upload a zip file even if you have shared your Dropbox folder with us. This is to provide a snapshot of the project at the time of submission that the instructors can comment on without disrupting your continued work on your project.
 
 # Final Paper    {#final}
 
@@ -166,7 +167,7 @@ If there are issues of confidentiality or privacy that prevent the author from d
 
 ## Formatting Guidelines
 
-Templates which follow the formatting guidelines are available for: 
+Templates which follow the formatting guidelines are available for:
 
 - [Word](https://github.com/jrnold/psmanuscripts/raw/master/templates/manuscript.docx)
 - [LaTeX](https://github.com/jrnold/psmanuscripts/raw/master/templates/manuscript.tex)
@@ -185,7 +186,7 @@ The abstract should concisely state the literature to which the paper contribute
 
 The manuscript should present its content as efficiently as possible.
 It should **not** contain a literature review.
-State the research puzzle, your theory, and how it compares to previous approaches. 
+State the research puzzle, your theory, and how it compares to previous approaches.
 Cite the directly relevant works where necessary to support your argument.
 It should not contain a table of contents like paragraph at the end of the introduction.
 
@@ -222,7 +223,7 @@ In particular, the main text should include the main specifications with robustn
 
 Explanatory footnotes may be included but should not be used for simple citations.
 Simple citations should be made in-line in author-year format.
-Do not use end notes. 
+Do not use end notes.
 Do not use acronyms or computational abbreviations when discussing variables in the text.
 All variables that appear in tables or figures should be described in appropriate detail in the text.
 
@@ -233,11 +234,11 @@ Citations should be in the author-year format, and references should follow the 
 It is best to start getting used to using a [reference manager](https://en.wikipedia.org/wiki/Reference_management_software) such as [Zotero](https://www.zotero.org/), [Mendeley](https://www.mendeley.com/), [Papers](http://papersapp.com/), [Colwiz](https://www.colwiz.com/), [Endnote](http://endnote.com/), or BibTeX (with [JabRef](http://www.jabref.org/)]).
 These both store references and format citations and references according to specified styles.
 
-### Data citation 
+### Data citation
 
 All data used in the paper must be cited.
 Citations must include enough information for readers to find the original sources, and for those original sources to be consistently identified in the future.
-Data citations should appear in the the manuscript's reference list, contain the name or title of the data set, the author(s), version, date of creation, and a persistent data identifier, such as a DOI, if one is available. 
+Data citations should appear in the the manuscript's reference list, contain the name or title of the data set, the author(s), version, date of creation, and a persistent data identifier, such as a DOI, if one is available.
 If a persistent identifier is not available, include a URI if one is available.
 
 
