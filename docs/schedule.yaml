@@ -192,4 +192,6 @@ weeks:
     - "Leifeld, P. 2013 Nov 13. \"[texreg: Conversion of Statistical Model Output in R to LATEX and HTML Tables](http://dx.doi.org/10.18637/jss.v055.i08)\". *Journal of Statistical Software*."
     - "Kastellec, Jonathan P., and Eduardo L. Leoni. 2007. \"[Using Graphs Instead of Tables in Political Science](https://dx.doi.org/10.1017/S1537592707072209).\" *American Journal of Political Science.*"
     - "*Political Analysis* \"Instructions to Authors\" section [Tables and Figures](https://academic.oup.com/pan/pages/Instructions_To_Authors)."
+    class:
+    - "[p-values and Multiple Comparisons](files/multiple_comparisons_regression.R)"
   - date: 2017-03-10
