@@ -128,3 +128,15 @@ Sources used in GOV 2000 (harvard)
 10. Indiscriminate Insurgent Attacks
 11. Card Krueger 2009
 
+
+### Ideas
+
+Interactions
+
+- Friedrich, Robert J. 1982. “In Defense of Multiplicative Terms in Multiple
+Regression Equations.” American Journal of Political Science
+24(4):797-833.
+- Braumoeller, Bear. 2003. “Hypothesis Testing and Multiplicative Interaction
+Terms.” International Organization.
+- Clark, Tom S, and Drew A. Linzer. 2013. “Should I Use Fixed or Random
+Effects?”

@@ -188,4 +188,8 @@ weeks:
   - date: 2017-03-07
     readings:
     - "*r4ds* Ch 28: Graphics for communication"
+    - "McCaskey, Kelly, and Carlisle Rainey. \"[Substantive Importance and the Veil of Statistical Significance](https://dx.doi.org/10.1515/spp-2015-0001).\" *Statistics, Politics, and Policy*."
+    - "Leifeld, P. 2013 Nov 13. \"[texreg: Conversion of Statistical Model Output in R to LATEX and HTML Tables](http://dx.doi.org/10.18637/jss.v055.i08)\". *Journal of Statistical Software*."
+    - "Kastellec, Jonathan P., and Eduardo L. Leoni. 2007. \"[Using Graphs Instead of Tables in Political Science](https://dx.doi.org/10.1017/S1537592707072209).\" *American Journal of Political Science.*"
+    - "*Political Analysis* \"Instructions to Authors\" section [Tables and Figures](https://academic.oup.com/pan/pages/Instructions_To_Authors)."
   - date: 2017-03-10

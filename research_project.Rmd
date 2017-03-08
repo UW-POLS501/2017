@@ -208,9 +208,9 @@ If variables are on vastly different scales, then they should be rescaled to pro
 Uncertain numbers should be accompanied by an indication of their uncertainty, generally a standard error or confidence interval.
 
 The uncertainty of estimates is best conveyed by standard errors or confidence intervals.
-Generally, tables should not routinely report t-statistics or p-values for tests of the null hypothesis that each coefficient is zero.
-Do not use asterisks, "stars", or other symbols to represent varying levels of statistical significance.
+Generally, tables should not routinely report t-statistics or p-values for tests of the null hypothesis that each coefficient is zero
 Regression tables should report the estimate and standard errors of the coefficients, without stars indicating significance levels.
+While discouraged, it is acceptable to use asterisks, "stars", or other symbols to represent varying levels of statistical significance.
 In an author states that a test is "statistically significant", it must be at the .05 level or lower.
 
 ### Supporting information
