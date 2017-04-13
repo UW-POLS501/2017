@@ -5,8 +5,7 @@ Repository containing materials and the website for POLS 501: Advanced Political
 Course website is at https://UW-POLS501.github.io/pols_501_wi17/
 
 ## Preqrequisites
-
-This website is built with [Rmarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview).
+h [Rmarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html#overview).
 
 ## Usage
 
